@@ -1,0 +1,2 @@
+# Mino
+A dashboard
