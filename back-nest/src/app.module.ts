@@ -3,6 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
+import { User } from './user/user.model';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -14,8 +16,9 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: 'kayo',
-      models: [],
+      models: [User],
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
