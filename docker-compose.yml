@@ -4,6 +4,6 @@ services:
     ports:
       - "8080:8080"
   back:
-    build: ./back-express
+    build: ./back-nest
     ports:
       - "3000:3000"
