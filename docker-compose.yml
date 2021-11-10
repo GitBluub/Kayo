@@ -1,0 +1,9 @@
+services:
+  front:
+    build: ./front
+    ports:
+      - "8080:8080"
+  back:
+    build: ./back-express
+    ports:
+      - "3000:3000"
