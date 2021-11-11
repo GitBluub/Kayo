@@ -7,18 +7,17 @@ import { User } from './user/models/user.model';
 import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { DatabaseModule } from './database/database.module';
-import { User } from './user';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
     SequelizeModule.forRoot({
-      dialect: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: process.env.DATABASE_USER,
-      password: process.env.DATABASE_PASSWORD,
-      database: 'kayo',
+      dialect: 'postgres',
+      host: process.env.POSTGRES_HOST,
+      port: Number(process.env.POSTGRES_PORT),
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_NAME,
       models: [User],
     }),
     UserModule,
