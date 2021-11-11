@@ -1,17 +1,24 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import dotenv from 'dotenv';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  
+dotenv.config();
+
+const setupSwagger = (app) => {
   const config = new DocumentBuilder()
-    .setTitle('Minos API')
-    .setDescription('The Minos API used by the Minos Front-End')
+    .setTitle('Kayo API')
+    .setDescription('The Kayo API used by the Kayo Front-End')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);  
+  SwaggerModule.setup('api', app, document);
+}
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  setupSwagger(app);
   await app.listen(3000);
 }
+
 bootstrap();
