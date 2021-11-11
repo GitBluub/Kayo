@@ -1,0 +1,24 @@
+services:
+  front:
+    build: ./front
+    ports:
+      - "3435:80"
+  back:
+    build:
+      context: ./back-nest
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:3000"
+    volumes:
+      - ./back-nest:/app
+    depends_on:
+      - "db"
+  db:
+    container_name: kayo_db
+    image: postgres:alpine3.14
+    environment:
+    - POSTGRES_USER=${POSTGRES_USER}
+    - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    - POSTGRES_DB=${POSTGRES_NAME}
+    ports:
+      - "${POSTGRES_PORT}:5432"
