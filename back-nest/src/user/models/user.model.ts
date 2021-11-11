@@ -1,5 +1,4 @@
 import { Column, Model, Table, DataType } from 'sequelize-typescript';
-import { IntegerDataType } from 'sequelize/types';
 
 @Table
 export class User extends Model {
