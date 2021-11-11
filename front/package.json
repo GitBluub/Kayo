@@ -7,8 +7,13 @@
     "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/core": "^5.0.0-alpha.54",
+    "@mui/material": "^5.1.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2"
   },
   "devDependencies": {
     "@snowpack/plugin-dotenv": "^2.1.0",
@@ -24,7 +29,7 @@
     "@web/test-runner": "^0.13.3",
     "chai": "^4.3.4",
     "prettier": "^2.2.1",
-    "snowpack": "^3.3.7",
+    "snowpack": "3.2.2",
     "typescript": "^4.2.4"
   }
 }
