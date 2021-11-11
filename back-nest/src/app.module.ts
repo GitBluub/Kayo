@@ -8,16 +8,26 @@ import { UserModule } from './user/user.module';
 import { DatabaseModule } from './database/database.module';
 import { DataType } from 'sequelize-typescript';
 import { AuthModule } from './auth/auth.module';
+import { SequelizeModule } from '@nestjs/sequelize';
 
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal: true}),
-    DatabaseModule,
+    SequelizeModule.forRoot({
+      dialect: 'postgres',
+
+      host: process.env.POSTGRES_HOST,
+      port: 5432,
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_NAME,
+      models: [User],
+    }),
     UserModule,
     AuthModule,
   ],
   controllers: [AppController, UserController],
   providers: [AppService],
-  exports: [DatabaseModule, UserModule],
+  exports: [UserModule],
 })
 export class AppModule {}

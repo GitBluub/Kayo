@@ -1,9 +1,24 @@
-import { Controller, Post, Res, Req } from '@nestjs/common';
+import { Controller, Post, Res, Req, Body } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { IsNotEmpty } from "class-validator";
+import { InjectModel } from '@nestjs/sequelize';
+import { User } from '../user/models/user.model';
+
+
+class RegisterDto {
+	@IsNotEmpty()
+	password: string;
+
+	@IsNotEmpty()
+	name: string;
+}
 
 @Controller('auth')
 export class AuthController {
-	constructor() {}
+	constructor(
+		@InjectModel(User)
+		private userModel: typeof User
+	) {}
 
 	@Post('login')
 	async login(@Req() req: Request, @Res() res: Response) {
@@ -11,9 +26,7 @@ export class AuthController {
 	}
 
 	@Post('register')
-	async register() {
-		return {
-			message: 'Hello World!',
-		};
+	async register(@Body() registerDto: RegisterDto, @Res() res: Response) {
+		return this.userModel.create(registerDto);
 	}
 }
