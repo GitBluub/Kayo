@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from 'src/user/models/user.model';
+import { RegisterDto } from './dto/register.dto';
 
 @Injectable()
 export class AuthService {
@@ -9,10 +10,8 @@ export class AuthService {
 	  private userModel: typeof User,
 	) {}
 
-	async createUser(username:string, password: string): Promise<User> {
-		return await this.userModel.create({
-			name: username,
-			password: password,
-		});
+	async createUser(registerDto: RegisterDto): Promise<User> {
+		await this.userModel.sync();
+		return await this.userModel.create(registerDto);
 	}
 }

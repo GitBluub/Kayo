@@ -5,8 +5,6 @@ import { ConfigModule } from '@nestjs/config';
 import { User } from './user/models/user.model';
 import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
-import { DatabaseModule } from './database/database.module';
-import { DataType } from 'sequelize-typescript';
 import { AuthModule } from './auth/auth.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 
@@ -22,6 +20,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_NAME,
       models: [User],
+      sync: { force: true },
+      synchronize: true,
     }),
     UserModule,
     AuthModule,
