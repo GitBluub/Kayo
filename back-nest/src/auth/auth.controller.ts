@@ -2,6 +2,7 @@ import { Controller, Post, Res, Req, Body } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
 import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -10,8 +11,15 @@ export class AuthController {
 	) {}
 
 	@Post('login')
-	async login(@Req() req: Request, @Res() res: Response) {
-		return res.status(400).json({"wow": "a"});
+	async login(@Body() loginDto: LoginDto, @Req() req: Request, @Res() res: Response) {
+		try {
+			const token = await this.authService.login(loginDto);
+			if (token === "")
+				return res.status(400).json({"message": "invalid credentials"});
+			return res.status(200).json({"token": token});
+		} catch {
+			return res.status(500).json({"message": "server error"});
+		}
 	}
 
 	@Post('register')
