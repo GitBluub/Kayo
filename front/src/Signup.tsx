@@ -11,12 +11,18 @@ const SignUp = () => (
     <KayoCard>
       <KayoCardTitle>Welcome to Kayo</KayoCardTitle>
       <KayoCardContent>
-        <Grid container alignItems="center" justifyContent="center">
-          <TextField margin="normal" required fullWidth id="username" label="Username" name="username" autoComplete="username" autoFocus />
-          <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password"/>
-          <TextField margin="normal" required fullWidth name="password" label="Confirm Password" type="password" id="confirm-password" autoComplete="current-password"/>
-          <Button fullWidth variant="contained" color="success" sx={{ my: 1 }} >Sign Up</Button>
-          <Link to="/login"  style={{fontWeight: "bold", textDecoration: 'inherit' }}>Already have an account? Log in</Link>
+        <Grid container alignItems="center" direction="column">
+          <Grid item>
+            <TextField margin="normal" required fullWidth id="username" label="Username" name="username" autoComplete="username" autoFocus />
+            <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password"/>
+            <TextField margin="normal" required fullWidth name="confirm" label="Confirm" type="password" id="confirm-password"/>
+          </Grid>
+          <Grid item>
+            <Button fullWidth variant="contained" color="success" sx={{ my: 1 }} >Sign Up</Button>
+          </Grid>
+          <Grid item>
+            <Link to="/login" style={{fontWeight: "bold", textDecoration: 'inherit' }}>Already have an account? Log in</Link>
+          </Grid>
         </Grid>
       </KayoCardContent>
     </KayoCard>

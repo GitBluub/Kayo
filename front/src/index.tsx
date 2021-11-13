@@ -3,20 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {
   BrowserRouter as Router,
-  Route,
-  Routes
 } from "react-router-dom";
-import Login from './Login';
-import Home from './Home';
-import SignUp from './Signup';
+import App from './App';
 
 ReactDOM.render(
   <Router>
-    <Routes>
-      <Route path="/" element={<Home />}/>
-      <Route path="/login" element={<Login />}/>
-      <Route path="/signup" element={<SignUp />}/>
-    </Routes>
+    <App />
   </Router>,
   document.getElementById('root'),
 );
