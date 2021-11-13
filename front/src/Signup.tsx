@@ -18,10 +18,10 @@ const SignUp = () => (
             <TextField margin="normal" required fullWidth name="confirm" label="Confirm" type="password" id="confirm-password"/>
           </Grid>
           <Grid item>
-            <Button fullWidth variant="contained" color="success" sx={{ my: 1 }} >Sign Up</Button>
+            <Button fullWidth variant="contained" color="info" sx={{ my: 1 }} >Sign Up</Button>
           </Grid>
           <Grid item>
-            <Link to="/login" style={{fontWeight: "bold", textDecoration: 'inherit' }}>Already have an account? Log in</Link>
+            <Link to="/login" style={{fontWeight: "bold" }}>Already have an account? Log in</Link>
           </Grid>
         </Grid>
       </KayoCardContent>

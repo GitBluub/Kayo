@@ -16,9 +16,9 @@ const Login = () => (
             <TextField margin="normal" required fullWidth id="username" label="Username" name="username" autoComplete="username" autoFocus />
             <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password"/>
           </Grid>
-          <Button fullWidth variant="contained" color="success" sx={{ my: 1 }} >Log In</Button>
+          <Button fullWidth variant="contained" color="info" sx={{ my: 1 }} >Log In</Button>
           <Grid item>
-            <Link to="/signup" style={{fontWeight: "bold", textDecoration: 'inherit' }}>New to Kayo? Create an account</Link>
+            <Link to="/signup" style={{fontWeight: "bold"}}>New to Kayo? Create an account</Link>
           </Grid>
         </Grid>
       </KayoCardContent>
