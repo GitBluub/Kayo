@@ -1,0 +1,11 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: db_kayo
+build:
+  docker:
+    front: front/Dockerfile
+    back: back-nest/Dockerfile
+run:
+  front: npm run start
+  back: npm run start
