@@ -14,14 +14,11 @@ const KayoCard = (props: any) => {
 		bcolor= props.backgroundColor
 	if (typeof props.fontColor != 'undefined')
 		tcolor= props.fontColor
-	return <Card style={{ borderRadius: borderRadius, backgroundColor: bcolor , color: tcolor}} variant="outlined" sx={{display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 20}}>
+	return <Card style={{ borderRadius: borderRadius, backgroundColor: bcolor , color: tcolor, width: "80%"}} variant="outlined" sx={{marginBottom:3, display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 20}}>
 	{props.children}
 	</Card>
 }
 
-const KayoCardContent = (props: any) => {
-	return <CardContent>{props.children}</CardContent>
-}
 
 const KayoCardTitle = (props: any) => {
 	return <h1 style={{fontWeight: 700, font: "Inter", color: "#979797", flex: 3}}>
@@ -30,4 +27,4 @@ const KayoCardTitle = (props: any) => {
 }
 
 export default KayoCard;
-export {KayoCardTitle, KayoCardContent};
+export {KayoCardTitle};

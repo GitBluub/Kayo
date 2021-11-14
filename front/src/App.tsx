@@ -10,10 +10,9 @@ import { grey } from '@mui/material/colors';
 const App = () => {
 
 	return <ThemeProvider theme={{}}><Routes>
-      <Route path="/" element={<Home />}/>
+      	<Route path="/" element={<Home />}/>
 		<Route path="/login" element={<Login />}/>
-		<Route path="/signup" element={<SignUp />}>
-      </Route>
+		<Route path="/signup" element={<SignUp />}/>
     </Routes>
 	</ThemeProvider>
 }
