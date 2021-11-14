@@ -5,8 +5,6 @@ import Grid from "@mui/material/Grid/Grid";
 import Widget from "./Components/Widget";
 import AvailableServices from "./Components/Service";
 
-
-
 const Home = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 		<Link to="/login">Login</Link>
@@ -14,6 +12,8 @@ const Home = () => {
 		<CardTitle>KAYO</CardTitle>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<Widget service={AvailableServices.SPOTIFY}>HEYLOOokkkkkkkkkoW</Widget>
+			<Widget service={AvailableServices.STOCK_MARKET}>I'm about market</Widget>
+			<Widget service={AvailableServices.COVID}>I'm about COVID</Widget>
 		</Grid>
 	</Grid>
 }

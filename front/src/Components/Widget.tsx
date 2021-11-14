@@ -12,7 +12,7 @@ const WidgetCard = (props: any) => {
 		bcolor= props.backgroundColor
 	if (typeof props.fontColor != 'undefined')
 		tcolor= props.fontColor
-	return <Card style={{ borderRadius: borderRadius, backgroundColor: bcolor , color: tcolor, width: "80%"}} variant="outlined" sx={{display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 20}}>
+	return <Card style={{ borderRadius: borderRadius, backgroundColor: bcolor , color: tcolor, width: "80%"}} sx={{marginBottom: 1, display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 10}}>
 	{props.children}
 	</Card>
 }
