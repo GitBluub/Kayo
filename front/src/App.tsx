@@ -5,15 +5,20 @@ import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./Signup";
 import { ThemeProvider } from "@emotion/react";
-import { grey } from '@mui/material/colors';
+import Grid from '@mui/material/Grid/Grid'
+import Card from "@mui/material/Card/Card";
 
 const App = () => {
-
-	return <ThemeProvider theme={{}}><Routes>
-      	<Route path="/" element={<Home />}/>
-		<Route path="/login" element={<Login />}/>
-		<Route path="/signup" element={<SignUp />}/>
-    </Routes>
+	return <ThemeProvider theme={{}}>
+		<Grid container alignItems="center" justifyContent="center" sx={{marginTop: 8}}>
+    	<Card style={{ borderRadius: 8, width: "80%"}} variant="outlined" sx={{paddingBottom:3, display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 20}}>
+			<Routes>
+      			<Route path="/" element={<Home />}/>
+				<Route path="/login" element={<Login />}/>
+				<Route path="/signup" element={<SignUp />}/>
+    		</Routes>
+		</Card>
+		</Grid>
 	</ThemeProvider>
 }
 
