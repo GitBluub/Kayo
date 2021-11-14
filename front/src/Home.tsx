@@ -1,4 +1,4 @@
-import { Route, Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as React from 'react';
 import CardTitle from "./Components/Title";
 import Grid from "@mui/material/Grid/Grid";
@@ -9,6 +9,7 @@ const Home = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 		<Link to="/login">Login</Link>
 		<Link to="/signup">Sign up</Link>
+		<Link to="/services">services</Link>
 		<CardTitle>KAYO</CardTitle>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<Widget service={AvailableServices.SPOTIFY}>HEYLOOokkkkkkkkkoW</Widget>

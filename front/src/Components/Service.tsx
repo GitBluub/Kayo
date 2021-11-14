@@ -1,3 +1,7 @@
+import Grid from '@mui/material/Grid/Grid';
+import Card from '@mui/material/Card/Card';
+import * as React from 'react';
+
 
 class Service {
 	backgroundColor: string;
@@ -17,7 +21,19 @@ const AvailableServices = {
 	WEATHER: new Service("#44A8AE", "#FFFFFF", "Weather"),
 }
 
+const ServiceCard  = (props: any) => {
+	return <Card style={{ borderRadius: 20, width: "80%"}} variant="outlined">
+		<Grid container direction="row" justifyContent="space-between" alignItems="center" sx={{marginLeft: 5, paddingRight: 8}}>
+			<h1>{props.name}</h1>
+			<Grid item>
+			{props.children}
+			</Grid>
+		</Grid>
+	</Card>
+}
+
+
 
 
 export default AvailableServices;
-export { AvailableServices, Service };
+export { AvailableServices, Service, ServiceCard };

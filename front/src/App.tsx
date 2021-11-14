@@ -1,12 +1,12 @@
 import { Route, Routes, Link } from "react-router-dom";
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import Home from "./Home";
 import Login from "./Login";
 import SignUp from "./Signup";
 import { ThemeProvider } from "@emotion/react";
-import Grid from '@mui/material/Grid/Grid'
+import Grid from '@mui/material/Grid/Grid';
 import Card from "@mui/material/Card/Card";
+import Services from "./Services";
 
 const App = () => {
 	return <ThemeProvider theme={{}}>
@@ -16,6 +16,7 @@ const App = () => {
       			<Route path="/" element={<Home />}/>
 				<Route path="/login" element={<Login />}/>
 				<Route path="/signup" element={<SignUp />}/>
+				<Route path="/services" element={<Services />}/>
     		</Routes>
 		</Card>
 		</Grid>
