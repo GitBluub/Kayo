@@ -1,6 +1,7 @@
 import Grid from '@mui/material/Grid/Grid';
 import Card from '@mui/material/Card/Card';
 import * as React from 'react';
+import IconButton from '@mui/material/IconButton';
 
 
 class Service {
@@ -30,6 +31,12 @@ const ServiceCardGroup = (props: any) => {
 	</Grid>
 }
 
+const ServiceCardButton = (props: any) => {
+	return <IconButton color="primary" aria-label="upload picture" component="span">
+		{props.children}
+	</IconButton>
+}
+
 const ServiceCard  = (props: any) => {
 	return <Card style={{ borderRadius: 20, width: "80%", marginBottom: 3, backgroundColor: "#F0F0F0", border: "none", boxShadow: "none"}}>
 		<Grid container direction="row" justifyContent="space-between" alignItems="center" sx={{marginLeft: 5, paddingRight: 8}}>
@@ -42,4 +49,4 @@ const ServiceCard  = (props: any) => {
 }
 
 export default AvailableServices;
-export { AvailableServices, Service, ServiceCard, ServiceCardGroup };
+export { AvailableServices, Service, ServiceCard, ServiceCardGroup, ServiceCardButton };

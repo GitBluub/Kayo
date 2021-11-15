@@ -1,9 +1,8 @@
 import * as React from 'react';
 import CardTitle from './Components/Title';
 import Grid from '@mui/material/Grid/Grid';
-import { ServiceCard, ServiceCardGroup } from './Components/Service';
+import { ServiceCard, ServiceCardGroup, ServiceCardButton } from './Components/Service';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import IconButton from '@mui/material/IconButton';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 const Services = () => {
@@ -11,17 +10,15 @@ const Services = () => {
 			<CardTitle>Available Services</CardTitle>
 			<ServiceCardGroup title="Connected Services">
 				<ServiceCard name="Spotify">
-					<IconButton color="primary" aria-label="upload picture" component="span">
-						<DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/>
-					</IconButton>
+					<ServiceCardButton><DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/></ServiceCardButton>
 				</ServiceCard>
 				<ServiceCard name="Weather"/>
 			</ServiceCardGroup>
 			<ServiceCardGroup title="Other Services">
 				<ServiceCard name="Spotify">
-					<IconButton color="primary" aria-label="upload picture" component="span">
-						<AddCircleIcon sx={{ color: "green", fontSize: 35}}/>
-					</IconButton>
+				<ServiceCardButton>
+					<AddCircleIcon sx={{ color: "green", fontSize: 35}}/>
+				</ServiceCardButton>
 				</ServiceCard>
 			</ServiceCardGroup>
 		</Grid>
