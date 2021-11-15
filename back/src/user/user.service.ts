@@ -14,10 +14,18 @@ export class UserService {
     return this.userModel.findAll();
   }
 
-  findOne(id: string): Promise<User> {
+  async findOneById(id: number): Promise<User> | null {
     return this.userModel.findOne({
       where: {
         id,
+      },
+    });
+  }
+
+  async findOne(name: string): Promise<User> | null {
+    return this.userModel.findOne({
+      where: {
+        name,
       },
     });
   }
