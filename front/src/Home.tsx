@@ -9,7 +9,8 @@ const Home = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 		<Link to="/login">Login</Link>
 		<Link to="/signup">Sign up</Link>
-		<Link to="/services">services</Link>
+		<Link to="/services">Services</Link>
+		<Link to="/widgets/manage">Manage widgets</Link>
 		<CardTitle>KAYO</CardTitle>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<Widget service={AvailableServices.SPOTIFY}>HEYLOOokkkkkkkkkoW</Widget>

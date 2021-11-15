@@ -7,6 +7,7 @@ import { ThemeProvider } from "@emotion/react";
 import Grid from '@mui/material/Grid/Grid';
 import Card from "@mui/material/Card/Card";
 import Services from "./Services";
+import ManageWidgets from "./ManageWidgets";
 
 const App = () => {
 	return <ThemeProvider theme={{}}>
@@ -17,6 +18,7 @@ const App = () => {
 				<Route path="/login" element={<Login />}/>
 				<Route path="/signup" element={<SignUp />}/>
 				<Route path="/services" element={<Services />}/>
+				<Route path="/widgets/manage" element={<ManageWidgets />}/>
     		</Routes>
 		</Card>
 		</Grid>

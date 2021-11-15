@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Card from '@mui/material/Card/Card';
 import Grid from '@mui/material/Grid/Grid';
+import Service from './Components/Service.tsx';
+
 
 const WidgetCard = (props: any) => {
 	let borderRadius = 8;
@@ -17,13 +19,23 @@ const WidgetCard = (props: any) => {
 	</Card>
 }
 
+class Widget extends React.Component {
+	service: Service;
+	constructor(props: any)
+	{
+		super(props);
+		this.service = props.service;
+	}
 
-export default function Widget(props: any)  {
-		let service = props.service;
-		return <WidgetCard borderRadius={30} backgroundColor={service.backgroundColor} fontColor={service.fontColor}>
+	render() {
+		return (
+		<WidgetCard borderRadius={30} backgroundColor={this.service.backgroundColor} fontColor={this.service.fontColor}>
 			<Grid container direction="row" justifyContent="space-between" alignItems="center" sx={{marginLeft: 8, paddingRight: 8}}>
-				<h1>{service.name}</h1>
-				{props.children}
+				<h1>{this.service.name}</h1>
+				{this.props.children}
 			</Grid>
-		</WidgetCard>
+		</WidgetCard>);
+	}
 }
+
+export default Widget;
