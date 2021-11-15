@@ -4,7 +4,7 @@ services:
     ports:
       - "3435:80"
   back:
-    build: ./back-nest
+    build: ./back
     ports:
       - "8080:3000"
     depends_on:
