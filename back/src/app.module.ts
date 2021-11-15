@@ -3,14 +3,17 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { User } from './user/models/user.model';
-import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { SequelizeModule } from '@nestjs/sequelize';
+import authConfig from './config/authConfig';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal: true}),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      load: [authConfig]
+    }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
 
@@ -26,7 +29,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
     UserModule,
     AuthModule,
   ],
-  controllers: [AppController, UserController],
+  controllers: [AppController],
   providers: [AppService],
   exports: [UserModule],
 })
