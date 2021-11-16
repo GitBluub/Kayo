@@ -1,36 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { useSelector } from 'react-redux'
 import {
   BrowserRouter,
   Routes, Route, useRoutes
 } from "react-router-dom";
-import App from './App';
-import Home from "./Scenes/Home";
-import Login from "./Scenes/Login";
-import SignUp from "./Scenes/Signup";
-import Services from "./Scenes/Services";
-import ManageWidgets from "./Scenes/ManageWidgets";
+import routes from './routes';
 
 function Router() {
-  let router = useRoutes([
-    { path: '/', element: <App />,
-    children: [
-      { path: '/', element: <Home /> },
-      { path: 'login', element: <Login /> },
-      { path: 'signup', element: <SignUp /> },
-      { path: 'services', element: <Services /> },
-      { path: 'widgets/manage', element: <ManageWidgets /> },
-    ]
-  
-  }]);
-  return router;
+  const { isLogged } = useSelector((state: any) => state.auth);
+  return useRoutes(routes(isLogged));
 }
 
 
 ReactDOM.render(
   <BrowserRouter>
-   <Router/>
+     <Router/>
   </BrowserRouter>,
   document.getElementById('root'),
 );

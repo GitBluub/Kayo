@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid/Grid';
 import { Link } from "react-router-dom";
 
 
-const Login = () => (
+const Login = (props: any) => (
   <Grid container alignItems="center" justifyContent="center" direction="column">
         <ParameterCardTitle>Welcome to Kayo</ParameterCardTitle>
         <Grid item>
