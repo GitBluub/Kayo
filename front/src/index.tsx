@@ -17,10 +17,10 @@ function Router() {
     { path: '/', element: <App />,
     children: [
       { path: '/', element: <Home /> },
-      { path: '/login', element: <Login /> },
-      { path: '/signup', element: <SignUp /> },
-      { path: '/services', element: <Services /> },
-      { path: '/widgets/manage', element: <ManageWidgets /> },
+      { path: 'login', element: <Login /> },
+      { path: 'signup', element: <SignUp /> },
+      { path: 'services', element: <Services /> },
+      { path: 'widgets/manage', element: <ManageWidgets /> },
     ]
   
   }]);
