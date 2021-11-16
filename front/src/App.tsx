@@ -1,25 +1,15 @@
-import { Route, Routes, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import * as React from 'react';
-import Home from "./Scenes/Home";
-import Login from "./Scenes/Login";
-import SignUp from "./Scenes/Signup";
 import { ThemeProvider } from "@emotion/react";
 import Grid from '@mui/material/Grid/Grid';
 import Card from "@mui/material/Card/Card";
-import Services from "./Scenes/Services";
-import ManageWidgets from "./Scenes/ManageWidgets";
+
 
 const App = () => {
 	return <ThemeProvider theme={{}}>
 		<Grid container alignItems="center" justifyContent="center" sx={{marginTop: 8}}>
     	<Card style={{ borderRadius: 8, width: "80%"}} variant="outlined" sx={{paddingBottom:3, display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 20}}>
-			<Routes>
-      			<Route path="/" element={<Home />}/>
-				<Route path="/login" element={<Login />}/>
-				<Route path="/signup" element={<SignUp />}/>
-				<Route path="/services" element={<Services />}/>
-				<Route path="/widgets/manage" element={<ManageWidgets />}/>
-    		</Routes>
+			<Outlet/>
 		</Card>
 		</Grid>
 	</ThemeProvider>
