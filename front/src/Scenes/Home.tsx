@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import * as React from 'react';
-import CardTitle from "./Components/Title";
+import ParameterCardTitle from "../Components/ParameterCard/ParameterCardTitle";
 import Grid from "@mui/material/Grid/Grid";
-import Widget from "./Components/Widget";
-import AvailableServices from "./Components/Service";
+import Widget from "../Components/Widget";
+import AvailableServices from "../Components/Service";
 
 const Home = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
@@ -11,7 +11,7 @@ const Home = () => {
 		<Link to="/signup">Sign up</Link>
 		<Link to="/services">Services</Link>
 		<Link to="/widgets/manage">Manage widgets</Link>
-		<CardTitle>KAYO</CardTitle>
+		<ParameterCardTitle>KAYO</ParameterCardTitle>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<Widget service={AvailableServices.SPOTIFY}>HEYLOOokkkkkkkkkoW</Widget>
 			<Widget service={AvailableServices.STOCK_MARKET}>I'm about market</Widget>

@@ -1,13 +1,13 @@
 import { Route, Routes, Link } from "react-router-dom";
 import * as React from 'react';
-import Home from "./Home";
-import Login from "./Login";
-import SignUp from "./Signup";
+import Home from "./Scenes/Home";
+import Login from "./Scenes/Login";
+import SignUp from "./Scenes/Signup";
 import { ThemeProvider } from "@emotion/react";
 import Grid from '@mui/material/Grid/Grid';
 import Card from "@mui/material/Card/Card";
-import Services from "./Services";
-import ManageWidgets from "./ManageWidgets";
+import Services from "./Scenes/Services";
+import ManageWidgets from "./Scenes/ManageWidgets";
 
 const App = () => {
 	return <ThemeProvider theme={{}}>

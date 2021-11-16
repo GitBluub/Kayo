@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import CardTitle from './Components/Title';
+import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
 import Grid from '@mui/material/Grid/Grid';
 import { Link } from "react-router-dom";
 
 
 const SignUp = () => (
   <Grid container alignItems="center" direction="column">
-    <CardTitle>Welcome to Kayo</CardTitle>
+    <ParameterCardTitle>Welcome to Kayo</ParameterCardTitle>
     <Grid item>
       <TextField margin="normal" required fullWidth id="username" label="Username" name="username" autoComplete="username" autoFocus />
       <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
