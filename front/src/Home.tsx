@@ -16,6 +16,7 @@ const Home = () => {
 			<Widget service={AvailableServices.SPOTIFY}>HEYLOOokkkkkkkkkoW</Widget>
 			<Widget service={AvailableServices.STOCK_MARKET}>I'm about market</Widget>
 			<Widget service={AvailableServices.COVID}>I'm about COVID</Widget>
+			<Widget service={AvailableServices.WEATHER}>Blou is the best city</Widget>
 		</Grid>
 	</Grid>
 }
