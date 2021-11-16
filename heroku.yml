@@ -5,7 +5,7 @@ setup:
 build:
   docker:
     front: front/Dockerfile
-    back: back-nest/Dockerfile
+    back: back/Dockerfile
 run:
   front: npm run start
   back: npm run start

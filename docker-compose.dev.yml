@@ -5,12 +5,12 @@ services:
       - "3435:80"
   back:
     build:
-      context: ./back-nest
+      context: ./back
       dockerfile: Dockerfile.dev
     ports:
       - "8080:3000"
     volumes:
-      - ./back-nest:/app
+      - ./back:/app
     depends_on:
       - "db"
   db:
