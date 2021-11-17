@@ -1,23 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { useSelector } from 'react-redux'
 import {
   BrowserRouter,
   Routes, Route, useRoutes
 } from "react-router-dom";
 import routes from './routes';
+import store from './store';
+import { useSelector, Provider } from 'react-redux'
 
 function Router() {
-  const { isLogged } = useSelector((state: any) => state.auth);
+  const isLogged = useSelector((state: any) => state.auth);
   return useRoutes(routes(isLogged));
 }
 
 
 ReactDOM.render(
-  <BrowserRouter>
-     <Router/>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+       <Router/>
+    </BrowserRouter>
+  </Provider>,
   document.getElementById('root'),
 );
 
