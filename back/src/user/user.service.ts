@@ -17,7 +17,7 @@ export class UserService {
   }
 
   async findOneById(id: number): Promise<User> | null {
-    return this.userModel.findOne({
+		return this.userModel.findOne({
       where: {
         id,
       },
@@ -33,7 +33,6 @@ export class UserService {
   }
 
 	async createUser(registerDto: RegisterDto): Promise<User> {
-		await this.userModel.sync();
 		return await this.userModel.create({
 			...registerDto,
 			password: await bcrypt.hash(registerDto.password, 8)
