@@ -14,7 +14,7 @@ const routes = (isLoggedIn: boolean) => {
 	{ 	path: '/',
 		element: <App/>,
 		children: [
-		  	{ path: '/', element: ifLogged(<Home />) },
+		  	{ path: '/', element: ifLogged(<Home />, <SignUp/>) },
 		  	{ path: 'login', element: ifLogged(<Home />) },
 		  	{ path: 'signup', element: ifLogged(<Home />, <SignUp/>) },
 		  	{ path: 'services', element: ifLogged(<Services />) },
