@@ -25,7 +25,13 @@ const fieldHasError = (fieldValue: string) => {
   return fieldValidator(fieldValue);
 }
 
-const AuthentificationForm = (props: any) => {
+interface AuthentificationFormProps {
+  debug: boolean,
+  signup: boolean,
+  onSubmit: (formContent: AuthentificationFormState) => void
+}
+
+const AuthentificationForm = (props: AuthentificationFormProps) => {
   const formManager = useFormManager<AuthentificationFormState>({
     validators: {
       username: fieldValidator,
@@ -58,7 +64,7 @@ const AuthentificationForm = (props: any) => {
       </form>
       <Grid item>
         <Link to={props.signup ? "/login" : "/signup"} style={{ fontWeight: "bold" }}>
-          {props.signup ? "Already have an account? Log in?" : "Don't have n account? Sign up!"}
+          {props.signup ? "Already have an account? Log in?" : "Don't have an account? Sign up!"}
         </Link>
       </Grid>
     </Grid>
