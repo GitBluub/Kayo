@@ -51,7 +51,6 @@ const AuthentificationForm = (props: AuthentificationFormProps) => {
   });
   return (
     <Grid container alignItems="center" direction="column">
-      <ParameterCardTitle>Welcome to Kayo</ParameterCardTitle>
       <form onSubmit={formManager.handleSubmit}>
         <Grid item>
           <TextField margin="normal" error={fieldHasError(formManager.formState.username, minimumUsernameLengthLength)} helperText={props.signup && errorMessage(minimumUsernameLengthLength)} required fullWidth id="username" label="Username" name="username" autoComplete="username" autoFocus
@@ -73,3 +72,4 @@ const AuthentificationForm = (props: AuthentificationFormProps) => {
 }
 
 export default AuthentificationForm;
+export { AuthentificationFormState }
