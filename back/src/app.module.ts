@@ -18,7 +18,6 @@ import authConfig from './config/authConfig';
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
-
       host: process.env.POSTGRES_HOST,
       port: 5432,
       username: process.env.POSTGRES_USER,
@@ -35,6 +34,5 @@ import authConfig from './config/authConfig';
   ],
   controllers: [AppController],
   providers: [AppService],
-  exports: [UserModule],
 })
 export class AppModule {}

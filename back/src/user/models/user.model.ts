@@ -1,4 +1,6 @@
-import { Column, Model, Table } from 'sequelize-typescript';
+import { Subscription } from 'src/subscription/models/subscription.model';
+import { Column, HasMany, Model, Table } from 'sequelize-typescript';
+import { Widget } from 'src/widget/models/widget.model';
 
 @Table({ tableName: 'users' })
 export class User extends Model {
@@ -8,4 +10,9 @@ export class User extends Model {
   @Column
   password: string;
 
+  @HasMany(() => Widget)
+  widgets: Widget[]
+
+  @HasMany(() => Subscription)
+  subscriptions: Subscription[]
 }
