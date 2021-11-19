@@ -11,18 +11,19 @@ interface AuthentificationFormState {
   password: string;
 }
 
-const minimumFieldLength = 8;
+const minimumPasswordLength = 8;
+const minimumUsernameLengthLength = 4;
 
-const fieldValidator = (field: string) => {
-  return field.length < minimumFieldLength;
+const fieldValidator = (minimumLength: number, field: string) => {
+  return field.length < minimumLength;
 }
-const errorMessage = "Must be at least 8 characters long";
+const errorMessage = (length: number) => `Must be at least ${length} characters long`;
 
 
-const fieldHasError = (fieldValue: string) => {
+const fieldHasError = (fieldValue: string, minimumLength: number) => {
   if (!fieldValue)
     return false;
-  return fieldValidator(fieldValue);
+  return fieldValidator(minimumLength, fieldValue);
 }
 
 interface AuthentificationFormProps {
@@ -34,8 +35,8 @@ interface AuthentificationFormProps {
 const AuthentificationForm = (props: AuthentificationFormProps) => {
   const formManager = useFormManager<AuthentificationFormState>({
     validators: {
-      username: fieldValidator,
-      password: fieldValidator
+      username: (field: any) => fieldValidator(minimumUsernameLengthLength, field),
+      password: (field: any) => fieldValidator(minimumPasswordLength, field),
     },
     onSubmit: (formState: AuthentificationFormState) => {
       props.onSubmit(formState);
@@ -53,9 +54,9 @@ const AuthentificationForm = (props: AuthentificationFormProps) => {
       <ParameterCardTitle>Welcome to Kayo</ParameterCardTitle>
       <form onSubmit={formManager.handleSubmit}>
         <Grid item>
-          <TextField margin="normal" error={fieldHasError(formManager.formState.username)} helperText={props.signup && errorMessage} required fullWidth id="username" label="Username" name="username" autoComplete="username" autoFocus
+          <TextField margin="normal" error={fieldHasError(formManager.formState.username, minimumUsernameLengthLength)} helperText={props.signup && errorMessage(minimumUsernameLengthLength)} required fullWidth id="username" label="Username" name="username" autoComplete="username" autoFocus
             value={formManager.formState.username} onChange={(a) => formManager.updateAndValidateState({ username: a.target.value })}/>
-          <TextField margin="normal" error={fieldHasError(formManager.formState.password)} helperText={props.signup && errorMessage} required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password"
+          <TextField margin="normal" error={fieldHasError(formManager.formState.password, minimumPasswordLength)} helperText={props.signup && errorMessage(minimumPasswordLength)} required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password"
             value={formManager.formState.password}  onChange={(a) => formManager.updateAndValidateState({ password: a.target.value })}/>
         </Grid>
         <Grid item>
