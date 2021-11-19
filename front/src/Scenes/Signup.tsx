@@ -3,20 +3,32 @@ import AuthentificationForm, { AuthentificationFormState } from '../Components/A
 import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
-import { Navigate, useNavigate } from 'react-router';
+import { Navigate } from 'react-router';
 
 const SignUp = () => {
-  const [submit, setSubmitState] = useState(false);
+  const [registered, setRegisteredState] = useState(null as boolean | null);
   const onSubmit = (response: AuthentificationFormState) => {
-    console.log(response);
-    setSubmitState(true);
+    fetch("https://api.example.com/auth/register")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setRegisteredState(true as boolean | null);
+        },
+        (error) => {
+          setRegisteredState(false as boolean | null);
+        }
+      )
   }
 
-  const submitAlert = submit ?
-    <Alert severity="success">
-      <AlertTitle>Hooray:</AlertTitle>
-      the form has been submitted!
-    </Alert> : <></>
+  let submitAlert = <></>
+  if (registered == true)
+    return <Navigate replace to="/" />
+  else if (registered == false) {
+    submitAlert = <Alert severity="error">
+      <AlertTitle>Oops</AlertTitle>
+      An error occured, try again...
+    </Alert> 
+  }
   return (
     <>
       <ParameterCardTitle>Sign up to Kayo</ParameterCardTitle>
