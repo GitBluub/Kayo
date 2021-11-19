@@ -1,40 +1,31 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/sequelize';
-import { User } from 'src/user/models/user.model';
-import { RegisterDto } from './dto/register.dto';
-import { LoginDto } from './dto/login.dto';
-import * as jwt from 'jsonwebtoken';
+import { UserService } from '../user/user.service';
+import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcryptjs';
-
+import PayloadInterface from './interface/payload.interface';
 @Injectable()
 export class AuthService {
+
 	constructor(
-	  @InjectModel(User)
-	  private userModel: typeof User,
+		private userService: UserService,
+		private jwtService: JwtService
 	) {}
 
-	async createUser(registerDto: RegisterDto): Promise<User> {
-		await this.userModel.sync();
-		console.log(bcrypt);
-		return await this.userModel.create({
-			...registerDto,
-			password: await bcrypt.hash(registerDto.password, 8)
-		});
+	async validateUser(username: string, pass: string): Promise<PayloadInterface> {
+		const user = await this.userService.findOne(username);
+		if (user && bcrypt.compareSync(pass, user.password)) {
+			return {
+				username: user.name,
+				userId: user.id
+			};
+		}
+		return null;
 	}
 
-	async login(loginDto: LoginDto): Promise<string> {
-		let user = await this.userModel.findOne({
-			where: {
-				name: loginDto.name
-			},
-		});
-		let passwordIsValid = bcrypt.compareSync(loginDto.password, user.password);
-        if (!passwordIsValid) {
-            return "";
-        }
-		let token = jwt.sign({ username: user.name}, "authSecret", {
-            expiresIn: 30000 // 500 minutes
-        });
-		return token;
+	async login(user: PayloadInterface) {
+		const payload = { username: user.username, sub: user.userId };
+		return {
+		  access_token: this.jwtService.sign(payload),
+		};
 	}
 }
