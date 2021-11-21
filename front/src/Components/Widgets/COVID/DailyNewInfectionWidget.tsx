@@ -7,7 +7,7 @@ interface DailyNewInfectionWidgetInterface {
 }
 
 const DailyNewInfectionWidget = (props: DailyNewInfectionWidgetInterface) => {
-	return <COVIDWidget title="COVID Daily new infections" subtitle={"in " + props.country} rate={props.rate}/>
+	return <COVIDWidget title="COVID Daily new infections" subtitle={"in " + props.country} rate={props.rate} positive={false}/>
 }
 
 export {DailyNewInfectionWidget, DailyNewInfectionWidgetInterface}

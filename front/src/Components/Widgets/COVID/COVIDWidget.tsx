@@ -7,7 +7,8 @@ import Grid from '@mui/material/Grid/Grid';
 interface COVIDWidgetInterface {
 	title: string,
 	subtitle: string,
-	rate: number
+	rate: number,
+	positive: boolean
 }
 
 const COVIDWidget = (props: COVIDWidgetInterface) => {
@@ -20,7 +21,7 @@ const COVIDWidget = (props: COVIDWidgetInterface) => {
 		</Grid>
 		<Grid item >
 			<Grid item style={{ padding: 3 }}>
-				<Button variant="contained" color={props.rate < 0 ? 'success' : 'error'} disableElevation>
+				<Button variant="contained" color={props.positive ? (props.rate >= 0 ? 'success' : 'error') : (props.rate < 0 ? 'success' : 'error') } disableElevation>
 					{props.rate >= 0 ? "+" : ""}{props.rate}%
 				</Button>
 			</Grid>

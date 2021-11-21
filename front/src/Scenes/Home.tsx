@@ -8,6 +8,7 @@ import AvailableServices from "../Components/Service";
 import { StockMarketWidget } from "../Components/Widgets/Stocks/StockMarketWidget";
 import { DailyNewInfectionWidget } from "../Components/Widgets/COVID/DailyNewInfectionWidget";
 import { DailyNewHospitalizationWidget } from "../Components/Widgets/COVID/DailyNewHospitalizationWidget";
+import { WeeklyNewVaccinations } from "../Components/Widgets/COVID/WeeklyNewVaccinations";
 
 const Home = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
@@ -23,6 +24,8 @@ const Home = () => {
 			<DailyNewInfectionWidget rate={49.6} country="USA"/>
 			<DailyNewHospitalizationWidget rate={-0.56} country="France"/>
 			<DailyNewHospitalizationWidget rate={49.6} country="USA"/>
+			<WeeklyNewVaccinations rate={0.56} country="France"/>
+			<WeeklyNewVaccinations rate={49.6} country="USA"/>
 		</Grid>
 	</Grid>
 }
