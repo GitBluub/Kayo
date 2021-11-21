@@ -14,7 +14,7 @@ const COVIDWidget = (props: COVIDWidgetInterface) => {
 	return <Widget service={AvailableServices.COVID}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
-				<h1>{props.title}</h1>
+				<h2>{props.title}</h2>
 				<h3 style={{ color: "#DDD", padding: 12 }}>{props.subtitle}</h3>
 			</Grid>
 		</Grid>

@@ -16,7 +16,7 @@ const StockMarketWidget = (props: StockMarketWidgetInterface) => {
 	return <Widget service={AvailableServices.STOCK_MARKET}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
-				<h1>{props.shortName}</h1>
+				<h2>{props.shortName}</h2>
 				<h3 style={{ color: "grey", padding: 12 }}>{props.fullName}</h3>
 			</Grid>
 		</Grid>

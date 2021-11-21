@@ -7,6 +7,7 @@ import Login from "./Login";
 import AvailableServices from "../Components/Service";
 import { StockMarketWidget } from "../Components/Widgets/Stocks/StockMarketWidget";
 import { DailyNewInfectionWidget } from "../Components/Widgets/COVID/DailyNewInfectionWidget";
+import { DailyNewHospitalizationWidget } from "../Components/Widgets/COVID/DailyNewHospitalizationWidget";
 
 const Home = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
@@ -20,6 +21,8 @@ const Home = () => {
 			<StockMarketWidget shortName="GOOG" fullName="Google Incorporation" total={2.36} variation={-3.14}/>
 			<DailyNewInfectionWidget rate={-0.56} country="France"/>
 			<DailyNewInfectionWidget rate={49.6} country="USA"/>
+			<DailyNewHospitalizationWidget rate={-0.56} country="France"/>
+			<DailyNewHospitalizationWidget rate={49.6} country="USA"/>
 		</Grid>
 	</Grid>
 }
