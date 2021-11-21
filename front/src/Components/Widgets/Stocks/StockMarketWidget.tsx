@@ -3,7 +3,6 @@ import Widget from '../../Widget';
 import AvailableServices from '../../Service';
 import Button from '@mui/material/Button/Button';
 import Grid from '@mui/material/Grid/Grid';
-import Typography from '@mui/material/Typography/Typography';
 
 interface StockMarketWidgetInterface {
 	shortName: string,

@@ -10,17 +10,15 @@ import store from './store';
 import { useSelector, Provider } from 'react-redux'
 
 function Router() {
-  const isLogged = useSelector((state: any) => state.auth);
+  const isLogged = true;
   return useRoutes(routes(isLogged));
 }
 
 
 ReactDOM.render(
-  <Provider store={store}>
     <BrowserRouter>
        <Router/>
-    </BrowserRouter>
-  </Provider>,
+    </BrowserRouter>,
   document.getElementById('root'),
 );
 

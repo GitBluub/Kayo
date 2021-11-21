@@ -6,6 +6,7 @@ import Widget from "../Components/Widget";
 import Login from "./Login";
 import AvailableServices from "../Components/Service";
 import { StockMarketWidget } from "../Components/Widgets/Stocks/StockMarketWidget";
+import { DailyNewInfectionWidget } from "../Components/Widgets/COVID/DailyNewInfectionWidget";
 
 const Home = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
@@ -17,6 +18,8 @@ const Home = () => {
 		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<StockMarketWidget shortName="AAPL" fullName="Apple Incorporation" total={1000000000.36} variation={+0.56}/>
 			<StockMarketWidget shortName="GOOG" fullName="Google Incorporation" total={2.36} variation={-3.14}/>
+			<DailyNewInfectionWidget rate={-0.56} country="France"/>
+			<DailyNewInfectionWidget rate={49.6} country="USA"/>
 		</Grid>
 	</Grid>
 }
