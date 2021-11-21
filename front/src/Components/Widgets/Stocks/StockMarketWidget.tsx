@@ -21,12 +21,12 @@ const StockMarketWidget = (props: StockMarketWidgetInterface) => {
 				<h3 style={{ color: "grey", padding: 12 }}>{props.fullName}</h3>
 			</Grid>
 		</Grid>
-		<Grid item>
+		<Grid item >
 			<Grid container direction="column" alignItems="end">
-				<Grid item justifyContent="center" style={{ padding: 5 }}>
+				<Grid item justifyContent="center" style={{ padding: 3 }}>
 					<span> {props.total}</span>
 				</Grid>
-				<Grid item>
+				<Grid item style={{ padding: 3 }}>
 					<Button size="small" variant="contained" color={props.variation >= 0 ? 'success' : 'error'} disableElevation>
 						{props.variation >= 0 ? "+" : ""}{props.variation}
 					</Button>
