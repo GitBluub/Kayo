@@ -5,12 +5,9 @@ import Grid from "@mui/material/Grid/Grid";
 import Widget from "../Components/Widget";
 import Login from "./Login";
 import AvailableServices from "../Components/Service";
+import { StockMarketWidget } from "../Components/Widgets/Stocks/StockMarketWidget";
 
 const Home = () => {
-	const [token, setToken] = useState();
-	if (!token) {
-		return <Navigate to="login" />
-	}
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 		<Link to="/login">Login</Link>
 		<Link to="/signup">Sign up</Link>
@@ -18,10 +15,8 @@ const Home = () => {
 		<Link to="/widgets/manage">Manage widgets</Link>
 		<ParameterCardTitle>KAYO</ParameterCardTitle>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
-			<Widget service={AvailableServices.SPOTIFY}>HEYLOOokkkkkkkkkoW</Widget>
-			<Widget service={AvailableServices.STOCK_MARKET}>I'm about market</Widget>
-			<Widget service={AvailableServices.COVID}>I'm about COVID</Widget>
-			<Widget service={AvailableServices.WEATHER}>Blou is the best city</Widget>
+			<StockMarketWidget shortName="AAPL" fullName="Apple Incorporation" total={1000000000.36} variation={+0.56}/>
+			<StockMarketWidget shortName="GOOG" fullName="Google Incorporation" total={2.36} variation={-3.14}/>
 		</Grid>
 	</Grid>
 }

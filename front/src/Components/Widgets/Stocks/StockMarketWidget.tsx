@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Widget from '../../Widget';
 import AvailableServices from '../../Service';
+import Button from '@mui/material/Button/Button';
+import Grid from '@mui/material/Grid/Grid';
+import Typography from '@mui/material/Typography/Typography';
 
 interface StockMarketWidgetInterface {
 	shortName: string,
@@ -11,8 +14,25 @@ interface StockMarketWidgetInterface {
 
 const StockMarketWidget = (props: StockMarketWidgetInterface) => {
 
-	<Widget service={AvailableServices.STOCK_MARKET}>
-
+	return <Widget service={AvailableServices.STOCK_MARKET}>
+		<Grid item>
+			<Grid container alignItems="center" justifyContent="space-between">
+				<h1>{props.shortName}</h1>
+				<h3 style={{ color: "grey", padding: 12 }}>{props.fullName}</h3>
+			</Grid>
+		</Grid>
+		<Grid item>
+			<Grid container direction="column" alignItems="end">
+				<Grid item justifyContent="center" style={{ padding: 5 }}>
+					<span> {props.total}</span>
+				</Grid>
+				<Grid item>
+					<Button size="small" variant="contained" color={props.variation >= 0 ? 'success' : 'error'} disableElevation>
+						{props.variation >= 0 ? "+" : ""}{props.variation}
+					</Button>
+				</Grid>
+			</Grid>
+		</Grid>
 	</Widget>
 }
 
