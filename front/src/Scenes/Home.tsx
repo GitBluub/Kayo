@@ -9,6 +9,8 @@ import { WeeklyNewVaccinations } from "../Components/Widgets/COVID/WeeklyNewVacc
 import { FavoriteArtistWidget } from "../Components/Widgets/Spotify/FavoriteArtistWidget";
 import { FavoriteAlbumWidget } from "../Components/Widgets/Spotify/FavoriteAlbumWidget";
 import { FavoriteTrackWidget } from "../Components/Widgets/Spotify/FavoriteTrackWidget";
+import { TemperatureWidget } from "../Components/Widgets/Weather/TemperatureWidget";
+import { WeatherWidget, Weather } from "../Components/Widgets/Weather/WeatherWidget";
 const Home = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 		<Link to="/login">Login</Link>
@@ -28,6 +30,8 @@ const Home = () => {
 			<FavoriteArtistWidget illustration="https://i.scdn.co/image/ab67618600001016f6e93dd30ed67c0a07c234ad" artistName="Adele"/>
 			<FavoriteAlbumWidget illustration="https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7" artistName="Adele" albumName="30" playCount={129}/>
 			<FavoriteTrackWidget illustration="https://i.scdn.co/image/ab67616d0000b273cb5f30b072c99d6e450c688a" artistName="Adele" albumName="30" playCount={129} track="Rolling in the deep"/>
+			<TemperatureWidget city="Blou" country="France" temperature={30}/>
+			<WeatherWidget city="Blou" country="France" weather={Weather.Mist}/>
 		</Grid>
 	</Grid>
 }
