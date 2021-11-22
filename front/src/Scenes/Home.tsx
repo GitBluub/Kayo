@@ -7,7 +7,7 @@ import { DailyNewInfectionWidget } from "../Components/Widgets/COVID/DailyNewInf
 import { DailyNewHospitalizationWidget } from "../Components/Widgets/COVID/DailyNewHospitalizationWidget";
 import { WeeklyNewVaccinations } from "../Components/Widgets/COVID/WeeklyNewVaccinations";
 import { SpotifyWidget, BestType } from "../Components/Widgets/Spotify/SpotifyWidget";
-
+import { FavoriteArtistWidget } from "../Components/Widgets/Spotify/FavoriteArtistWidget";
 const Home = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 		<Link to="/login">Login</Link>
@@ -24,7 +24,7 @@ const Home = () => {
 			<DailyNewHospitalizationWidget rate={49.6} country="USA"/>
 			<WeeklyNewVaccinations rate={0.56} country="France"/>
 			<WeeklyNewVaccinations rate={49.6} country="USA"/>
-			<SpotifyWidget illustration="https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7" type={BestType.ARTIST} title="Adele"/>
+			<FavoriteArtistWidget illustration="https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7" artistName="Adele"/>
 			<SpotifyWidget illustration="https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7" type={BestType.ALBUM} title="Adele"/>
 		</Grid>
 	</Grid>
