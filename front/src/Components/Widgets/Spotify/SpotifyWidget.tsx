@@ -13,6 +13,7 @@ interface SpotifyWidgetInterface {
 	type: BestType,
 	title: string,
 	illustration: string,
+	subtitle: string | undefined,
 }
 
 const SpotifyWidget = (props: SpotifyWidgetInterface) => {
@@ -24,11 +25,12 @@ const SpotifyWidget = (props: SpotifyWidgetInterface) => {
 		</Grid>
 		<Grid item>
 			<Grid container direction="row" alignItems="center">
-				<Grid item justifyContent="center">
-					<h4>ADELE</h4>
+				<Grid item style={{textAlign: 'right'}}>
+					<h4>{props.title}</h4>
+					<h5>{props.subtitle}</h5>
 				</Grid>
 				<Grid item style={{ padding: 3, paddingLeft: 30 }}>
-					<img src={props.illustration} style={{ borderRadius: (props.type == BestType.ARTIST) ? "50%" : "15%", width: '100px', paddingTop: 5 }} />
+					<img src={props.illustration} style={{ borderRadius: (props.type == BestType.ARTIST) ? "50%" : "15%", width: '150px', paddingTop: 5 }} />
 				</Grid>
 			</Grid>
 		</Grid>

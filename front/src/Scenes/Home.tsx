@@ -6,8 +6,9 @@ import { StockMarketWidget } from "../Components/Widgets/Stocks/StockMarketWidge
 import { DailyNewInfectionWidget } from "../Components/Widgets/COVID/DailyNewInfectionWidget";
 import { DailyNewHospitalizationWidget } from "../Components/Widgets/COVID/DailyNewHospitalizationWidget";
 import { WeeklyNewVaccinations } from "../Components/Widgets/COVID/WeeklyNewVaccinations";
-import { SpotifyWidget, BestType } from "../Components/Widgets/Spotify/SpotifyWidget";
 import { FavoriteArtistWidget } from "../Components/Widgets/Spotify/FavoriteArtistWidget";
+import { FavoriteAlbumWidget } from "../Components/Widgets/Spotify/FavoriteAlbumWidget";
+import { FavoriteTrackWidget } from "../Components/Widgets/Spotify/FavoriteTrackWidget";
 const Home = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 		<Link to="/login">Login</Link>
@@ -24,8 +25,9 @@ const Home = () => {
 			<DailyNewHospitalizationWidget rate={49.6} country="USA"/>
 			<WeeklyNewVaccinations rate={0.56} country="France"/>
 			<WeeklyNewVaccinations rate={49.6} country="USA"/>
-			<FavoriteArtistWidget illustration="https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7" artistName="Adele"/>
-			<SpotifyWidget illustration="https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7" type={BestType.ALBUM} title="Adele"/>
+			<FavoriteArtistWidget illustration="https://i.scdn.co/image/ab67618600001016f6e93dd30ed67c0a07c234ad" artistName="Adele"/>
+			<FavoriteAlbumWidget illustration="https://i.scdn.co/image/ab67616d0000b273c6b577e4c4a6d326354a89f7" artistName="Adele" albumName="30" playCount={129}/>
+			<FavoriteTrackWidget illustration="https://i.scdn.co/image/ab67616d0000b273cb5f30b072c99d6e450c688a" artistName="Adele" albumName="30" playCount={129} track="Rolling in the deep"/>
 		</Grid>
 	</Grid>
 }
