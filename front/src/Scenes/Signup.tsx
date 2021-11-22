@@ -1,26 +1,41 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import React, { useState } from 'react';
+import AuthentificationForm, { AuthentificationFormState } from '../Components/AuthentificationForm';
+import Alert from '@mui/material/Alert/Alert';
+import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
-import Grid from '@mui/material/Grid/Grid';
-import { Link } from "react-router-dom";
+import { Navigate } from 'react-router';
 
+const SignUp = () => {
+  const [registered, setRegisteredState] = useState(null as boolean | null);
+  const onSubmit = (response: AuthentificationFormState) => {
+    fetch("https://api.example.com/auth/register")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setRegisteredState(true as boolean | null);
+        },
+        (error) => {
+          setRegisteredState(false as boolean | null);
+        }
+      )
+  }
 
-const SignUp = () => (
-  <Grid container alignItems="center" direction="column">
-    <ParameterCardTitle>Welcome to Kayo</ParameterCardTitle>
-    <Grid item>
-      <TextField margin="normal" required fullWidth id="username" label="Username" name="username" autoComplete="username" autoFocus />
-      <TextField margin="normal" required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password" />
-      <TextField margin="normal" required fullWidth name="confirm" label="Confirm" type="password" id="confirm-password" />
-    </Grid>
-    <Grid item>
-      <Button fullWidth variant="contained" color="info" sx={{ my: 1 }} >Sign Up</Button>
-    </Grid>
-    <Grid item>
-      <Link to="/login" style={{ fontWeight: "bold" }}>Already have an account? Log in</Link>
-    </Grid>
-  </Grid>
-)
+  let submitAlert = <></>
+  if (registered == true)
+    return <Navigate replace to="/" />
+  else if (registered == false) {
+    submitAlert = <Alert severity="error">
+      <AlertTitle>Oops</AlertTitle>
+      An error occured, try again...
+    </Alert> 
+  }
+  return (
+    <>
+      <ParameterCardTitle>Sign up to Kayo</ParameterCardTitle>
+      { submitAlert }
+      <AuthentificationForm signup={true} debug={false} onSubmit={onSubmit}/>
+    </>
+  )
+}
 
 export default SignUp;

@@ -5,33 +5,22 @@ import {
   BrowserRouter,
   Routes, Route, useRoutes
 } from "react-router-dom";
-import App from './App';
-import Home from "./Scenes/Home";
-import Login from "./Scenes/Login";
-import SignUp from "./Scenes/Signup";
-import Services from "./Scenes/Services";
-import ManageWidgets from "./Scenes/ManageWidgets";
+import routes from './routes';
+import store from './store';
+import { useSelector, Provider } from 'react-redux'
 
 function Router() {
-  let router = useRoutes([
-    { path: '/', element: <App />,
-    children: [
-      { path: '/', element: <Home /> },
-      { path: 'login', element: <Login /> },
-      { path: 'signup', element: <SignUp /> },
-      { path: 'services', element: <Services /> },
-      { path: 'widgets/manage', element: <ManageWidgets /> },
-    ]
-  
-  }]);
-  return router;
+  const isLogged = false;
+  return useRoutes(routes(isLogged));
 }
 
 
 ReactDOM.render(
-  <BrowserRouter>
-   <Router/>
-  </BrowserRouter>,
+  // <Provider store={store}>
+    <BrowserRouter>
+       <Router/>
+    </BrowserRouter>,
+  // </Provider>,
   document.getElementById('root'),
 );
 

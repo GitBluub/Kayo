@@ -1,11 +1,16 @@
-import { Link } from "react-router-dom";
-import * as React from 'react';
+import { Link, Navigate } from "react-router-dom";
+import React, { useState } from 'react';
 import ParameterCardTitle from "../Components/ParameterCard/ParameterCardTitle";
 import Grid from "@mui/material/Grid/Grid";
 import Widget from "../Components/Widget";
+import Login from "./Login";
 import AvailableServices from "../Components/Service";
 
 const Home = () => {
+	const [token, setToken] = useState();
+	if (!token) {
+		return <Navigate to="login" />
+	}
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 		<Link to="/login">Login</Link>
 		<Link to="/signup">Sign up</Link>
