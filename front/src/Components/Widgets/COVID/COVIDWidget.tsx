@@ -5,22 +5,29 @@ import Button from '@mui/material/Button/Button';
 import Grid from '@mui/material/Grid/Grid';
 
 
-const COVIDWidget = ({ title, subtitle, rate, positive }) => {
+interface COVIDWidgetInterface {
+	title: string,
+	subtitle: string,
+	rate: number,
+	positive: boolean
+}
+
+const COVIDWidget = (props: COVIDWidgetInterface) => {
 	return <Widget service={AvailableServices.COVID}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
-				<h2>{title}</h2>
-				<h3 style={{ color: "#DDD", padding: 12 }}>{subtitle}</h3>
+				<h2>{props.title}</h2>
+				<h3 style={{ color: "#DDD", padding: 12 }}>{props.subtitle}</h3>
 			</Grid>
 		</Grid>
 		<Grid item >
 			<Grid item style={{ padding: 3 }}>
-				<Button variant="contained" color={positive ? (rate >= 0 ? 'success' : 'error') : (rate < 0 ? 'success' : 'error') } disableElevation>
-					{rate >= 0 ? "+" : ""}{rate}%
+				<Button variant="contained" color={props.positive ? (props.rate >= 0 ? 'success' : 'error') : (props.rate < 0 ? 'success' : 'error') } disableElevation>
+					{props.rate >= 0 ? "+" : ""}{props.rate}%
 				</Button>
 			</Grid>
 		</Grid>
 	</Widget>
 }
 
-export default COVIDWidget;
+export { COVIDWidget, COVIDWidgetInterface };
