@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { COVIDWidget } from './COVIDWidget';
+import COVIDWidget from './COVIDWidget';
 
 interface DailyNewHospitalizationWidgetInterface {
 	rate: number,
