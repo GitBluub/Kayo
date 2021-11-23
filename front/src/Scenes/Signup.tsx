@@ -22,7 +22,7 @@ const SignUp = () => {
 
   let submitAlert = <></>
   if (registered == true)
-    return <Navigate replace to="/" />
+    return <Navigate replace to="/login" />
   else if (registered == false) {
     submitAlert = <Alert severity="error">
       <AlertTitle>Oops</AlertTitle>
