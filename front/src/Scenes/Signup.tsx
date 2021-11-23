@@ -4,12 +4,12 @@ import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
 import { Navigate } from 'react-router';
+import API from '../Controllers/API';
 
 const SignUp = () => {
   const [registered, setRegisteredState] = useState(null as boolean | null);
   const onSubmit = (response: AuthentificationFormState) => {
-    fetch("https://api.example.com/auth/register")
-      .then(res => res.json())
+      API.register(response.username, response.password)
       .then(
         (result) => {
           setRegisteredState(true as boolean | null);
@@ -22,7 +22,7 @@ const SignUp = () => {
 
   let submitAlert = <></>
   if (registered == true)
-    return <Navigate replace to="/" />
+    return <Navigate replace to="/login" />
   else if (registered == false) {
     submitAlert = <Alert severity="error">
       <AlertTitle>Oops</AlertTitle>
@@ -33,7 +33,7 @@ const SignUp = () => {
     <>
       <ParameterCardTitle>Sign up to Kayo</ParameterCardTitle>
       { submitAlert }
-      <AuthentificationForm signup={true} debug={false} onSubmit={onSubmit}/>
+      <AuthentificationForm signup={true} debug={false} onSubmit={onSubmit} submitNotice="Once your account is created, you'll be redirected to login page!"/>
     </>
   )
 }

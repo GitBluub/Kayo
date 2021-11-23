@@ -29,6 +29,7 @@ const fieldHasError = (fieldValue: string, minimumLength: number) => {
 interface AuthentificationFormProps {
   debug: boolean,
   signup: boolean,
+  submitNotice: string
   onSubmit: (formContent: AuthentificationFormState) => void
 }
 
@@ -58,10 +59,13 @@ const AuthentificationForm = (props: AuthentificationFormProps) => {
           <TextField margin="normal" error={fieldHasError(formManager.formState.password, minimumPasswordLength)} helperText={props.signup && errorMessage(minimumPasswordLength)} required fullWidth name="password" label="Password" type="password" id="password" autoComplete="current-password"
             value={formManager.formState.password}  onChange={(a) => formManager.updateAndValidateState({ password: a.target.value })}/>
         </Grid>
-        <Grid item>
+        <Grid item justifyContent="center">
           <Button type="submit" fullWidth variant="contained" color="info" sx={{ my: 1 }} >Sign Up</Button>
         </Grid>
       </form>
+      <Grid item justifyContent="center">
+         <h5>{props.submitNotice}</h5>
+      </Grid>
       <Grid item>
         <Link to={props.signup ? "/login" : "/signup"} style={{ fontWeight: "bold" }}>
           {props.signup ? "Already have an account? Log in?" : "Don't have an account? Sign up!"}

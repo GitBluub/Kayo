@@ -2,6 +2,9 @@ import { Link, Navigate } from "react-router-dom";
 import React, { useState } from 'react';
 import ParameterCardTitle from "../Components/ParameterCard/ParameterCardTitle";
 import Grid from "@mui/material/Grid/Grid";
+import Widget from "../Components/Widget";
+import Login from "./Login";
+import AvailableServices from "../Components/Service";
 import { StockMarketWidget } from "../Components/Widgets/Stocks/StockMarketWidget";
 import { DailyNewInfectionWidget } from "../Components/Widgets/COVID/DailyNewInfectionWidget";
 import { DailyNewHospitalizationWidget } from "../Components/Widgets/COVID/DailyNewHospitalizationWidget";
@@ -11,10 +14,8 @@ import { FavoriteAlbumWidget } from "../Components/Widgets/Spotify/FavoriteAlbum
 import { FavoriteTrackWidget } from "../Components/Widgets/Spotify/FavoriteTrackWidget";
 import { TemperatureWidget } from "../Components/Widgets/Weather/TemperatureWidget";
 import { WeatherWidget, Weather } from "../Components/Widgets/Weather/WeatherWidget";
-const Home = () => {
-	return <Grid container alignItems="center" justifyContent="center" direction="column">
-		<Link to="/login">Login</Link>
-		<Link to="/signup">Sign up</Link>
+const Home = () => (
+	<Grid container alignItems="center" justifyContent="center" direction="column">
 		<Link to="/services">Services</Link>
 		<Link to="/widgets/manage">Manage widgets</Link>
 		<ParameterCardTitle>KAYO</ParameterCardTitle>
@@ -34,6 +35,6 @@ const Home = () => {
 			<WeatherWidget city="Blou" country="France" weather={Weather.Mist}/>
 		</Grid>
 	</Grid>
-}
+)
 
 export default Home;
