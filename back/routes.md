@@ -81,12 +81,18 @@ Unsubscribe of a service
 Returns all the widgets of the connected User
 
 {
-	"widgets": []
+	"widgets": [
+		widgetsIds...
+	]
 }
 
 # GET /widget/:id
 
 Return current widget info
+
+{
+	"name"	;
+}
 
 # POST /widget
 
