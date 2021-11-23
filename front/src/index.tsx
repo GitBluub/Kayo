@@ -10,7 +10,7 @@ import store from './Store/store';
 import { useSelector, Provider } from 'react-redux'
 
 function Router() {
-  const isLogged = useSelector((state) => state.jwtToken.value) != null;
+  const isLogged = useSelector((state: any) => state.jwtToken.value) != null;
   return useRoutes(routes(isLogged));
 }
 
