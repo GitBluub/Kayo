@@ -8,13 +8,15 @@ import { Navigate } from 'react-router';
 const SignUp = () => {
   const [registered, setRegisteredState] = useState(null as boolean | null);
   const onSubmit = (response: AuthentificationFormState) => {
-    fetch("https://api.example.com/auth/register")
+    fetch(`https://${import.meta.env.SNOWPACK_PUBLIC_BACK_END_HOST}:${import.meta.env.SNOWPACK_PUBLIC_BACK_END_PORT}/auth/register`)
       .then(res => res.json())
       .then(
         (result) => {
+          console.log(result)
           setRegisteredState(true as boolean | null);
         },
         (error) => {
+          console.log(error)
           setRegisteredState(false as boolean | null);
         }
       )
