@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 enum APICallMethod {
-	POST = "POST",
-	GET = "GET",
-	DELETE ="DELETE",
-	PUT = "PUT"
+	POST = "post",
+	GET = "get",
+	DELETE ="delete",
+	PUT = "put"
 }
 
 export default class API {
@@ -12,29 +13,26 @@ export default class API {
 	private static port = import.meta.env.SNOWPACK_PUBLIC_BACK_END_PORT
 	public static jwtToken = null
 
-	private static _call(uri: string, method: APICallMethod, parameters: any) {
+	private static _call(route: string, method: APICallMethod, parameters: any) {
 
-		return fetch(`http://${this.host}:${this.port}${uri}`, {
+		return axios({
 			method: method,
-			body: parameters,
-			headers: {
-				'content-type': 'application/json',
-				authorization: this.jwtToken ? `Bearer ${this.jwtToken}` : ""
-			  },
-		}).then(res => res.json);
+			url: `http://${this.host}:${this.port}${route}`,
+			data: parameters
+		  }).then(res => res.data);
 	}
 
 	public static register(username: string, passowrd: string) {
-		return this._call('/auth/register', APICallMethod.POST,{
-			username: username,
-			passowrd: passowrd
+		return this._call('/auth/register', APICallMethod.POST, {
+			name: username,
+			password: passowrd
 		});
 	}
 
 	public static login(username: string, passowrd: string) {
 		return this._call('/auth/login', APICallMethod.POST, {
 			username: username,
-			passowrd: passowrd
+			password: passowrd
 		});
 	}
 }

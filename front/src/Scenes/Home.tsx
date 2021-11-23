@@ -6,12 +6,8 @@ import Widget from "../Components/Widget";
 import Login from "./Login";
 import AvailableServices from "../Components/Service";
 
-const Home = () => {
-	const [token, setToken] = useState();
-	if (!token) {
-		return <Navigate to="login" />
-	}
-	return <Grid container alignItems="center" justifyContent="center" direction="column">
+const Home = () => (
+	<Grid container alignItems="center" justifyContent="center" direction="column">
 		<Link to="/login">Login</Link>
 		<Link to="/signup">Sign up</Link>
 		<Link to="/services">Services</Link>
@@ -24,6 +20,6 @@ const Home = () => {
 			<Widget service={AvailableServices.WEATHER}>Blou is the best city</Widget>
 		</Grid>
 	</Grid>
-}
+)
 
 export default Home;

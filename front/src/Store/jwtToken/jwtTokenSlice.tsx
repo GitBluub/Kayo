@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import axios from 'axios'
 
 export const jwtTokenSlice = createSlice({
   name: 'jwtToken',
@@ -6,8 +7,9 @@ export const jwtTokenSlice = createSlice({
     value: null, // read localState
   },
   reducers: {
-    set: (jwtToken, action) => {
+    setToken: (jwtToken, action) => {
       jwtToken.value = action.payload
+      axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken.value}`
     },
     unset: (jwtToken) => {
 	    jwtToken.value = null
@@ -16,6 +18,6 @@ export const jwtTokenSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { set, unset } = jwtTokenSlice.actions
+export const { setToken, unset } = jwtTokenSlice.actions
 
 export default jwtTokenSlice.reducer

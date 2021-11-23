@@ -12,7 +12,6 @@ import API from './Controllers/API';
 
 function Router() {
   const jwtToken = useSelector((state: any) => state.jwtToken.value);
-  API.jwtToken= jwtToken;
   return useRoutes(routes(jwtToken != null));
 }
 

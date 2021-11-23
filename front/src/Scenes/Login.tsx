@@ -4,15 +4,19 @@ import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
 import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import { Navigate } from 'react-router';
+import API from '../Controllers/API';
+import { setToken } from '../Store/jwtToken/jwtTokenSlice';
+import { useDispatch } from 'react-redux'
 
 const Login = () => {
+  const dispatch = useDispatch();
   const [loggedIn, setLoggedState] = useState(null as boolean | null);
   const onSubmit = (response: AuthentificationFormState) => {
-    fetch("https://api.example.com/auth/login")
-      .then(res => res.json())
+      API.login(response.username, response.password)
       .then(
-        (result) => {
-          setLoggedState(true as boolean | null);
+        (result: any) => {
+          dispatch(setToken(result.access_token))
+          //setLoggedState(true as boolean | null);
         },
         (error) => {
           setLoggedState(false as boolean | null);
@@ -21,9 +25,7 @@ const Login = () => {
   }
 
   let submitAlert = <></>
-  if (loggedIn == true)
-    return <Navigate replace to="/" />
-  else if (loggedIn == false) {
+  if (loggedIn == false) {
     submitAlert = <Alert severity="error">
       <AlertTitle>Oops</AlertTitle>
       An error occured, probably wrong password, try again...

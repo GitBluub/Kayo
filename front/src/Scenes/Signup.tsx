@@ -12,11 +12,9 @@ const SignUp = () => {
       API.register(response.username, response.password)
       .then(
         (result) => {
-          console.log(result)
           setRegisteredState(true as boolean | null);
         },
         (error) => {
-          console.log(error)
           setRegisteredState(false as boolean | null);
         }
       )
