@@ -10,6 +10,7 @@ jobs:
     env:
       IMAGE_NAME_FRONT: kayo-front
       IMAGE_NAME_BACK: kayo-back
+      ARTIFACT_ZONE: europe-west1-docker.pkg.dev
       PROJECT_ID: kayo-333013
     steps:
       - name: Checkout
@@ -28,12 +29,12 @@ jobs:
       - name: Configure docker
         run: |-
           gcloud auth configure-docker --quiet
-          gcloud auth configure-docker europe-west1-docker.pkg.dev --quiet
+          gcloud auth configure-docker $ARTIFACT_ZONE --quiet
       
       - name: Push Images to artifact registry
         run:
-          docker tag $IMAGE_NAME_FRONT:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME_FRONT:latest
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME_FRONT:latest
+          docker tag $IMAGE_NAME_FRONT:latest $ARTIFACT_ZONE/$PROJECT_ID/images/$IMAGE_NAME_FRONT:latest
+          docker push $ARTIFACT_ZONE/$PROJECT_ID/images/$IMAGE_NAME_FRONT:latest
 
-          docker tag $IMAGE_NAME_BACK:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME_BACK:latest
-          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME_BACK:latest
+          docker tag $IMAGE_NAME_BACK:latest $ARTIFACT_ZONE/$PROJECT_ID/images/$IMAGE_NAME_BACK:latest
+          docker push $ARTIFACT_ZONE/$PROJECT_ID/images/$IMAGE_NAME_BACK:latest
