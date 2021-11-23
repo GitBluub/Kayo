@@ -33,7 +33,7 @@ const SignUp = () => {
     <>
       <ParameterCardTitle>Sign up to Kayo</ParameterCardTitle>
       { submitAlert }
-      <AuthentificationForm signup={true} debug={false} onSubmit={onSubmit} submitNotice="Once your account created, you'll be redirected to login page!"/>
+      <AuthentificationForm signup={true} debug={false} onSubmit={onSubmit} submitNotice="Once your account is created, you'll be redirected to login page!"/>
     </>
   )
 }
