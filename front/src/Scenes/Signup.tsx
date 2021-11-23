@@ -4,12 +4,12 @@ import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
 import { Navigate } from 'react-router';
+import API from '../Controllers/API';
 
 const SignUp = () => {
   const [registered, setRegisteredState] = useState(null as boolean | null);
   const onSubmit = (response: AuthentificationFormState) => {
-    fetch(`https://${import.meta.env.SNOWPACK_PUBLIC_BACK_END_HOST}:${import.meta.env.SNOWPACK_PUBLIC_BACK_END_PORT}/auth/register`)
-      .then(res => res.json())
+      API.register(response.username, response.password)
       .then(
         (result) => {
           console.log(result)

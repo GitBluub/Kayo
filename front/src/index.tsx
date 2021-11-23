@@ -7,13 +7,14 @@ import {
 } from "react-router-dom";
 import routes from './routes';
 import store from './Store/store';
-import { useSelector, Provider } from 'react-redux'
+import { useSelector, Provider } from 'react-redux';
+import API from './Controllers/API';
 
 function Router() {
-  const isLogged = useSelector((state: any) => state.jwtToken.value) != null;
-  return useRoutes(routes(isLogged));
+  const jwtToken = useSelector((state: any) => state.jwtToken.value);
+  API.jwtToken= jwtToken;
+  return useRoutes(routes(jwtToken != null));
 }
-
 
 ReactDOM.render(
   <Provider store={store}>

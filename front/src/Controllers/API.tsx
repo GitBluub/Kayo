@@ -10,17 +10,31 @@ enum APICallMethod {
 export default class API {
 	private static host = import.meta.env.SNOWPACK_PUBLIC_BACK_END_HOST
 	private static port = import.meta.env.SNOWPACK_PUBLIC_BACK_END_PORT
+	public static jwtToken = null
 
 	private static _call(uri: string, method: APICallMethod, parameters: any) {
-		const jwtToken = useSelector((state: any) => state.jwtToken);
 
-		return fetch(`https://${this.host}:${this.port}${uri}`, {
+		return fetch(`http://${this.host}:${this.port}${uri}`, {
 			method: method,
 			body: parameters,
 			headers: {
 				'content-type': 'application/json',
-				authorization: jwtToken ? `Bearer ${jwtToken}` : ""
+				authorization: this.jwtToken ? `Bearer ${this.jwtToken}` : ""
 			  },
 		}).then(res => res.json);
+	}
+
+	public static register(username: string, passowrd: string) {
+		return this._call('/auth/register', APICallMethod.POST,{
+			username: username,
+			passowrd: passowrd
+		});
+	}
+
+	public static login(username: string, passowrd: string) {
+		return this._call('/auth/login', APICallMethod.POST, {
+			username: username,
+			passowrd: passowrd
+		});
 	}
 }
