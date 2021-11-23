@@ -14,6 +14,9 @@ Needs
 
 Creates a user in the database
 
+Returns 200 Success
+Returns 400 Bad Request
+
 # /auth/login
 
 Needs
@@ -23,10 +26,16 @@ Needs
 }
 
 Returns a jwt for the user
+200
+{
+	"access_token": JWT_TOKEN
+}
+
+400 Bad Request
 
 # GET /services
 
-Returns the service the user is subscribed to
+Returns the services the user is subscribed to
 
 {
 	subscriptions: [
@@ -78,7 +87,7 @@ Unsubscribe of a service
 400 BadRequest
 # GET /widgets
 
-Returns all the widgets of the connected User
+Returns all the widgets' id of the connected User
 
 {
 	"widgets": [
@@ -88,22 +97,57 @@ Returns all the widgets of the connected User
 
 # GET /widget/:id
 
+Return the widget fetched info
+
+object returned by the service api
+{
+
+}
+
+# GET /widget/:id/data
+
 Return current widget info
 
 {
-	"name"	;
+	"name": "widget name",
+	"parameters": [
+		{
+			"name": "parameter name",
+			"value": "parameter value",
+			"type": "string" | "number",
+		},
+	]
 }
 
-# POST /widget
+# POST /:serviceName/:widgetName
 
 Creates a widget with necesarry info
-Maybe a /service/widget/:widgetname
+{
+	"parameters": [
+		{
+			"name": "parameter name",
+			"value": "parameter value",
+			"type": "string" | "number",
+		},
+	]
+}
 
 # PUT /widget/:id
 
 Update a widget configuration
+{
+	"parameters": [
+		{
+			"name": "parameter name",
+			"value": "parameter value",
+			"type": "string" | "number",
+		},
+	]
+}
 
 # DELETE /widget/:id
 
 Delete a widgets of a user
 
+Return 200 Success
+Return 400 BadRequest
