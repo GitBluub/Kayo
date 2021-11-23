@@ -28,12 +28,26 @@ Returns a jwt for the user
 
 Returns the service the user is subscribed to
 
+{
+	subscriptions: [
+		servicesNames...
+	]
+}
+
+
 # GET /service/:name
 
-Returns the url of the oauth2 connection needed
-
+Success
+Returns the token used by the service
 {
-	url: "dazdaz"
+	token: "dazdazdaz"	
+}
+
+# GET /service/:name/url
+
+Returns the url of the oauth2 connection needed
+{
+	url: "http;//facebook..."
 	type: "Facebook" | "" | "Twitter"
 }
 
@@ -44,13 +58,31 @@ Subscribe to a service
 	"serviceToken": _____
 }
 
+
+200
+{
+	"message": "Service created"
+}
+
+400 BadRequest
+
 # DELETE /service/:name
 
 Unsubscribe of a service
 
+200
+{
+	"message": "Service deleted"
+}
+
+400 BadRequest
 # GET /widgets
 
 Returns all the widgets of the connected User
+
+{
+	"widgets": []
+}
 
 # GET /widget/:id
 
