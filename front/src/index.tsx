@@ -6,21 +6,21 @@ import {
   Routes, Route, useRoutes
 } from "react-router-dom";
 import routes from './routes';
-import store from './store';
+import store from './Store/store';
 import { useSelector, Provider } from 'react-redux'
 
 function Router() {
-  const isLogged = false;
+  const isLogged = useSelector((state) => state.jwtToken.value) != null;
   return useRoutes(routes(isLogged));
 }
 
 
 ReactDOM.render(
-  // <Provider store={store}>
+  <Provider store={store}>
     <BrowserRouter>
        <Router/>
     </BrowserRouter>,
-  // </Provider>,
+  </Provider>,
   document.getElementById('root'),
 );
 
