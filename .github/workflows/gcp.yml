@@ -1,0 +1,39 @@
+---
+name: Build and Push front and back images to GCP
+on:
+  push:
+    branches: [dev]
+jobs:
+  build-push-gcr:
+    name: Build and Push front and back images to GCP
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME_FRONT: kayo-front
+      IMAGE_NAME_BACK: kayo-back
+      PROJECT_ID: kayo-333013
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
+          project_id: ${{ env.PROJECT_ID }}
+          export_default_credentials: true
+      
+      - name: Build images
+        run: docker build -t $IMAGE_NAME_FRONT:latest -f ./front/Dockerfile front
+        run: docker build -t $IMAGE_NAME_BACK:latest -f ./front/Dockerfile back
+      
+      - name: Configure docker
+        run: |-
+          gcloud auth configure-docker --quiet
+          gcloud auth configure-docker europe-west1-docker.pkg.dev --quiet
+      
+      - name: Push Images to artifact registry
+        run:
+          docker tag $IMAGE_NAME_FRONT:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME_FRONT:latest
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME_FRONT:latest
+
+          docker tag $IMAGE_NAME_BACK:latest europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME_BACK:latest
+          docker push europe-west1-docker.pkg.dev/$PROJECT_ID/images/$IMAGE_NAME_BACK:latest
