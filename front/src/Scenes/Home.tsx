@@ -14,10 +14,10 @@ import { FavoriteAlbumWidget } from "../Components/Widgets/Spotify/FavoriteAlbum
 import { FavoriteTrackWidget } from "../Components/Widgets/Spotify/FavoriteTrackWidget";
 import { TemperatureWidget } from "../Components/Widgets/Weather/TemperatureWidget";
 import { WeatherWidget, Weather } from "../Components/Widgets/Weather/WeatherWidget";
-const Home = () => {
-	return <Grid container alignItems="center" justifyContent="center" direction="column">
-		<Link to="/login">Login</Link>
-		<Link to="/signup">Sign up</Link>
+const Home = () => (
+	<Grid container alignItems="center" justifyContent="center" direction="column">
+		{/* <Link to="/login">Login</Link>
+		<Link to="/signup">Sign up</Link> */}
 		<Link to="/services">Services</Link>
 		<Link to="/widgets/manage">Manage widgets</Link>
 		<ParameterCardTitle>KAYO</ParameterCardTitle>
