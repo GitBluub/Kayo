@@ -16,8 +16,6 @@ import { TemperatureWidget } from "../Components/Widgets/Weather/TemperatureWidg
 import { WeatherWidget, Weather } from "../Components/Widgets/Weather/WeatherWidget";
 const Home = () => (
 	<Grid container alignItems="center" justifyContent="center" direction="column">
-		{/* <Link to="/login">Login</Link>
-		<Link to="/signup">Sign up</Link> */}
 		<Link to="/services">Services</Link>
 		<Link to="/widgets/manage">Manage widgets</Link>
 		<ParameterCardTitle>KAYO</ParameterCardTitle>
