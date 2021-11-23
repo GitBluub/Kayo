@@ -32,7 +32,7 @@ const Login = () => {
   return <>
     <ParameterCardTitle>Welcome to Kayo</ParameterCardTitle>
     { submitAlert }
-    <AuthentificationForm signup={false} debug={false} onSubmit={onSubmit} />
+    <AuthentificationForm signup={false} debug={false} onSubmit={onSubmit} submitNotice=''/>
   </>
 }
 
