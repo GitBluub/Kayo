@@ -9,6 +9,7 @@ import ServiceCard from '../Components/ServiceCard';
 import { useState, useEffect } from 'react';
 import API from '../Controllers/API';
 import { SpotifyAuth, SpotifyAuthListener, Scopes } from 'react-spotify-auth'
+import OauthPopup from 'react-oauth-popup'
 
 const Services = () => {
 	var [ connectedServices, setConnectedServices] = useState([] as any[])
@@ -25,9 +26,16 @@ const Services = () => {
         	redirectUri='http://localhost:3435/services/'
         	clientID="1f12a2f8a7a94a7c8b15d90a242cf9a6"
         	scopes={[]} // either style will work
-        	onAccessToken={(token: any) => console.log(token) }
+        	onAccessToken={(token: any) => window.close()}
 			noLogo={true}
 			/>
+			<OauthPopup
+    		  url="https://accounts.spotify.com/en/authorize?response_type=token&client_id=1f12a2f8a7a94a7c8b15d90a242cf9a6&scope=&redirect_uri=http:%2F%2Flocalhost:3435%2Fservices%2F&show_dialog=false"
+    		  onCode={(token: any) => window.close()}
+    		  onClose={() => null}
+    		>
+      <div>Click me to open a Popup</div>
+    </OauthPopup>
 			<ParameterCardGroup title="Connected Services">
 				{ connectedServices.map((name: string) => <ServiceCard key={name} serviceName={name.toUpperCase()} actionType="delete" action={() => {
 					API.unsubscribe(name)
