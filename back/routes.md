@@ -24,10 +24,15 @@ Needs
 
 Returns a jwt for the user
 
-# GET /services
-
+# GET /services/subscribed
 Returns the service the user is subscribed to
 
+# GET /services/unsubscribed
+Returns the service the user is not subscribed to
+[
+	"a",
+	"b",
+]
 # GET /service/:name
 
 Returns the url of the oauth2 connection needed
