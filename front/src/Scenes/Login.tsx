@@ -15,9 +15,7 @@ const Login = () => {
       API.login(response.username, response.password)
       .then(
         (result: any) => {
-          console.log(result)
           dispatch(setToken(result.access_token))
-          //setLoggedState(true as boolean | null);
         },
         (error) => {
           setLoggedState(false as boolean | null);

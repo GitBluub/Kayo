@@ -53,8 +53,10 @@ export default class API {
 		return this._call(`/service/${serviceName}`, APICallMethod.DELETE, {});
 	}
 
-	public static subscribe(serviceName: string) {
-		return this._call(`/service/${serviceName}`, APICallMethod.POST, {});
+	public static subscribe(serviceName: string, token: string) {
+		return this._call(`/service/${serviceName}`, APICallMethod.POST, {
+			serviceToken: token
+		});
 	}
 
 	public static getAvailableServices() {

@@ -8,6 +8,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ServiceCard from '../Components/ServiceCard';
 import { useState, useEffect } from 'react';
 import API from '../Controllers/API';
+import { SpotifyAuth, SpotifyAuthListener, Scopes } from 'react-spotify-auth'
 
 const Services = () => {
 	var [ connectedServices, setConnectedServices] = useState([] as any[])
@@ -19,6 +20,14 @@ const Services = () => {
 	}, [])
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 			<ParameterCardTitle>Available Services</ParameterCardTitle>
+			<SpotifyAuthListener />
+			<SpotifyAuth
+        	redirectUri='http://localhost:3435/services/'
+        	clientID="1f12a2f8a7a94a7c8b15d90a242cf9a6"
+        	scopes={[]} // either style will work
+        	onAccessToken={(token: any) => console.log(token) }
+			noLogo={true}
+			/>
 			<ParameterCardGroup title="Connected Services">
 				{ connectedServices.map((name: string) => <ServiceCard key={name} serviceName={name.toUpperCase()} actionType="delete" action={() => {
 					API.unsubscribe(name)
@@ -31,7 +40,7 @@ const Services = () => {
 			</ParameterCardGroup>
 			<ParameterCardGroup title="Other Services">
 				{ otherServices.map((name: string) => <ServiceCard key={name} serviceName={name.toUpperCase()} actionType="add" action={() => {
-					API.subscribe(name)
+					API.subscribe(name, "")
 					setOtherServices((state) => state.filter((iname: string, _, __) => iname !== name))
 					setConnectedServices((state) => {
 						state.push(name);
