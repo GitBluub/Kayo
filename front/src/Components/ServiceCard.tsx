@@ -22,7 +22,7 @@ const ServiceCard = (props: ServiceCardInterface) => {
 	}
 	
 	return <ParameterCard name={props.serviceName}>
-	<ParameterCardButton>
+	<ParameterCardButton onClick={props.action}>
 		{actionButton}
 	</ParameterCardButton>
 	</ParameterCard>

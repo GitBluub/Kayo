@@ -20,12 +20,17 @@ const Services = () => {
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 			<ParameterCardTitle>Available Services</ParameterCardTitle>
 			<ParameterCardGroup title="Connected Services">
-				{ connectedServices.map((name: string) => <ServiceCard serviceName={name.toUpperCase()} actionType="delete" action={() => {
+				{ connectedServices.map((name: string) => <ServiceCard key={name} serviceName={name.toUpperCase()} actionType="delete" action={() => {
 					API.unsubscribe(name)
+					setConnectedServices((connectedState) => connectedState.filter((iname: string, _, __) => iname !== name))
+					setOtherServices((connectedState) => {
+						connectedState.push(name);
+						return connectedState
+					})
 				}}/>) }
 			</ParameterCardGroup>
 			<ParameterCardGroup title="Other Services">
-				{ otherServices.map((name: string) => <ServiceCard serviceName={name.toUpperCase()} actionType="add" action={() => {}}/>) }
+				{ otherServices.map((name: string) => <ServiceCard key={name} serviceName={name.toUpperCase()} actionType="add" action={() => {}}/>) }
 			</ParameterCardGroup>
 		</Grid>
 }
