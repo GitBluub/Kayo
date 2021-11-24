@@ -30,7 +30,14 @@ const Services = () => {
 				}}/>) }
 			</ParameterCardGroup>
 			<ParameterCardGroup title="Other Services">
-				{ otherServices.map((name: string) => <ServiceCard key={name} serviceName={name.toUpperCase()} actionType="add" action={() => {}}/>) }
+				{ otherServices.map((name: string) => <ServiceCard key={name} serviceName={name.toUpperCase()} actionType="add" action={() => {
+					API.subscribe(name)
+					setOtherServices((state) => state.filter((iname: string, _, __) => iname !== name))
+					setConnectedServices((state) => {
+						state.push(name);
+						return state
+					})
+				}}/>) }
 			</ParameterCardGroup>
 		</Grid>
 }
