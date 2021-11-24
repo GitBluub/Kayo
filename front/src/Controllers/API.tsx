@@ -49,6 +49,10 @@ export default class API {
 		return Promise.resolve(['spotify'])
 	}
 
+	public static unsubscribe(serviceName: string) {
+		return this._call(`/service/${serviceName}`, APICallMethod.DELETE, {});
+	}
+
 	public static getAvailableServices() {
 		//return this.getAbout().then((about: any) => {
 		//	var serviceNames: string[] = [];

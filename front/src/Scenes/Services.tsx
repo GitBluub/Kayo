@@ -14,22 +14,18 @@ const Services = () => {
 	var [ otherServices, setOtherServices ] = useState([] as any[])
 
 	useEffect(() => {
-		API.getSubscribedServices().then((names: string[]) => {
-			var jsxArray = names.map((name: string) => (<ServiceCard serviceName={name.toUpperCase()} actionType="delete" action={() => {}}/>))
-			setConnectedServices(jsxArray)
-		})
-		API.getOtherServices().then((names: string[]) => {
-			var jsxArray = names.map((name: string) => (<ServiceCard serviceName={name.toUpperCase()} actionType="add" action={() => {}}/>))
-			setOtherServices(jsxArray)
-		})
+		API.getSubscribedServices().then((names: string[]) => { setConnectedServices(names) })
+		API.getOtherServices().then((names: string[]) => { setOtherServices(names) })
 	}, [])
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 			<ParameterCardTitle>Available Services</ParameterCardTitle>
 			<ParameterCardGroup title="Connected Services">
-				{ connectedServices }
+				{ connectedServices.map((name: string) => <ServiceCard serviceName={name.toUpperCase()} actionType="delete" action={() => {
+					API.unsubscribe(name)
+				}}/>) }
 			</ParameterCardGroup>
 			<ParameterCardGroup title="Other Services">
-				{ otherServices }
+				{ otherServices.map((name: string) => <ServiceCard serviceName={name.toUpperCase()} actionType="add" action={() => {}}/>) }
 			</ParameterCardGroup>
 		</Grid>
 }
