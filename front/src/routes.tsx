@@ -9,15 +9,15 @@ import { Navigate } from 'react-router';
 
 
 const routes = (isLoggedIn: boolean) => {
-	const ifLogged = ((ifLogged: any, ifNotLogged:any = "/login") => isLoggedIn ? ifLogged : <Navigate replace to={ifNotLogged} />);
+	const ifLogged = ((ifLogged: any, ifNotLogged:any = <Login />) => isLoggedIn ? ifLogged :ifNotLogged);
 	console.log(isLoggedIn);
 	return [
 	{ 	path: '/',
 		element: <App/>,
 		children: [
-		  	{ path: '/', element: ifLogged(<Home />, "/login") },
+		  	{ path: '/', element: ifLogged(<Home />, <Login />) },
 		  	{ path: '/login', element: ifLogged(<Home />) },
-		  	{ path: '/signup', element: ifLogged(<Home />, "/signup") },
+		  	{ path: '/signup', element: ifLogged(<Home />, <SignUp />) },
 		  	{ path: '/services', element: ifLogged(<Services />) },
 		  	{ path: '/widgets/manage', element: ifLogged(<ManageWidgets />) },
 		]

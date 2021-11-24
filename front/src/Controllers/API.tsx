@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import axios from "axios";
 
 enum APICallMethod {
@@ -34,5 +33,28 @@ export default class API {
 			username: username,
 			password: passowrd
 		});
+	}
+
+	public static getAbout() {
+		return this._call('/about.json', APICallMethod.GET, {});
+	}
+	
+	public static getSubscribedServices() {
+		return Promise.resolve(['weather', 'covid', 'stocks'])
+		//return this._call('/services/subscribed', APICallMethod.GET);
+	}
+
+	public static getOtherServices() {
+		//return this._call('/services/unsubscribed', APICallMethod.GET);
+		return Promise.resolve(['spotify'])
+	}
+
+	public static getAvailableServices() {
+		//return this.getAbout().then((about: any) => {
+		//	var serviceNames: string[] = [];
+		//	about.server.services.forEach((element: any) => serviceNames.push(element.name))
+		//	return serviceNames;
+		//})
+		return Promise.resolve(['weather', 'covid', 'stocks', 'spotify'])
 	}
 }
