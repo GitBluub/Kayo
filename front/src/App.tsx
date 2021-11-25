@@ -3,8 +3,6 @@ import * as React from 'react';
 import { ThemeProvider } from "@emotion/react";
 import Grid from '@mui/material/Grid/Grid';
 import Card from "@mui/material/Card/Card";
-import { BrowserRouter, Route } from 'react-router-dom';
-import Home from "./Scenes/Home";
 
 
 const App = () => {
