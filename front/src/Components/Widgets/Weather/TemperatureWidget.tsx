@@ -10,7 +10,7 @@ interface TemperatureWidgetInterface {
 }
 
 const TemperatureWidget = (props: TemperatureWidgetInterface) => (
-	<Widget service={AvailableServices.WEATHER}>
+	<Widget service={AvailableServices['weather']}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
 				<h2>{props.city}</h2>

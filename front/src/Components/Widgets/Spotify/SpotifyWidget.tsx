@@ -17,7 +17,7 @@ interface SpotifyWidgetInterface {
 }
 
 const SpotifyWidget = (props: SpotifyWidgetInterface) => {
-	return <Widget service={AvailableServices.SPOTIFY}>
+	return <Widget service={AvailableServices['spotify']}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
 				<h2>Favorite {props.type}</h2>

@@ -13,7 +13,7 @@ interface COVIDWidgetInterface {
 }
 
 const COVIDWidget = (props: COVIDWidgetInterface) => {
-	return <Widget service={AvailableServices.COVID}>
+	return <Widget service={AvailableServices['covid']}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
 				<h2>{props.title}</h2>

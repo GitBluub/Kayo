@@ -1,27 +1,43 @@
 import * as React from 'react';
 import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
 import Grid from '@mui/material/Grid/Grid';
-import ParameterCard from '../Components/ParameterCard/ParameterCard';
 import ParameterCardGroup from '../Components/ParameterCard/ParameterCardGroup';
-import ParameterCardButton from '../Components/ParameterCard/ParameterCardButton';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import ServiceCard from '../Components/ServiceCard';
+import { useState, useEffect } from 'react';
+import API from '../Controllers/API';
+import AvailableServices, { Service } from '../Components/Service';
+
 
 const Services = () => {
+	const [ connectedServices, setConnectedServices ] = useState<string[]>([])
+	const [ otherServices, setOtherServices ] = useState<string[]>([])
+
+	useEffect(() => {
+		API.getSubscribedServices().then((names: string[]) => { setConnectedServices(names) })
+		API.getOtherServices().then((names: string[]) => { setOtherServices(names) })
+	}, [])
 	return <Grid container alignItems="center" justifyContent="center" direction="column">
 			<ParameterCardTitle>Available Services</ParameterCardTitle>
 			<ParameterCardGroup title="Connected Services">
-				<ParameterCard name="Spotify">
-					<ParameterCardButton><DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/></ParameterCardButton>
-				</ParameterCard>
-				<ParameterCard name="Weather"/>
+				{ connectedServices.map((name: string) => <ServiceCard key={name} href='#' serviceName={name.toUpperCase()} actionType="delete" action={() => {
+					API.unsubscribe(name)
+					setConnectedServices((connectedState) => connectedState.filter((iname: string, _, __) => iname !== name))
+					setOtherServices((connectedState) => {
+						connectedState.push(name);
+						return connectedState
+					})
+				}}/>) }
 			</ParameterCardGroup>
 			<ParameterCardGroup title="Other Services">
-				<ParameterCard name="Spotify">
-				<ParameterCardButton>
-					<AddCircleIcon sx={{ color: "green", fontSize: 35}}/>
-				</ParameterCardButton>
-				</ParameterCard>
+				{ otherServices.map((name: string) => <ServiceCard key={name} serviceName={name.toUpperCase()} actionType="add" 
+				href={ AvailableServices[name].urlToSubscribe } action={() => {
+					setOtherServices((state) => state.filter((iname: string, _, __) => iname !== name))
+					setConnectedServices((state) => {
+						state.push(name);
+						return state
+					})
+
+				}}/>) }
 			</ParameterCardGroup>
 		</Grid>
 }

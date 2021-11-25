@@ -16,7 +16,6 @@ const Login = () => {
       .then(
         (result: any) => {
           dispatch(setToken(result.access_token))
-          //setLoggedState(true as boolean | null);
         },
         (error) => {
           setLoggedState(false as boolean | null);
@@ -30,6 +29,8 @@ const Login = () => {
       <AlertTitle>Oops</AlertTitle>
       An error occured, probably wrong password, try again...
     </Alert>
+  } else {
+    submitAlert = <></>
   }
   return <>
     <ParameterCardTitle>Welcome to Kayo</ParameterCardTitle>

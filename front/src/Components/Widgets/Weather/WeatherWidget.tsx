@@ -46,7 +46,7 @@ const getWeatherIcon = (weather: Weather) => {
 }
 
 const WeatherWidget = (props: WeatherWidgetInterface) => (
-	<Widget service={AvailableServices.WEATHER}>
+	<Widget service={AvailableServices['weather']}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
 				<h2>{props.city}</h2>
