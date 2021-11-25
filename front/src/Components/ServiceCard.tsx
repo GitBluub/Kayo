@@ -9,10 +9,12 @@ interface ServiceCardInterface {
 	serviceName: string,
 	actionType: "add" | "delete" | "none",
 	action: () => void,
+	href: string,
 }
 
 const ServiceCard = (props: ServiceCardInterface) => {
 
+	console.log(props.serviceName, props.href)
 	var actionButton = <></>;
 
 	if (props.actionType == 'delete') {
@@ -22,7 +24,7 @@ const ServiceCard = (props: ServiceCardInterface) => {
 	}
 	
 	return <ParameterCard name={props.serviceName}>
-	<ParameterCardButton onClick={props.action}>
+	<ParameterCardButton onClick={props.action} href={props.href}>
 		{actionButton}
 	</ParameterCardButton>
 	</ParameterCard>

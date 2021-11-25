@@ -3,7 +3,8 @@ import App from './App';
 import Home from "./Scenes/Home";
 import Login from "./Scenes/Login";
 import SignUp from "./Scenes/Signup";
-import Services, { ServiceSubscribe } from "./Scenes/Services";
+import Services from "./Scenes/Services";
+import ServiceSubscribe from './Controllers/ServiceSubscribtion';
 import ManageWidgets from "./Scenes/ManageWidgets";
 import { Navigate } from 'react-router';
 import {
@@ -22,7 +23,7 @@ const routes = (isLoggedIn: boolean) => {
 				<Route path="signup" element={ifLogged(<Navigate replace to="/"/>, <SignUp />)}/>
     	      	<Route path="services">
     	      	  	<Route index element={<Services/>}/>
-    	      	  	<Route path=":serviceID/:rest" element={<ServiceSubscribe/>}/>
+    	      	  	<Route path="subscribe/:serviceID" element={<ServiceSubscribe/>}/>
     	      	</Route>
 				<Route path="widgets/manage" element={ifLogged(<ManageWidgets />)}/>
     	    </Route>
