@@ -30,32 +30,5 @@ const routes = (isLoggedIn: boolean) => {
     	</Routes>
 	)
 }
-	// return [
-	//  { 	path: '/',
-	//  	element: <App/>,
-	//  	children: [
-	//  	  	{ path: '/', element: ifLogged(<Home />, <Login />) },
-	//  	  	{ path: '/login', element: ifLogged(<Home />) },
-	//  	  	{ path: '/signup', element: ifLogged(<Home />, <SignUp />) },
-	//  	  	{ path: '/services', element: ifLogged(<Services />) },
-	// 		{ path: '/services/:serviceid/:rest', element: ifLogged(<ServiceSubscribe />) },
-	//  	  	{ path: '/widgets/manage', element: ifLogged(<ManageWidgets />) },
-	//  	]
-	//  }
-	// {
-	// 	path: 'login', element: <App>{ifLogged(<Home />)}</App>,
-	// },
-	// {
-	// 	path: '/signup', element: <App>{ifLogged(<Home />, <SignUp/>)}</App>,
-	// },
-	// {
-	// 	path: '/services', element: <App>{ifLogged(<Services />)}</App>,
-	// },
-	// {
-	// 	path: '/widgets/manage', element: <App>{ifLogged(<ManageWidgets />)}</App>,
-	// },
-	// {
-	// 	path: '/', element: <App>{ifLogged(<Home />)}</App>,
-	// },
 
 export default routes;
