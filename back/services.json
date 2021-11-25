@@ -1,0 +1,12 @@
+{
+	"services": [{
+		"name": "weather",
+		"widgets": [{
+			"description": "display current temperature of a city",
+			"params": [{
+				"name": "city",
+				"type": "string"
+			}]
+		}]
+	}]
+}
