@@ -13,7 +13,7 @@ interface StockMarketWidgetInterface {
 
 const StockMarketWidget = (props: StockMarketWidgetInterface) => {
 
-	return <Widget service={AvailableServices['STOCKS']}>
+	return <Widget service={AvailableServices['stocks']}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
 				<h2>{props.shortName}</h2>

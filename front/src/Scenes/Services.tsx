@@ -30,7 +30,7 @@ const Services = () => {
 			</ParameterCardGroup>
 			<ParameterCardGroup title="Other Services">
 				{ otherServices.map((name: string) => <ServiceCard key={name} serviceName={name.toUpperCase()} actionType="add" 
-				href={ AvailableServices[name.toUpperCase()].urlToSubscribe } action={() => {
+				href={ AvailableServices[name].urlToSubscribe } action={() => {
 					setOtherServices((state) => state.filter((iname: string, _, __) => iname !== name))
 					setConnectedServices((state) => {
 						state.push(name);

@@ -21,10 +21,10 @@ class Service {
 	}
 }
 const AvailableServices: { [id: string]: Service; }= {
-	"COVID": new Service("#ABABAB", "#FFFFFF", "Covid",  () => `http://${frontHost}:${frontPort}/${subscribeRoute}/covid`),
-	"STOCKS": new Service("#263238", "#FFFFFF", "Stock Market",  () => `http://${frontHost}:${frontPort}/${subscribeRoute}/stocks`),
-	"WEATHER": new Service("#44A8AE", "#FFFFFF", "Weather",  () => `http://${frontHost}:${frontPort}/${subscribeRoute}/weather`),
-	"SPOTIFY": new Service("#69C66D", "#FFFFFF", "Spotify", () => {
+	"covid": new Service("#ABABAB", "#FFFFFF", "Covid",  () => `http://${frontHost}:${frontPort}/${subscribeRoute}/covid`),
+	"stock": new Service("#263238", "#FFFFFF", "Stock Market",  () => `http://${frontHost}:${frontPort}/${subscribeRoute}/stocks`),
+	"weather": new Service("#44A8AE", "#FFFFFF", "Weather",  () => `http://${frontHost}:${frontPort}/${subscribeRoute}/weather`),
+	"spotify": new Service("#69C66D", "#FFFFFF", "Spotify", () => {
 		return 'https://accounts.spotify.com/authorize?' +
     	queryString.stringify({
     	  response_type: 'code',

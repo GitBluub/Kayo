@@ -14,7 +14,6 @@ interface ServiceCardInterface {
 
 const ServiceCard = (props: ServiceCardInterface) => {
 
-	console.log(props.serviceName, props.href)
 	var actionButton = <></>;
 
 	if (props.actionType == 'delete') {
