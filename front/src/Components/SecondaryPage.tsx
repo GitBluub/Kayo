@@ -8,7 +8,7 @@ const SecondaryPage = (props: any) => (
 	<>
 	<Grid container alignItems="left" justifyContent="left" style={{ paddingLeft: 30, paddingTop: 30 }}>
 		<Link to="/"> 
-			<Button variant="contained" startIcon={<ArrowBackIosIcon />} color="primary">
+			<Button variant="contained" startIcon={<ArrowBackIosIcon />} color="primary" style={{ backgroundColor: "grey"}}>
   				Home
 			</Button>
 		</Link>
