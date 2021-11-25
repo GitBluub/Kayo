@@ -9,8 +9,8 @@ import AvailableServices, { Service } from '../Components/Service';
 
 
 const Services = () => {
-	var [ connectedServices, setConnectedServices] = useState([] as any[])
-	var [ otherServices, setOtherServices ] = useState([] as any[])
+	const [ connectedServices, setConnectedServices ] = useState<string[]>([])
+	const [ otherServices, setOtherServices ] = useState<string[]>([])
 
 	useEffect(() => {
 		API.getSubscribedServices().then((names: string[]) => { setConnectedServices(names) })

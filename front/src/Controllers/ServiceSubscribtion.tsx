@@ -3,7 +3,7 @@ import { Navigate, useParams } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
 import API from './API';
 
-const ServiceSubscribe = (props: any) => {
+const ServiceSubscribe = () => {
 	const [searchParams, setter] = useSearchParams();
 	const { serviceID } = useParams();
 	switch (serviceID) {

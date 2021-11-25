@@ -22,7 +22,7 @@ class Service {
 }
 const AvailableServices: { [id: string]: Service; }= {
 	"covid": new Service("#ABABAB", "#FFFFFF", "Covid",  () => `http://${frontHost}:${frontPort}/${subscribeRoute}/covid`),
-	"stock": new Service("#263238", "#FFFFFF", "Stock Market",  () => `http://${frontHost}:${frontPort}/${subscribeRoute}/stocks`),
+	"stocks": new Service("#263238", "#FFFFFF", "Stock Market",  () => `http://${frontHost}:${frontPort}/${subscribeRoute}/stocks`),
 	"weather": new Service("#44A8AE", "#FFFFFF", "Weather",  () => `http://${frontHost}:${frontPort}/${subscribeRoute}/weather`),
 	"spotify": new Service("#69C66D", "#FFFFFF", "Spotify", () => {
 		return 'https://accounts.spotify.com/authorize?' +
