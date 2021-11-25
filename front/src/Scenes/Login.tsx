@@ -29,6 +29,8 @@ const Login = () => {
       <AlertTitle>Oops</AlertTitle>
       An error occured, probably wrong password, try again...
     </Alert>
+  } else {
+    submitAlert = <></>
   }
   return <>
     <ParameterCardTitle>Welcome to Kayo</ParameterCardTitle>
