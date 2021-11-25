@@ -14,10 +14,10 @@ import { FavoriteAlbumWidget } from "../Components/Widgets/Spotify/FavoriteAlbum
 import { FavoriteTrackWidget } from "../Components/Widgets/Spotify/FavoriteTrackWidget";
 import { TemperatureWidget } from "../Components/Widgets/Weather/TemperatureWidget";
 import { WeatherWidget, Weather } from "../Components/Widgets/Weather/WeatherWidget";
+import MainPageMenu from "../Components/MainPageMenu";
 const Home = () => (
 	<Grid container alignItems="center" justifyContent="center" direction="column">
-		<Link to="/services">Services</Link>
-		<Link to="/widgets/manage">Manage widgets</Link>
+		<MainPageMenu/>
 		<ParameterCardTitle>KAYO</ParameterCardTitle>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<StockMarketWidget shortName="AAPL" fullName="Apple Incorporation" total={1000000000.36} variation={+0.56}/>
