@@ -78,7 +78,7 @@ Returns a list of widgets the user can subscribe to
                 "params [
                     {
                         "name": "param1",
-                        "type": "string"
+                        "value": "string"
                     },
                 ]
             }
@@ -117,29 +117,18 @@ Returns all the widgets of the connected User
 ]
 ```
 
-- GET /widget/:id
-
-Return current widget info
-
-```json
-{
-    "service_name": "spotify",
-    "widget_name": "favorite",
-    "params": {
-        "what": "artist",
-    }
-}
-```
-
 - POST /service/:servicename/:widgetname
 
 Creates a widget with necesarry info
 
 ```json
 {
-    "params": {
-        "what": "artist",
-    }
+    "params": [
+        {
+            "name": "param1",
+            "value": "actual",
+        },
+    ]
 }
 ```
 
@@ -149,9 +138,12 @@ Update a widget configuration
 
 ```json
 {
-    "params": {
-        "what": "album",
-    }
+    "params": [
+        {
+            "name": "param1",
+            "value": "actual",
+        },
+    ]
 }
 ```
 

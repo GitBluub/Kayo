@@ -19,7 +19,7 @@ const Home = () => (
 	<Grid container alignItems="center" justifyContent="center" direction="column">
 		<MainPageMenu/>
 		<ParameterCardTitle>KAYO</ParameterCardTitle>
-		<Grid container alignItems="center" justifyContent="center" direction="column">
+		<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30}}>
 			<StockMarketWidget shortName="AAPL" fullName="Apple Incorporation" total={1000000000.36} variation={+0.56}/>
 			<StockMarketWidget shortName="GOOG" fullName="Google Incorporation" total={2.36} variation={-3.14}/>
 			<DailyNewInfectionWidget rate={-0.56} country="France"/>

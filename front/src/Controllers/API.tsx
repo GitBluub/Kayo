@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { WidgetParam } from "src/Components/Widget";
 
 enum APICallMethod {
 	POST = "post",
@@ -68,7 +69,7 @@ export default class API {
 						"params": [
 							{
 								"name": "param1",
-								"type": "string"
+								"value": "string"
 							},
 						]
 					}
@@ -79,5 +80,9 @@ export default class API {
 
 	public static deleteWidget(widgetId: number) {
 		return this._call(`/widgets/${widgetId}`, APICallMethod.DELETE, {});
+	}
+
+	public static updateWidgetParams(widgetId: number, params: WidgetParam[]) {
+		return this._call(`/widget/${widgetId}`, APICallMethod.PUT, { params: params})
 	}
 }
