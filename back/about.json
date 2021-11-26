@@ -38,10 +38,6 @@
 					"description": "Display temperature in celsius in a city",
 					"params": [
 						{
-							"name": "country_name",
-							"type": "string"
-						},
-						{
 							"name": "city_name",
 							"type": "string"
 						}
@@ -51,10 +47,6 @@
 					"name": "weather",
 					"description": "Display the weather situation in a city",
 					"params": [
-						{
-							"name": "country_name",
-							"type": "string"
-						},
 						{
 							"name": "city_name",
 							"type": "string"
