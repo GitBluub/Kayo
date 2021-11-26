@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
+import Title from '../Components/Title';
 import Grid from '@mui/material/Grid/Grid';
 import SecondaryPage from '../Components/SecondaryPage';
 import { useState, useEffect } from 'react';
@@ -15,7 +15,7 @@ const ManageWidgets = () => {
 	return (
 		<SecondaryPage>
 			<Grid container alignItems="center" justifyContent="center" direction="column">
-				<ParameterCardTitle>Manage Widgets</ParameterCardTitle>
+				<Title>Manage Widgets</Title>
 				{widgetsGroups.map((widgerGroup: any) => WidgetSettingsGroup(widgerGroup))}
 			</Grid>
 		</SecondaryPage>

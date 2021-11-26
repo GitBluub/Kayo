@@ -1,6 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import React, { useState } from 'react';
-import ParameterCardTitle from "../Components/ParameterCard/ParameterCardTitle";
+import Title from "../Components/Title";
 import Grid from "@mui/material/Grid/Grid";
 import Widget from "../Components/Widget";
 import Login from "./Login";
@@ -18,7 +18,7 @@ import MainPageMenu from "../Components/MainPageMenu";
 const Home = () => (
 	<Grid container alignItems="center" justifyContent="center" direction="column">
 		<MainPageMenu/>
-		<ParameterCardTitle>KAYO</ParameterCardTitle>
+		<Title>KAYO</Title>
 		<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30}}>
 			<StockMarketWidget shortName="AAPL" fullName="Apple Incorporation" total={1000000000.36} variation={+0.56}/>
 			<StockMarketWidget shortName="GOOG" fullName="Google Incorporation" total={2.36} variation={-3.14}/>

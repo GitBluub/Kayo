@@ -78,6 +78,27 @@ export default class API {
 		])
 	}
 
+	public static getAvailableWidgets() {
+		//return this._call("/services/widgets", APICallMethod.GET, {});
+		return Promise.resolve([
+			{
+				"name": "spotify",
+				"widgets": [
+					{
+						"name": "widget1",
+						"desc": "blabla",
+						"params": [
+							{
+								"name": "param1",
+								"type": "string"
+							},
+						]
+					}
+				]
+			}
+		])
+	}
+
 	public static deleteWidget(widgetId: number) {
 		return this._call(`/widgets/${widgetId}`, APICallMethod.DELETE, {});
 	}
