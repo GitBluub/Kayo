@@ -7,6 +7,7 @@ import Services from "./Scenes/Services";
 import ServiceSubscribe from './Controllers/ServiceSubscribtion';
 import ManageWidgets from "./Scenes/ManageWidgets";
 import { Navigate } from 'react-router';
+import AddWidgets from './Scenes/AddWidgets';
 import {
 	BrowserRouter,
 	Routes, Route, useRoutes
@@ -26,6 +27,7 @@ const routes = (isLoggedIn: boolean) => {
     	      	  	<Route path="subscribe/:serviceID" element={<ServiceSubscribe/>}/>
     	      	</Route>
 				<Route path="widgets/manage" element={ifLogged(<ManageWidgets />)}/>
+				<Route path="widgets/add" element={ifLogged(<AddWidgets />)}/>
     	    </Route>
     	</Routes>
 	)
