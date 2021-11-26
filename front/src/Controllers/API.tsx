@@ -34,10 +34,6 @@ export default class API {
 			password: passowrd
 		});
 	}
-
-	public static getAbout() {
-		return this._call('/about.json', APICallMethod.GET, {});
-	}
 	
 	public static getSubscribedServices() {
 		return Promise.resolve(['weather', 'covid', 'stocks'])
@@ -45,7 +41,7 @@ export default class API {
 	}
 
 	public static getOtherServices() {
-		//return this._call('/services/unsubscribed', APICallMethod.GET);
+		//return this._call('/services/available', APICallMethod.GET);
 		return Promise.resolve(['spotify'])
 	}
 
@@ -59,12 +55,29 @@ export default class API {
 		});
 	}
 
-	public static getAvailableServices() {
-		//return this.getAbout().then((about: any) => {
-		//	var serviceNames: string[] = [];
-		//	about.server.services.forEach((element: any) => serviceNames.push(element.name))
-		//	return serviceNames;
-		//})
-		return Promise.resolve(['weather', 'covid', 'stocks', 'spotify'])
+	public static getMyWidgets() {
+		//return this._call("/widgets", APICallMethod.GET, {});
+		return Promise.resolve([
+			{
+				"name": "spotify",
+				"widgets": [
+					{
+						"id": 1,
+						"name": "widget1",
+						"desc": "blabla",
+						"params": [
+							{
+								"name": "param1",
+								"type": "string"
+							},
+						]
+					}
+				]
+			}
+		])
+	}
+
+	public static deleteWidget(widgetId: number) {
+		return this._call(`/widgets/${widgetId}`, APICallMethod.DELETE, {});
 	}
 }

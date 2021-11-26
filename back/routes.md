@@ -67,7 +67,7 @@ Subscribe to a service
 ```
 
 - GET /services/widgets
-Returns a list of widgets the user can subscribe to (or is already subscribed to)
+Returns a list of widgets the user can subscribe to 
 [
     {
         "name": "spotify",
@@ -92,7 +92,6 @@ Unsubscribe of a service
 
 - GET /service/:name/widgets
 
-
 - GET /widgets
 
 Returns all the widgets of the connected User
@@ -103,6 +102,7 @@ Returns all the widgets of the connected User
         "service_name": "spotify",
         "widgets": [
             {
+                "id": "widgetid",
                 "name": "widget1",
                 "desc": "blabla",
                 "params": [
@@ -131,14 +131,12 @@ Return current widget info
 }
 ```
 
-- POST /widget/add
+- POST /service/:servicename/:widgetname
 
 Creates a widget with necesarry info
 
 ```json
 {
-    "service_name": "spotify",
-    "widget_name": "favorite",
     "params": {
         "what": "artist",
     }

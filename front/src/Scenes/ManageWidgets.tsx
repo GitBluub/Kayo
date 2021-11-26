@@ -7,44 +7,42 @@ import ParameterCardButton from '../Components/ParameterCard/ParameterCardButton
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import TextField from '@mui/material/TextField/TextField';
 import SecondaryPage from '../Components/SecondaryPage';
+import { useState, useEffect } from 'react';
+import API from '../Controllers/API';
+import type { WidgetInterface, WidgetParam } from '../Components/Widget';
+
+const WidgetGroup = (widgetGroup: any) => {
+	console.log(widgetGroup);
+	return (
+		<ParameterCardGroup key={widgetGroup.name} title={widgetGroup.name.toUpperCase()}>
+			{ 
+				widgetGroup.widgets.map((widget: WidgetInterface) =>
+					<ParameterCard key={widget.name} name={widget.name}>
+						{
+							widget.params.map(
+								(value: WidgetParam, _, __) => <TextField key={value.name} id="filled-basic" label={value.name} variant="filled" value={value.value}/>)
+						}
+						<ParameterCardButton onClick={() => API.deleteWidget(widget.id)} href="/widgets/manage">
+							<DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/>
+						</ParameterCardButton>
+					</ParameterCard>
+				)
+			}
+		</ParameterCardGroup>
+	)
+}
 
 
 const ManageWidgets = () => {
+	const [ widgetsGroups, setWidgetsGroups ] = useState<Object[]>([])
+
+	useEffect(() => {
+		API.getMyWidgets().then((widgetsLists: Object[]) => { setWidgetsGroups(widgetsLists) })
+	}, [])
 	return <SecondaryPage>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<ParameterCardTitle>Manage Widgets</ParameterCardTitle>
-			<ParameterCardGroup title="Spotify">
-				<ParameterCard name="Most listened">
-					<TextField id="filled-basic" label="What" variant="filled" value="Artist"/>
-					<ParameterCardButton><DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/></ParameterCardButton>
-				</ParameterCard>
-			</ParameterCardGroup>
-			<ParameterCardGroup title="COVID">
-				<ParameterCard name="Infection rate">
-					<TextField id="filled-basic" label="Country" variant="filled" value="France"/>
-					<ParameterCardButton><DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/></ParameterCardButton>
-				</ParameterCard>
-				<ParameterCard name="Decease rate">
-					<TextField id="filled-basic" label="Country" variant="filled" value="France"/>
-					<ParameterCardButton><DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/></ParameterCardButton>
-				</ParameterCard>
-			</ParameterCardGroup>
-			<ParameterCardGroup title="Stock Market">
-				<ParameterCard name="Stocks">
-					<TextField id="filled-basic" label="Stocker" variant="filled" value="AAPL"/>
-					<ParameterCardButton><DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/></ParameterCardButton>
-				</ParameterCard>
-			</ParameterCardGroup>
-			<ParameterCardGroup title="Weather">
-				<ParameterCard name="Temperature">
-					<TextField id="filled-basic" label="City" variant="filled" value="Blou"/>
-					<ParameterCardButton><DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/></ParameterCardButton>
-				</ParameterCard>
-				<ParameterCard name="Precipitations">
-					<TextField id="filled-basic" label="City" variant="filled" value="Washington DC"/>
-					<ParameterCardButton><DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/></ParameterCardButton>
-				</ParameterCard>
-			</ParameterCardGroup>
+			{ widgetsGroups.map((widgerGroup: any) => WidgetGroup(widgerGroup)) }
 		</Grid>
 	</SecondaryPage>
 }
