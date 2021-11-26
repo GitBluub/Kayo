@@ -8,12 +8,12 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { WidgetModule } from './widget/widget.module';
 import authConfig from './config/authConfig';
+import serviceConfig from './config/serviceConfig';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
-      load: [authConfig]
+      load: [authConfig, serviceConfig]
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
