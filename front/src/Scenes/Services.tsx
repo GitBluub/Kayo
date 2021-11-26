@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid/Grid';
 import ParameterCardGroup from '../Components/ParameterCard/ParameterCardGroup';
 import ServiceCard from '../Components/ServiceCard';
 import { useState, useEffect } from 'react';
-import API from '../Controllers/API';
+import KayoAPI from '../Controllers/API/KayoAPI';
 import AvailableServices, { Service } from '../Components/Service';
 import SecondaryPage from '../Components/SecondaryPage';
 
@@ -14,15 +14,15 @@ const Services = () => {
 	const [ otherServices, setOtherServices ] = useState<string[]>([])
 
 	useEffect(() => {
-		API.getSubscribedServices().then((names: string[]) => { setConnectedServices(names) })
-		API.getOtherServices().then((names: string[]) => { setOtherServices(names) })
+		KayoAPI.getSubscribedServices().then((names: string[]) => { setConnectedServices(names) })
+		KayoAPI.getOtherServices().then((names: string[]) => { setOtherServices(names) })
 	}, [])
 	return <SecondaryPage>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<ParameterCardTitle>Available Services</ParameterCardTitle>
 			<ParameterCardGroup title="Connected Services">
 				{ connectedServices.map((name: string) => <ServiceCard key={name} href='#' serviceName={name.toUpperCase()} actionType="delete" action={() => {
-					API.unsubscribe(name)
+					KayoAPI.unsubscribe(name)
 					setConnectedServices((connectedState) => connectedState.filter((iname: string, _, __) => iname !== name))
 					setOtherServices((connectedState) => {
 						connectedState.push(name);

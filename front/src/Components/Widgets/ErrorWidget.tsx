@@ -7,7 +7,7 @@ import type { WidgetParam } from '../Widget';
 interface ErrorWidgetParams {
 	widgetName: string,
 	serviceName: string,
-	params: WidgetParam[]
+	widgetParams: WidgetParam[]
 }
 
 const ErrorWidget = (props: ErrorWidgetParams) => (

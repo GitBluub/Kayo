@@ -19,6 +19,6 @@ const WidgetFactory = (serviceName: string, widgetName: string, widgetParams: Wi
 
 			break;
 		default:
-			return <ErrorWidget serviceName={serviceName} widgetName={widgetName} widgetParams={widgetParams}
+			return <ErrorWidget serviceName={serviceName} widgetName={widgetName} widgetParams={widgetParams}/>
 	}
 }

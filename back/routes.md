@@ -47,12 +47,11 @@ Returns the service the user is not subscribed to
 ]
 - GET /service/:name
 
-Returns the url of the oauth2 connection needed
+Returns the oauth token of the subscribed service
 
 ```json
 {
-    url: "https://spotify.api/authorize",
-    type: "Spotify"
+    "serviceToken": "oauthToken1234"
 }
 ```
 

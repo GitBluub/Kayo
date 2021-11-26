@@ -4,12 +4,12 @@ import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
 import { Navigate } from 'react-router';
-import API from '../Controllers/API';
+import KayoAPI from '../Controllers/API/KayoAPI';
 
 const SignUp = () => {
   const [registered, setRegisteredState] = useState(null as boolean | null);
   const onSubmit = (response: AuthentificationFormState) => {
-      API.register(response.username, response.password)
+      KayoAPI.register(response.username, response.password)
       .then(
         (result) => {
           setRegisteredState(true as boolean | null);

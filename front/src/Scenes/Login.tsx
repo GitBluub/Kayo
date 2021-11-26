@@ -4,7 +4,7 @@ import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
 import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import { Navigate } from 'react-router';
-import API from '../Controllers/API';
+import KayoAPI from '../Controllers/API/KayoAPI';
 import { setToken } from '../Store/jwtToken/jwtTokenSlice';
 import { useDispatch } from 'react-redux'
 
@@ -12,7 +12,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const [loggedIn, setLoggedState] = useState(null as boolean | null);
   const onSubmit = (response: AuthentificationFormState) => {
-      API.login(response.username, response.password)
+      KayoAPI.login(response.username, response.password)
       .then(
         (result: any) => {
           dispatch(setToken(result.access_token))
