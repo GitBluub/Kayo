@@ -1,37 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {
-  BrowserRouter,
-  Routes, Route, useRoutes
-} from "react-router-dom";
-import App from './App';
-import Home from "./Scenes/Home";
-import Login from "./Scenes/Login";
-import SignUp from "./Scenes/Signup";
-import Services from "./Scenes/Services";
-import ManageWidgets from "./Scenes/ManageWidgets";
+import { BrowserRouter, useRoutes } from "react-router-dom";
+import routes from './routes';
+import store from './Store/store';
+import { useSelector, Provider } from 'react-redux';
 
 function Router() {
-  let router = useRoutes([
-    { path: '/', element: <App />,
-    children: [
-      { path: '/', element: <Home /> },
-      { path: 'login', element: <Login /> },
-      { path: 'signup', element: <SignUp /> },
-      { path: 'services', element: <Services /> },
-      { path: 'widgets/manage', element: <ManageWidgets /> },
-    ]
-  
-  }]);
-  return router;
+  const jwtToken = useSelector((state: any) => state.jwtToken.value);
+  return (
+    <BrowserRouter>
+      { routes(jwtToken != null) }
+    </BrowserRouter>
+    )
 }
 
-
 ReactDOM.render(
-  <BrowserRouter>
-   <Router/>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <Router/>
+  </Provider>,
   document.getElementById('root'),
 );
 

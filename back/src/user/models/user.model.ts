@@ -5,7 +5,7 @@ import { Widget } from 'src/widget/models/widget.model';
 @Table({ tableName: 'users' })
 export class User extends Model {
   @Column({unique: true, allowNull: false})
-  name: string;
+  username: string;
 
   @Column
   password: string;

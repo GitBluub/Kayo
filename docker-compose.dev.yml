@@ -1,12 +1,18 @@
 services:
   front:
-    build: ./front
+    build:
+      context: ./front
+      dockerfile: Dockerfile.dev
+    privileged: true
     ports:
-      - "3435:80"
+      - "3435:8080"
+    volumes:
+      - ./front:/app
   back:
     build:
       context: ./back
       dockerfile: Dockerfile.dev
+    privileged: true
     ports:
       - "8080:3000"
     volumes:

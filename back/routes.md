@@ -1,30 +1,24 @@
 
+# KAYO - Back-end routes documentation
 
-# /about.json
+- /about.json
 
 Returns the info request in the subject
+See subject
 
-# /auth/register
+- /auth/register
 
 Needs
-{
-	username: ____
-	password: ____
-}
-
 Creates a user in the database
 
-Returns 200 Success
-Returns 400 Bad Request
-
-# /auth/login
-
-Needs
+```json
 {
-	username: ____
-	password: ____
+    "username": "kayo",
+    "password": "kayo_pwd"
 }
+```
 
+- /auth/login
 Returns a jwt for the user
 200
 {
@@ -33,7 +27,14 @@ Returns a jwt for the user
 
 400 Bad Request
 
-# GET /services
+```json
+{
+    "username": "kayo",
+    "password": "kayo_pwd"
+}
+```
+
+- GET /services/subscribed
 
 Returns the services the user is subscribed to
 
@@ -44,48 +45,68 @@ Returns the services the user is subscribed to
 }
 
 
-# GET /service/:name
+```json
+[
+    "service_name_1",
+    "service_name_2",
+]
+```
 
-Success
-Returns the token used by the service
-{
-	token: "dazdazdaz"	
-}
-
-# GET /service/:name/url
+- GET /services/unsubscribed
+Returns the service the user is not subscribed to
+[
+    "service_name_1",
+    "service_name_2",
+]
+- GET /service/:name
 
 Returns the url of the oauth2 connection needed
-{
-	url: "http;//facebook..."
-	type: "Facebook" | "" | "Twitter"
-}
 
-# POST /service/:name
+```json
+{
+    url: "https://spotify.api/authorize",
+    type: "Spotify"
+}
+```
+
+- POST /service/:name
 
 Subscribe to a service
+
+```json
 {
-	"serviceToken": _____
+    "serviceToken": "oauthToken1234"
 }
+```
 
+- GET /services/widgets
+Returns a list of widgets the user can subscribe to (or is already subscribed to)
+[
+    {
+        "name": "spotify",
+        "widgets": [
+            {
+                "name": "widget1",
+                "desc": "blabla"
+                "params [
+                    {
+                        "name": "param1",
+                        "type": "string"
+                    },
+                ]
+            }
+        ]
+    }
+]
 
-200
-{
-	"message": "Service created"
-}
-
-400 BadRequest
-
-# DELETE /service/:name
+- DELETE /service/:name
 
 Unsubscribe of a service
 
-200
-{
-	"message": "Service deleted"
-}
+- GET /service/:name/widgets
 
-400 BadRequest
-# GET /widgets
+
+- GET /widgets
 
 Returns all the widgets' id of the connected User
 
@@ -95,7 +116,27 @@ Returns all the widgets' id of the connected User
 	]
 }
 
-# GET /widget/:id
+```json
+[
+    {
+        "service_name": "spotify",
+        "widgets": [
+            {
+                "name": "widget1",
+                "desc": "blabla",
+                "params": [
+                    {
+                        "name": "param1",
+                        "value": "actual",
+                    },
+                ]
+            }
+        ]
+    }
+]
+```
+
+- GET /widget/:id
 
 Return the widget fetched info
 
@@ -108,31 +149,31 @@ object returned by the service api
 
 Return current widget info
 
+```json
 {
-	"name": "widget name",
-	"parameters": [
-		{
-			"name": "parameter name",
-			"value": "parameter value",
-			"type": "string" | "number",
-		},
-	]
+    "service_name": "spotify",
+    "widget_name": "favorite",
+    "params": {
+        "what": "artist",
+    }
 }
+```
 
-# POST /:serviceName/:widgetName
+- POST /widget/add
 
 Creates a widget with necesarry info
-{
-	"parameters": [
-		{
-			"name": "parameter name",
-			"value": "parameter value",
-			"type": "string" | "number",
-		},
-	]
-}
 
-# PUT /widget/:id
+```json
+{
+    "service_name": "spotify",
+    "widget_name": "favorite",
+    "params": {
+        "what": "artist",
+    }
+}
+```
+
+- PUT /widget/:id
 
 Update a widget configuration
 {
@@ -145,9 +186,14 @@ Update a widget configuration
 	]
 }
 
-# DELETE /widget/:id
+```json
+{
+    "params": {
+        "what": "album",
+    }
+}
+```
+
+- DELETE /widget/:id
 
 Delete a widgets of a user
-
-Return 200 Success
-Return 400 BadRequest

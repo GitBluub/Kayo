@@ -22,9 +22,8 @@ const WidgetParameterCard = (props: any) => {
 const Widget = (props: any) => {
 	let service = props.service;
 	return (
-		<WidgetParameterCard borderRadius={30} backgroundColor={service.backgroundColor} fontColor={service.fontColor}>
+		<WidgetParameterCard borderRadius={30} backgroundColor={service.widget.backgroundColor} fontColor={service.widget.fontColor}>
 			<Grid container direction="row" justifyContent="space-between" alignItems="center" sx={{marginLeft: 8, paddingRight: 8}}>
-				<h1>{service.name}</h1>
 				{props.children}
 			</Grid>
 		</WidgetParameterCard>
