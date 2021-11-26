@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid/Grid';
 import Title from '../Components/Title';
 import { useState, useEffect } from 'react';
 import API from '../Controllers/API';
+import { WidgetFormsGroup } from '../Components/WidgetForm';
 
 const AddWidgets = () => {
 	const [widgetsGroups, setWidgetsGroups] = useState<Object[]>([])
@@ -15,7 +16,7 @@ const AddWidgets = () => {
 	<SecondaryPage>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<Title>Add new Widgets</Title>
-			
+			{widgetsGroups.map((widgerGroup: any) => WidgetFormsGroup(widgerGroup))}
 		</Grid>
 	</SecondaryPage>
 	)

@@ -106,4 +106,8 @@ export default class API {
 	public static updateWidgetParams(widgetId: number, params: WidgetParam[]) {
 		return this._call(`/widget/${widgetId}`, APICallMethod.PUT, { params: params})
 	}
+
+	public static addWidget(serviceName: string, widgetName: string, params: WidgetParam[]) {
+		return this._call(`/service/${serviceName}/${widgetName}`, APICallMethod.POST, { params: params})
+	}
 }
