@@ -48,6 +48,40 @@
 				}
 			]
 		},
-		
+		{
+			"name": "covid",
+			"widgets": [
+				{
+					"name": "daily_hospitalization_rate",
+					"description": "Display the daily hospitalization rate",
+					"params": [
+						{
+							"name": "country_name",
+							"type": "string"
+						}
+					]
+				},
+				{
+					"name": "daily_new_infections",
+					"description": "Display the daily new infections",
+					"params": [
+						{
+							"name": "country_name",
+							"type": "string"
+						}
+					]
+				},
+				{
+					"name": "weekly_new_vaccinations",
+					"description": "Display the weekly new vaccinations",
+					"params": [
+						{
+							"name": "country_name",
+							"type": "string"
+						}
+					]
+				}
+			]
+		}
 	]
 }
