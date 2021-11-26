@@ -20,6 +20,12 @@ Creates a user in the database
 
 - /auth/login
 Returns a jwt for the user
+200
+{
+	"access_token": JWT_TOKEN
+}
+
+400 Bad Request
 
 ```json
 {
@@ -30,7 +36,14 @@ Returns a jwt for the user
 
 - GET /services/subscribed
 
-Returns the service the user is subscribed to
+Returns the services the user is subscribed to
+
+{
+	subscriptions: [
+		servicesNames...
+	]
+}
+
 
 ```json
 [
@@ -51,8 +64,8 @@ Returns the url of the oauth2 connection needed
 
 ```json
 {
-    url: "https://spotify.api/authorize",
-    type: "Spotify"
+    "url": "https://spotify.api/authorize",
+    "type": "Spotify"
 }
 ```
 
@@ -95,7 +108,13 @@ Unsubscribe of a service
 
 - GET /widgets
 
-Returns all the widgets of the connected User
+Returns all the widgets' id of the connected User
+
+{
+	"widgets": [
+		widgetsIds...
+	]
+}
 
 ```json
 [
@@ -103,6 +122,7 @@ Returns all the widgets of the connected User
         "service_name": "spotify",
         "widgets": [
             {
+                "id": "widgetId",
                 "name": "widget1",
                 "desc": "blabla",
                 "params": [
@@ -118,6 +138,15 @@ Returns all the widgets of the connected User
 ```
 
 - GET /widget/:id
+
+Return the widget fetched info
+
+object returned by the service api
+{
+
+}
+
+# GET /widget/:id/data
 
 Return current widget info
 
@@ -148,6 +177,15 @@ Creates a widget with necesarry info
 - PUT /widget/:id
 
 Update a widget configuration
+{
+	"parameters": [
+		{
+			"name": "parameter name",
+			"value": "parameter value",
+			"type": "string" | "number",
+		},
+	]
+}
 
 ```json
 {

@@ -10,6 +10,7 @@ export class Subscription extends Model {
 	token: string;
 
 	@ForeignKey(() => User)
+	@Column
 	userId: number;
 
 	@BelongsTo(() => User)
