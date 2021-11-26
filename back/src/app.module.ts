@@ -13,7 +13,6 @@ import serviceConfig from './config/serviceConfig';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
       load: [authConfig, serviceConfig]
     }),
     SequelizeModule.forRoot({
