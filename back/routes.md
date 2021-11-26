@@ -66,26 +66,55 @@ Subscribe to a service
 }
 ```
 
+- GET /services/widgets
+Returns a list of widgets the user can subscribe to (or is already subscribed to)
+[
+    {
+        "name": "spotify",
+        "widgets": [
+            {
+                "name": "widget1",
+                "desc": "blabla"
+                "params [
+                    {
+                        "name": "param1",
+                        "type": "string"
+                    },
+                ]
+            }
+        ]
+    }
+]
+
 - DELETE /service/:name
 
 Unsubscribe of a service
+
+- GET /service/:name/widgets
+
 
 - GET /widgets
 
 Returns all the widgets of the connected User
 
 ```json
-{
-    [
-        {
-            "service_name": "spotify",
-            "widgets: [
-                widget_id_1,
-                widget_id_2
-            ]
-        }
-    ]
-}
+[
+    {
+        "service_name": "spotify",
+        "widgets": [
+            {
+                "name": "widget1",
+                "desc": "blabla",
+                "params": [
+                    {
+                        "name": "param1",
+                        "value": "actual",
+                    },
+                ]
+            }
+        ]
+    }
+]
 ```
 
 - GET /widget/:id
