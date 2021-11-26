@@ -29,7 +29,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"user 1\",\n    \"password\": \"kayo\"\n}",
+							"raw": "{\n    \"username\": \"user 1\",\n    \"password\": \"kayo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -49,7 +49,7 @@
 							],
 							"query": [
 								{
-									"key": "name",
+									"key": "username",
 									"value": "\"Bluub\"",
 									"disabled": true
 								},
@@ -104,7 +104,7 @@
 							],
 							"query": [
 								{
-									"key": "name",
+									"key": "username",
 									"value": "\"Bluub\"",
 									"disabled": true
 								},
@@ -139,7 +139,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"user 1\"\n}",
+							"raw": "{\n    \"username\": \"user 1\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -159,7 +159,7 @@
 							],
 							"query": [
 								{
-									"key": "name",
+									"key": "username",
 									"value": "\"Bluub\"",
 									"disabled": true
 								},
@@ -194,7 +194,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"user 1\",\n    \"password\": \"kayoo\"\n}",
+							"raw": "{\n    \"username\": \"user 1\",\n    \"password\": \"kayoo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -214,7 +214,7 @@
 							],
 							"query": [
 								{
-									"key": "name",
+									"key": "username",
 									"value": "\"Bluub\"",
 									"disabled": true
 								},
@@ -249,7 +249,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"user 2\",\n    \"password\": \"kayo\"\n}",
+							"raw": "{\n    \"username\": \"user 2\",\n    \"password\": \"kayo\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -269,7 +269,7 @@
 							],
 							"query": [
 								{
-									"key": "name",
+									"key": "username",
 									"value": "\"Bluub\"",
 									"disabled": true
 								},
@@ -361,7 +361,7 @@
 							],
 							"query": [
 								{
-									"key": "name",
+									"key": "username",
 									"value": "\"Bluub\"",
 									"disabled": true
 								},

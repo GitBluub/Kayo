@@ -1,76 +1,133 @@
 
+# KAYO - Back-end routes documentation
 
-# /about.json
+- /about.json
 
 Returns the info request in the subject
+See subject
 
-# /auth/register
+- /auth/register
 
 Needs
-{
-	username: ____
-	password: ____
-}
-
 Creates a user in the database
 
-# /auth/login
-
-Needs
+```json
 {
-	username: ____
-	password: ____
+    "username": "kayo",
+    "password": "kayo_pwd"
 }
+```
 
+- /auth/login
 Returns a jwt for the user
 
-# GET /services/subscribed
+```json
+{
+    "username": "kayo",
+    "password": "kayo_pwd"
+}
+```
+
+- GET /services/subscribed
+
 Returns the service the user is subscribed to
 
-# GET /services/unsubscribed
+```json
+[
+    "service_name_1",
+    "service_name_2",
+]
+```
+
+- GET /services/unsubscribed
 Returns the service the user is not subscribed to
 [
-	"a",
-	"b",
+    "service_name_1",
+    "service_name_2",
 ]
-# GET /service/:name
+- GET /service/:name
 
 Returns the url of the oauth2 connection needed
 
+```json
 {
-	url: "dazdaz"
-	type: "Facebook" | "" | "Twitter"
+    url: "https://spotify.api/authorize",
+    type: "Spotify"
 }
+```
 
-# POST /service/:name
+- POST /service/:name
 
 Subscribe to a service
-{
-	"serviceToken": _____
-}
 
-# DELETE /service/:name
+```json
+{
+    "serviceToken": "oauthToken1234"
+}
+```
+
+- DELETE /service/:name
 
 Unsubscribe of a service
 
-# GET /widgets
+- GET /widgets
 
 Returns all the widgets of the connected User
 
-# GET /widget/:id
+```json
+{
+    [
+        {
+            "service_name": "spotify",
+            "widgets: [
+                widget_id_1,
+                widget_id_2
+            ]
+        }
+    ]
+}
+```
+
+- GET /widget/:id
 
 Return current widget info
 
-# POST /widget
+```json
+{
+    "service_name": "spotify",
+    "widget_name": "favorite",
+    "params": {
+        "what": "artist",
+    }
+}
+```
+
+- POST /widget/add
 
 Creates a widget with necesarry info
-Maybe a /service/widget/:widgetname
 
-# PUT /widget/:id
+```json
+{
+    "service_name": "spotify",
+    "widget_name": "favorite",
+    "params": {
+        "what": "artist",
+    }
+}
+```
+
+- PUT /widget/:id
 
 Update a widget configuration
 
-# DELETE /widget/:id
+```json
+{
+    "params": {
+        "what": "album",
+    }
+}
+```
+
+- DELETE /widget/:id
 
 Delete a widgets of a user
-
