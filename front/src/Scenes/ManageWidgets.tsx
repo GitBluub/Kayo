@@ -3,7 +3,7 @@ import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
 import Grid from '@mui/material/Grid/Grid';
 import ParameterCard from '../Components/ParameterCard/ParameterCard';
 import ParameterCardGroup from '../Components/ParameterCard/ParameterCardGroup';
-import ParameterC../Controllers/KayoAPI/Components/ParameterCard/ParameterCardButton';
+import ParameterCardButton from '../Components/ParameterCard/ParameterCardButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import TextField from '@mui/material/TextField/TextField';
 import SecondaryPage from '../Components/SecondaryPage';
