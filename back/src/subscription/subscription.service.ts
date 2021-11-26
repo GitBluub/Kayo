@@ -40,4 +40,13 @@ export class SubscriptionService {
 		const serviceNames = this.configService.get('services').services.map(service => service.name);
 		return serviceNames.filter(serviceName => !namesSubscribed.includes(serviceName));
 	}
+
+	async getSubscribed(userId: number) {
+		const subscriptions = await this.subscriptionModel.findAll({
+			where: {
+				userId: userId
+			}
+		});
+		return subscriptions.map(subscription => subscription.name);
+	}
 }

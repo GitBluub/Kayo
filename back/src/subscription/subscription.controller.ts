@@ -17,4 +17,9 @@ export class SubscriptionController {
 	async getAvailable(@Request() req){
 		return this.subscriptionService.getAvailable(req.user.userId);
 	}
+
+	@Get("/subscribed")
+	async getSubscribed(@Request() req){
+		return this.subscriptionService.getSubscribed(req.user.userId);
+	}
 }
