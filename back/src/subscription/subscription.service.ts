@@ -19,4 +19,12 @@ export class SubscriptionService {
 			}
 		);
 	}
+
+	async delete(subscriptionId: number): Promise<number> {
+		return this.subscriptionModel.destroy({
+			where: {
+				id: subscriptionId
+			}
+		});
+	}
 }

@@ -122,6 +122,7 @@ Returns all the widgets' id of the connected User
         "service_name": "spotify",
         "widgets": [
             {
+                "id": "widgetId",
                 "name": "widget1",
                 "desc": "blabla",
                 "params": [
