@@ -16,6 +16,21 @@
 			]
 		},
 		{
+			"name": "spotify",
+			"widgets": [
+				{
+					"name": "favorite",
+					"description": "Display the favorite element of the subscriber",
+					"params": [
+						{
+							"name": "what",
+							"type": "string"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "weather",
 			"widgets": [
 				{
