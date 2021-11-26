@@ -63,7 +63,7 @@
 					"description": "Display the daily hospitalization rate",
 					"params": [
 						{
-							"name": "country_name",
+							"name": "county_name",
 							"type": "string"
 						}
 					]
@@ -73,7 +73,7 @@
 					"description": "Display the daily new infections",
 					"params": [
 						{
-							"name": "country_name",
+							"name": "county_name",
 							"type": "string"
 						}
 					]
@@ -83,7 +83,7 @@
 					"description": "Display the weekly new vaccinations",
 					"params": [
 						{
-							"name": "country_name",
+							"name": "county_name",
 							"type": "string"
 						}
 					]
