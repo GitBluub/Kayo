@@ -23,7 +23,7 @@ export default class API {
 
 	public static register(username: string, passowrd: string) {
 		return this._call('/auth/register', APICallMethod.POST, {
-			name: username,
+			username: username,
 			password: passowrd
 		});
 	}
