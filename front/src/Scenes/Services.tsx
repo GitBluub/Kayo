@@ -6,6 +6,7 @@ import ServiceCard from '../Components/ServiceCard';
 import { useState, useEffect } from 'react';
 import API from '../Controllers/API';
 import AvailableServices, { Service } from '../Components/Service';
+import SecondaryPage from '../Components/SecondaryPage';
 
 
 const Services = () => {
@@ -16,7 +17,8 @@ const Services = () => {
 		API.getSubscribedServices().then((names: string[]) => { setConnectedServices(names) })
 		API.getOtherServices().then((names: string[]) => { setOtherServices(names) })
 	}, [])
-	return <Grid container alignItems="center" justifyContent="center" direction="column">
+	return <SecondaryPage>
+		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<ParameterCardTitle>Available Services</ParameterCardTitle>
 			<ParameterCardGroup title="Connected Services">
 				{ connectedServices.map((name: string) => <ServiceCard key={name} href='#' serviceName={name.toUpperCase()} actionType="delete" action={() => {
@@ -40,6 +42,7 @@ const Services = () => {
 				}}/>) }
 			</ParameterCardGroup>
 		</Grid>
+	</SecondaryPage>
 }
 
 export default Services;

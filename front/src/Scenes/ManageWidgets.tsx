@@ -5,11 +5,13 @@ import ParameterCard from '../Components/ParameterCard/ParameterCard';
 import ParameterCardGroup from '../Components/ParameterCard/ParameterCardGroup';
 import ParameterCardButton from '../Components/ParameterCard/ParameterCardButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import TextField from '@mui/material/TextField/TextField'
+import TextField from '@mui/material/TextField/TextField';
+import SecondaryPage from '../Components/SecondaryPage';
 
 
 const ManageWidgets = () => {
-	return <Grid container alignItems="center" justifyContent="center" direction="column">
+	return <SecondaryPage>
+		<Grid container alignItems="center" justifyContent="center" direction="column">
 			<ParameterCardTitle>Manage Widgets</ParameterCardTitle>
 			<ParameterCardGroup title="Spotify">
 				<ParameterCard name="Most listened">
@@ -43,8 +45,8 @@ const ManageWidgets = () => {
 					<ParameterCardButton><DeleteOutlineIcon sx={{ color: "red", fontSize: 35}}/></ParameterCardButton>
 				</ParameterCard>
 			</ParameterCardGroup>
-			
 		</Grid>
+	</SecondaryPage>
 }
 
 export default ManageWidgets;
