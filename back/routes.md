@@ -64,8 +64,8 @@ Returns the url of the oauth2 connection needed
 
 ```json
 {
-    url: "https://spotify.api/authorize",
-    type: "Spotify"
+    "url": "https://spotify.api/authorize",
+    "type": "Spotify"
 }
 ```
 
