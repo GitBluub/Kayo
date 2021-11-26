@@ -5,5 +5,5 @@ export class RegisterDto {
 	password: string;
 
 	@IsNotEmpty()
-	name: string;
+	username: string;
 }
