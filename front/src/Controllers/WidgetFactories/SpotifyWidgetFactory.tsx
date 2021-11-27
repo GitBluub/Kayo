@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ArtistTopTrack } from 'src/Components/Widgets/Spotify/ArtistTopTrack';
+import { ArtistTopTrack } from '../../Components/Widgets/Spotify/ArtistTopTrack';
 import ErrorWidget from '../../Components/Widgets/ErrorWidget';
 import { FavoriteArtistWidget } from '../../Components/Widgets/Spotify/FavoriteArtistWidget';
 import { FavoriteTrackWidget } from '../../Components/Widgets/Spotify/FavoriteTrackWidget';
