@@ -28,7 +28,7 @@ const Home = () => (
 			<WeeklyNewVaccinations rate={0.56} country="France"/>
 			<WeeklyNewVaccinations rate={49.6} country="USA"/>
 			<FavoriteArtistWidget illustration="https://i.scdn.co/image/ab67618600001016f6e93dd30ed67c0a07c234ad" artistName="Adele"/>
-			<FavoriteTrackWidget illustration="https://i.scdn.co/image/ab67616d0000b273cb5f30b072c99d6e450c688a" artistName="Adele" playCount={129} track="Rolling in the deep"/>
+			<FavoriteTrackWidget illustration="https://i.scdn.co/image/ab67616d0000b273cb5f30b072c99d6e450c688a" artistName="Adele" track="Rolling in the deep"/>
 			<TemperatureWidget city="Blou" temperature={30}/>
 			<WeatherWidget city="Blou" condition="rainy" illustrationUrl="cdn.weatherapi.com/weather/64x64/day/122.png"/>
 		</Grid>

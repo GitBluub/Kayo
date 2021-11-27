@@ -42,7 +42,7 @@ export default class KayoAPI {
 	}
 
 	public static getOtherServices() {
-		//return this._call('/services/available', APICallMethod.GET);
+		//return this._call('/services/available', KayoAPICallMethod.GET);
 		return Promise.resolve(['spotify'])
 	}
 
@@ -57,7 +57,7 @@ export default class KayoAPI {
 	}
 
 	public static getMyWidgets() {
-		//return this._call("/widgets", APICallMethod.GET, {});
+		//return this._call("/widgets", KayoAPICallMethod.GET, {});
 		return Promise.resolve([
 			{
 				"name": "spotify",
@@ -79,7 +79,7 @@ export default class KayoAPI {
 	}
 
 	public static getAvailableWidgets() {
-		//return this._call("/services/widgets", APICallMethod.GET, {});
+		//return this._call("/services/widgets", KayoAPICallMethod.GET, {});
 		return Promise.resolve([
 			{
 				"name": "spotify",
@@ -100,15 +100,15 @@ export default class KayoAPI {
 	}
 
 	public static deleteWidget(widgetId: number) {
-		return this._call(`/widgets/${widgetId}`, APICallMethod.DELETE, {});
+		return this._call(`/widgets/${widgetId}`, KayoAPICallMethod.DELETE, {});
 	}
 
 	public static updateWidgetParams(widgetId: number, params: WidgetParam[]) {
-		return this._call(`/widget/${widgetId}`, APICallMethod.PUT, { params: params})
+		return this._call(`/widget/${widgetId}`, KayoAPICallMethod.PUT, { params: params})
 	}
 
 	public static addWidget(serviceName: string, widgetName: string, params: WidgetParam[]) {
-		return this._call(`/service/${serviceName}/${widgetName}`, APICallMethod.POST, { params: params})
+		return this._call(`/service/${serviceName}/${widgetName}`, KayoAPICallMethod.POST, { params: params})
 	}
 
 	public static getOAuthToken(serviceName: string) {

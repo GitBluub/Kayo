@@ -3,7 +3,7 @@ import Title from '../Components/Title';
 import Grid from '@mui/material/Grid/Grid';
 import SecondaryPage from '../Components/SecondaryPage';
 import { useState, useEffect } from 'react';
-import API from '../Controllers/API';
+import API from '../Controllers/API/KayoAPI';
 import { WidgetSettingsGroup } from '../Components/WidgetSettings';
 
 const ManageWidgets = () => {

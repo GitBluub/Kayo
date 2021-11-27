@@ -9,7 +9,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button/Button';
 
 import { useState } from 'react';
-import API from '../Controllers/API';
+import API from '../Controllers/API/KayoAPI';
 import type { WidgetInterface, WidgetParam } from '../Components/Widget';
 
 interface WidgetSettingsProps {
