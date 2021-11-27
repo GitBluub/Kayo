@@ -1,11 +1,7 @@
 import * as React from 'react';
-import { TemperatureWidget } from 'src/Components/Widgets/Weather/TemperatureWidget';
-import { WeatherWidget } from 'src/Components/Widgets/Weather/WeatherWidget';
+import { TemperatureWidget } from '../../Components/Widgets/Weather/TemperatureWidget';
+import { WeatherWidget } from '../../Components/Widgets/Weather/WeatherWidget';
 import ErrorWidget from '../../Components/Widgets/ErrorWidget';
-import { FavoriteArtistWidget } from '../../Components/Widgets/Spotify/FavoriteArtistWidget';
-import { FavoriteTrackWidget } from '../../Components/Widgets/Spotify/FavoriteTrackWidget';
-import KayoAPI from '../API/KayoAPI';
-import SpotifyAPI from '../API/SpotifyAPI';
 import WeatherAPI from '../API/WeatherAPI';
 import type { WidgetFactoryProps } from '../WidgetFactory';
 

@@ -2,13 +2,6 @@ import * as React from 'react';
 import Widget from '../../Widget';
 import AvailableServices from '../../Service';
 import Grid from '@mui/material/Grid/Grid';
-import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
-import WavesIcon from '@mui/icons-material/Waves';
-import ShowerIcon from '@mui/icons-material/Shower';
-import AcUnitRoundedIcon from '@mui/icons-material/AcUnitRounded';
-import CloudRoundedIcon from '@mui/icons-material/CloudRounded';
-import NightsStayIcon from '@mui/icons-material/NightsStay';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
 
 
 interface WeatherWidgetInterface {

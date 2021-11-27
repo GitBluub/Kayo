@@ -20,8 +20,8 @@ const Home = () => (
 		<MainPageMenu/>
 		<ParameterCardTitle>KAYO</ParameterCardTitle>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
-			<StockMarketWidget shortName="AAPL" fullName="Apple Incorporation" total={1000000000.36} variation={+0.56}/>
-			<StockMarketWidget shortName="GOOG" fullName="Google Incorporation" total={2.36} variation={-3.14}/>
+			<StockMarketWidget shortName="AAPL" total={1000000000.36} variation={+0.56}/>
+			<StockMarketWidget shortName="GOOG" total={2.36} variation={-3.14}/>
 			<DailyNewInfectionWidget rate={-0.56} country="France"/>
 			<DailyNewInfectionWidget rate={49.6} country="USA"/>
 			<DailyNewHospitalizationWidget rate={-0.56} country="France"/>
