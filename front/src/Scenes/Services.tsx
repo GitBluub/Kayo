@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
+import Title from '../Components/Title';
 import Grid from '@mui/material/Grid/Grid';
 import ParameterCardGroup from '../Components/ParameterCard/ParameterCardGroup';
 import ServiceCard from '../Components/ServiceCard';
@@ -19,7 +19,7 @@ const Services = () => {
 	}, [])
 	return <SecondaryPage>
 		<Grid container alignItems="center" justifyContent="center" direction="column">
-			<ParameterCardTitle>Available Services</ParameterCardTitle>
+			<Title>Available Services</Title>
 			<ParameterCardGroup title="Connected Services">
 				{ connectedServices.map((name: string) => <ServiceCard key={name} href='#' serviceName={name.toUpperCase()} actionType="delete" action={() => {
 					KayoAPI.unsubscribe(name)

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AuthentificationForm, { AuthentificationFormState } from '../Components/AuthentificationForm';
 import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
-import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
+import Title from '../Components/Title';
 import { Navigate } from 'react-router';
 import KayoAPI from '../Controllers/API/KayoAPI';
 
@@ -31,7 +31,7 @@ const SignUp = () => {
     }
     return (
         <>
-            <ParameterCardTitle>Sign up to Kayo</ParameterCardTitle>
+            <Title>Sign up to Kayo</Title>
             {submitAlert}
             <AuthentificationForm signup={true} debug={false} onSubmit={onSubmit} submitNotice="Once your account is created, you'll be redirected to login page!" />
         </>

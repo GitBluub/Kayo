@@ -62,6 +62,16 @@
 							"type": "string"
 						}
 					]
+				},
+				{
+					"name": "humidity",
+					"description": "Display the humidity rate in a city",
+					"params": [
+						{
+							"name": "city_name",
+							"type": "string"
+						}
+					]
 				}
 			]
 		}

@@ -20,6 +20,12 @@ Creates a user in the database
 
 - /auth/login
 Returns a jwt for the user
+200
+{
+    "access_token": JWT_TOKEN
+}
+
+400 Bad Request
 
 ```json
 {
@@ -30,14 +36,13 @@ Returns a jwt for the user
 
 - GET /services/subscribed
 
-Returns the service the user is subscribed to
+Returns the services the user is subscribed to
 
-```json
-[
-    "service_name_1",
-    "service_name_2",
-]
-```
+{
+    subscriptions: [
+    servicesNames...
+    ]
+}
 
 - GET /services/unsubscribed
 Returns the service the user is not subscribed to
@@ -66,7 +71,7 @@ Subscribe to a service
 ```
 
 - GET /services/widgets
-Returns a list of widgets the user can subscribe to (or is already subscribed to)
+Returns a list of widgets the user can subscribe to
 [
     {
         "name": "spotify",
@@ -77,7 +82,7 @@ Returns a list of widgets the user can subscribe to (or is already subscribed to
                 "params [
                     {
                         "name": "param1",
-                        "type": "string"
+                        "value": "string"
                     },
                 ]
             }
@@ -91,10 +96,15 @@ Unsubscribe of a service
 
 - GET /service/:name/widgets
 
-
 - GET /widgets
 
-Returns all the widgets of the connected User
+Returns all the widgets' id of the connected User
+
+{
+    "widgets": [
+    widgetsIds...
+    ]
+}
 
 ```json
 [
@@ -102,6 +112,7 @@ Returns all the widgets of the connected User
         "service_name": "spotify",
         "widgets": [
             {
+                "id": "widgetId",
                 "name": "widget1",
                 "desc": "blabla",
                 "params": [
@@ -116,43 +127,42 @@ Returns all the widgets of the connected User
 ]
 ```
 
-- GET /widget/:id
-
-Return current widget info
-
-```json
-{
-    "service_name": "spotify",
-    "widget_name": "favorite",
-    "params": {
-        "what": "artist",
-    }
-}
-```
-
-- POST /widget/add
+- POST /service/:servicename/:widgetname
 
 Creates a widget with necesarry info
 
 ```json
 {
-    "service_name": "spotify",
-    "widget_name": "favorite",
-    "params": {
-        "what": "artist",
-    }
+    "params": [
+        {
+            "name": "param1",
+            "value": "actual",
+        },
+    ]
 }
 ```
 
 - PUT /widget/:id
 
 Update a widget configuration
+{
+    "parameters": [
+    {
+        "name": "parameter name",
+        "value": "parameter value",
+        "type": "string" | "number",
+    },
+    ]
+}
 
 ```json
 {
-    "params": {
-        "what": "album",
-    }
+    "params": [
+        {
+            "name": "param1",
+            "value": "actual",
+        },
+    ]
 }
 ```
 
