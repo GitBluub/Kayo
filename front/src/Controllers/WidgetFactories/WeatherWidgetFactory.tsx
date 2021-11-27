@@ -4,6 +4,7 @@ import { WeatherWidget } from '../../Components/Widgets/Weather/WeatherWidget';
 import ErrorWidget from '../../Components/Widgets/ErrorWidget';
 import WeatherAPI from '../API/WeatherAPI';
 import type { WidgetFactoryProps } from '../WidgetFactory';
+import { HumidityWidget } from '../../Components/Widgets/Weather/HumidityWidget';
 
 const WeatherWidgetFactory = ({ widgetName, widgetParams }: WidgetFactoryProps) => {
 	const [widget, setWidget] = React.useState(<></>);
@@ -18,6 +19,11 @@ const WeatherWidgetFactory = ({ widgetName, widgetParams }: WidgetFactoryProps) 
 		case "weather":
 			WeatherAPI.getCityWeather(widgetParams[0].value).then(condition => {
 				setWidget(<WeatherWidget city={widgetParams[0].value} illustrationUrl={condition.icon.slice(2)} condition={condition.text} />)
+			})
+			break;
+		case "weather":
+			WeatherAPI.getCityHumidity(widgetParams[0].value).then(rate => {
+				setWidget(<HumidityWidget city={widgetParams[0].value} humidity={rate} />)
 			})
 			break;
 	

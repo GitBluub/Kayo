@@ -15,6 +15,10 @@ export default class WeatherAPI {
 		return this._call(cityName).then(res => res.current.condition);
 	}
 
+	public static getCityHumidity(cityName: string) {
+		return this._call(cityName).then(res => res.current.humidity);
+	}
+
 	public static getCityTemperature(cityName: string) {
 		return this._call(cityName).then(res => res.current.temp_c);
 	}
