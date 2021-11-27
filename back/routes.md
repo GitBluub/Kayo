@@ -1,76 +1,171 @@
 
+# KAYO - Back-end routes documentation
 
-# /about.json
+- /about.json
 
 Returns the info request in the subject
+See subject
 
-# /auth/register
+- /auth/register
 
 Needs
-{
-	username: ____
-	password: ____
-}
-
 Creates a user in the database
 
-# /auth/login
-
-Needs
+```json
 {
-	username: ____
-	password: ____
+    "username": "kayo",
+    "password": "kayo_pwd"
+}
+```
+
+- /auth/login
+Returns a jwt for the user
+200
+{
+    "access_token": JWT_TOKEN
 }
 
-Returns a jwt for the user
+400 Bad Request
 
-# GET /services/subscribed
-Returns the service the user is subscribed to
+```json
+{
+    "username": "kayo",
+    "password": "kayo_pwd"
+}
+```
 
-# GET /services/unsubscribed
+- GET /services/subscribed
+
+Returns the services the user is subscribed to
+
+{
+    subscriptions: [
+    servicesNames...
+    ]
+}
+
+- GET /services/unsubscribed
 Returns the service the user is not subscribed to
 [
-	"a",
-	"b",
+    "service_name_1",
+    "service_name_2",
 ]
-# GET /service/:name
+- GET /service/:name
 
-Returns the url of the oauth2 connection needed
+Returns the oauth token of the subscribed service
 
+```json
 {
-	url: "dazdaz"
-	type: "Facebook" | "" | "Twitter"
+    "serviceToken": "oauthToken1234"
 }
+```
 
-# POST /service/:name
+- POST /service/:name
 
 Subscribe to a service
-{
-	"serviceToken": _____
-}
 
-# DELETE /service/:name
+```json
+{
+    "serviceToken": "oauthToken1234"
+}
+```
+
+- GET /services/widgets
+Returns a list of widgets the user can subscribe to
+[
+    {
+        "name": "spotify",
+        "widgets": [
+            {
+                "name": "widget1",
+                "desc": "blabla"
+                "params [
+                    {
+                        "name": "param1",
+                        "value": "string"
+                    },
+                ]
+            }
+        ]
+    }
+]
+
+- DELETE /service/:name
 
 Unsubscribe of a service
 
-# GET /widgets
+- GET /service/:name/widgets
 
-Returns all the widgets of the connected User
+- GET /widgets
 
-# GET /widget/:id
+Returns all the widgets' id of the connected User
 
-Return current widget info
+{
+    "widgets": [
+    widgetsIds...
+    ]
+}
 
-# POST /widget
+```json
+[
+    {
+        "service_name": "spotify",
+        "widgets": [
+            {
+                "id": "widgetId",
+                "name": "widget1",
+                "desc": "blabla",
+                "params": [
+                    {
+                        "name": "param1",
+                        "value": "actual",
+                    },
+                ]
+            }
+        ]
+    }
+]
+```
+
+- POST /service/:servicename/:widgetname
 
 Creates a widget with necesarry info
-Maybe a /service/widget/:widgetname
 
-# PUT /widget/:id
+```json
+{
+    "params": [
+        {
+            "name": "param1",
+            "value": "actual",
+        },
+    ]
+}
+```
+
+- PUT /widget/:id
 
 Update a widget configuration
+{
+    "parameters": [
+    {
+        "name": "parameter name",
+        "value": "parameter value",
+        "type": "string" | "number",
+    },
+    ]
+}
 
-# DELETE /widget/:id
+```json
+{
+    "params": [
+        {
+            "name": "param1",
+            "value": "actual",
+        },
+    ]
+}
+```
+
+- DELETE /widget/:id
 
 Delete a widgets of a user
-
