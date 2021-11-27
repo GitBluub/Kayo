@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import AuthentificationForm, { AuthentificationFormState } from '../Components/AuthentificationForm';
+import AuthentificationForm, { AuthentificationFormState } from '../../Components/AuthentificationForm';
 import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
-import Title from '../Components/Title';
+import Title from '../../Components/Title';
 import { Navigate } from 'react-router';
-import KayoAPI from '../Controllers/API/KayoAPI';
+import KayoAPI from '../../Controllers/API/KayoAPI';
 
 const SignUp = () => {
     const [registered, setRegisteredState] = useState(null as boolean | null);

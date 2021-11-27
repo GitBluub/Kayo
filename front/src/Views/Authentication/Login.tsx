@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import AuthentificationForm, { AuthentificationFormState } from '../Components/AuthentificationForm';
-import Title from '../Components/Title';
+import AuthentificationForm, { AuthentificationFormState } from '../../Components/AuthentificationForm';
+import Title from '../../Components/Title';
 import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import { Navigate } from 'react-router';
-import KayoAPI from '../Controllers/API/KayoAPI';
-import { setToken } from '../Store/jwtToken/jwtTokenSlice';
+import KayoAPI from '../../Controllers/API/KayoAPI';
+import { setToken } from '../../Store/jwtToken/jwtTokenSlice';
 import { useDispatch } from 'react-redux'
 
 const Login = () => {
