@@ -1,14 +1,12 @@
 import * as React from 'react';
-import Alert from '@mui/material/Alert/Alert';
-import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import type { WidgetParam } from 'src/Components/Widget';
-import ErrorWidget from 'src/Components/Widgets/ErrorWidget';
+import ErrorWidget from '../Components/Widgets/ErrorWidget';
+import SpotifyWidgetFactory from './WidgetFactories/SpotifyWidgetFactory';
 
 const WidgetFactory = (serviceName: string, widgetName: string, widgetParams: WidgetParam[]) => {
 	switch (serviceName) {
 		case 'spotify':
-			
-			break;
+			return <SpotifyWidgetFactory widgetName={widgetName} widgetParams={widgetParams}/>
 		case 'stocks':
 		
 			break;
@@ -22,3 +20,5 @@ const WidgetFactory = (serviceName: string, widgetName: string, widgetParams: Wi
 			return <ErrorWidget serviceName={serviceName} widgetName={widgetName} widgetParams={widgetParams}/>
 	}
 }
+
+export default WidgetFactory
