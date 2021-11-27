@@ -3,12 +3,12 @@ import Widget from '../../Widget';
 import AvailableServices from '../../Service';
 import Grid from '@mui/material/Grid/Grid';
 
-interface TemperatureWidgetInterface {
+interface HumidityWidgetInterface {
 	city: string,
-	temperature: number
+	humidity: number
 }
 
-const TemperatureWidget = (props: TemperatureWidgetInterface) => (
+const HumidityWidget = (props: HumidityWidgetInterface) => (
 	<Widget service={AvailableServices['weather']}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
@@ -16,9 +16,9 @@ const TemperatureWidget = (props: TemperatureWidgetInterface) => (
 			</Grid>
 		</Grid>
 		<Grid item>
-			<h1>{props.temperature + "°C"}</h1>
+			<h1>{props.humidity + "%"}</h1>
 		</Grid>
 	</Widget>
 )
 
-export {TemperatureWidget, TemperatureWidgetInterface}
+export {HumidityWidget, HumidityWidgetInterface}

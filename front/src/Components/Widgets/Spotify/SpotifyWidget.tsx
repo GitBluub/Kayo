@@ -10,7 +10,7 @@ enum BestType {
 }
 
 interface SpotifyWidgetInterface {
-	type: BestType,
+	leftTitle: string
 	title: string,
 	illustration: string,
 	subtitle: string | undefined,
@@ -20,7 +20,7 @@ const SpotifyWidget = (props: SpotifyWidgetInterface) => {
 	return <Widget service={AvailableServices['spotify']}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
-				<h2>Favorite {props.type}</h2>
+				<h2>{props.leftTitle}</h2>
 			</Grid>
 		</Grid>
 		<Grid item>
@@ -30,7 +30,7 @@ const SpotifyWidget = (props: SpotifyWidgetInterface) => {
 					<h5>{props.subtitle}</h5>
 				</Grid>
 				<Grid item style={{ padding: 3, paddingLeft: 30 }}>
-					<img src={props.illustration} style={{ borderRadius: (props.type == BestType.ARTIST) ? "50%" : "15%", width: '150px', paddingTop: 5 }} />
+					<img src={props.illustration} style={{ borderRadius: "15%", width: '150px', paddingTop: 5 }} />
 				</Grid>
 			</Grid>
 		</Grid>

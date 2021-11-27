@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid/Grid';
 
 interface StockMarketWidgetInterface {
 	shortName: string,
-	fullName: string,
 	total: number,
 	variation: number
 }
@@ -15,9 +14,8 @@ const StockMarketWidget = (props: StockMarketWidgetInterface) => {
 
 	return <Widget service={AvailableServices['stocks']}>
 		<Grid item>
-			<Grid container alignItems="center" justifyContent="space-between">
+			<Grid container alignItems="center" justifyContent="space-between" style={{ padding: 10 }}>
 				<h2>{props.shortName}</h2>
-				<h3 style={{ color: "grey", padding: 12 }}>{props.fullName}</h3>
 			</Grid>
 		</Grid>
 		<Grid item >
