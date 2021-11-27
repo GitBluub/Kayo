@@ -10,7 +10,7 @@ import Button from '@mui/material/Button/Button';
 
 import { useState } from 'react';
 import API from '../../Controllers/API/KayoAPI';
-import type { WidgetInterface, WidgetParam } from './Widget';
+import type { WidgetInterface, WidgetParam } from '../../Models/Widget';
 
 interface WidgetSettingsProps {
 	widget: WidgetInterface;
@@ -35,7 +35,7 @@ const WidgetForm = ({ widget, service }: WidgetSettingsProps) => {
 				)
 			}
 			{changed ?
-				<Button color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20 }} onClick={() => { API.addWidget(service, widget.name, params) }}>
+				<Button href="#" color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20, marginTop: 10 }} onClick={() => { API.addWidget(service, widget.name, params) }}>
 					<DoneIcon />
 					Add Widget
 				</Button>

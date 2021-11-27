@@ -2,7 +2,7 @@ import * as React from 'react';
 import Widget from '../Widget';
 import AvailableServices from '../../../Models/Service';
 import Grid from '@mui/material/Grid/Grid';
-import type { WidgetParam } from '../Widget';
+import type { WidgetParam } from '../../../Models/Widget';
 
 interface ErrorWidgetParams {
 	widgetName: string,

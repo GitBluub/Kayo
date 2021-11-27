@@ -10,7 +10,7 @@ import Button from '@mui/material/Button/Button';
 
 import { useState } from 'react';
 import API from '../../Controllers/API/KayoAPI';
-import type { WidgetInterface, WidgetParam } from './Widget';
+import type { WidgetInterface, WidgetParam } from '../../Models/Widget';
 
 interface WidgetSettingsProps {
 	widget: WidgetInterface;

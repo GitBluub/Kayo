@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { WidgetParam } from 'src/Views/Components/Widget';
+import type { WidgetParam } from '../Models/Widget';
 import ErrorWidget from '../Views/Components/Widgets/ErrorWidget';
 import SpotifyWidgetFactory from './WidgetFactories/SpotifyWidgetFactory';
 import StockMarketWidgetFactory from './WidgetFactories/StockMarketWidgetFactory';
