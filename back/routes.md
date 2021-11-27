@@ -22,7 +22,7 @@ Creates a user in the database
 Returns a jwt for the user
 200
 {
-	"access_token": JWT_TOKEN
+    "access_token": JWT_TOKEN
 }
 
 400 Bad Request
@@ -39,18 +39,10 @@ Returns a jwt for the user
 Returns the services the user is subscribed to
 
 {
-	subscriptions: [
-		servicesNames...
-	]
+    subscriptions: [
+    servicesNames...
+    ]
 }
-
-
-```json
-[
-    "service_name_1",
-    "service_name_2",
-]
-```
 
 - GET /services/unsubscribed
 Returns the service the user is not subscribed to
@@ -80,7 +72,7 @@ Subscribe to a service
 ```
 
 - GET /services/widgets
-Returns a list of widgets the user can subscribe to (or is already subscribed to)
+Returns a list of widgets the user can subscribe to
 [
     {
         "name": "spotify",
@@ -91,7 +83,7 @@ Returns a list of widgets the user can subscribe to (or is already subscribed to
                 "params [
                     {
                         "name": "param1",
-                        "type": "string"
+                        "value": "string"
                     },
                 ]
             }
@@ -105,15 +97,14 @@ Unsubscribe of a service
 
 - GET /service/:name/widgets
 
-
 - GET /widgets
 
 Returns all the widgets' id of the connected User
 
 {
-	"widgets": [
-		widgetsIds...
-	]
+    "widgets": [
+    widgetsIds...
+    ]
 }
 
 ```json
@@ -137,40 +128,18 @@ Returns all the widgets' id of the connected User
 ]
 ```
 
-- GET /widget/:id
-
-Return the widget fetched info
-
-object returned by the service api
-{
-
-}
-
-# GET /widget/:id/data
-
-Return current widget info
-
-```json
-{
-    "service_name": "spotify",
-    "widget_name": "favorite",
-    "params": {
-        "what": "artist",
-    }
-}
-```
-
-- POST /widget/add
+- POST /service/:servicename/:widgetname
 
 Creates a widget with necesarry info
 
 ```json
 {
-    "service_name": "spotify",
-    "widget_name": "favorite",
-    "params": {
-        "what": "artist",
-    }
+    "params": [
+        {
+            "name": "param1",
+            "value": "actual",
+        },
+    ]
 }
 ```
 
@@ -178,20 +147,23 @@ Creates a widget with necesarry info
 
 Update a widget configuration
 {
-	"parameters": [
-		{
-			"name": "parameter name",
-			"value": "parameter value",
-			"type": "string" | "number",
-		},
-	]
+    "parameters": [
+    {
+        "name": "parameter name",
+        "value": "parameter value",
+        "type": "string" | "number",
+    },
+    ]
 }
 
 ```json
 {
-    "params": {
-        "what": "album",
-    }
+    "params": [
+        {
+            "name": "param1",
+            "value": "actual",
+        },
+    ]
 }
 ```
 

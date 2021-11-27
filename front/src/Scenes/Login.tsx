@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AuthentificationForm, { AuthentificationFormState } from '../Components/AuthentificationForm';
-import ParameterCardTitle from '../Components/ParameterCard/ParameterCardTitle';
+import Title from '../Components/Title';
 import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import { Navigate } from 'react-router';
@@ -33,7 +33,7 @@ const Login = () => {
     submitAlert = <></>
   }
   return <>
-    <ParameterCardTitle>Welcome to Kayo</ParameterCardTitle>
+    <Title>Welcome to Kayo</Title>
     { submitAlert }
     <AuthentificationForm signup={false} debug={false} onSubmit={onSubmit} submitNotice=''/>
   </>

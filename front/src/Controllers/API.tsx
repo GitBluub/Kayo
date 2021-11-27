@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { WidgetParam } from "src/Components/Widget";
 
 enum APICallMethod {
 	POST = "post",
@@ -34,10 +35,6 @@ export default class API {
 			password: passowrd
 		});
 	}
-
-	public static getAbout() {
-		return this._call('/about.json', APICallMethod.GET, {});
-	}
 	
 	public static getSubscribedServices() {
 		return Promise.resolve(['weather', 'covid', 'stocks'])
@@ -45,7 +42,7 @@ export default class API {
 	}
 
 	public static getOtherServices() {
-		//return this._call('/services/unsubscribed', APICallMethod.GET);
+		//return this._call('/services/available', APICallMethod.GET);
 		return Promise.resolve(['spotify'])
 	}
 
@@ -59,12 +56,58 @@ export default class API {
 		});
 	}
 
-	public static getAvailableServices() {
-		//return this.getAbout().then((about: any) => {
-		//	var serviceNames: string[] = [];
-		//	about.server.services.forEach((element: any) => serviceNames.push(element.name))
-		//	return serviceNames;
-		//})
-		return Promise.resolve(['weather', 'covid', 'stocks', 'spotify'])
+	public static getMyWidgets() {
+		//return this._call("/widgets", APICallMethod.GET, {});
+		return Promise.resolve([
+			{
+				"name": "spotify",
+				"widgets": [
+					{
+						"id": 1,
+						"name": "widget1",
+						"desc": "blabla",
+						"params": [
+							{
+								"name": "param1",
+								"value": "string"
+							},
+						]
+					}
+				]
+			}
+		])
+	}
+
+	public static getAvailableWidgets() {
+		//return this._call("/services/widgets", APICallMethod.GET, {});
+		return Promise.resolve([
+			{
+				"name": "spotify",
+				"widgets": [
+					{
+						"name": "widget1",
+						"desc": "blabla",
+						"params": [
+							{
+								"name": "param1",
+								"type": "string"
+							},
+						]
+					}
+				]
+			}
+		])
+	}
+
+	public static deleteWidget(widgetId: number) {
+		return this._call(`/widgets/${widgetId}`, APICallMethod.DELETE, {});
+	}
+
+	public static updateWidgetParams(widgetId: number, params: WidgetParam[]) {
+		return this._call(`/widget/${widgetId}`, APICallMethod.PUT, { params: params})
+	}
+
+	public static addWidget(serviceName: string, widgetName: string, params: WidgetParam[]) {
+		return this._call(`/service/${serviceName}/${widgetName}`, APICallMethod.POST, { params: params})
 	}
 }

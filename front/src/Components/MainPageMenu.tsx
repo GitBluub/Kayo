@@ -26,6 +26,9 @@ const MainPageMenu = () => {
         <MenuItem>
           <Link to="widgets/manage">Manage Widgets</Link>
         </MenuItem>
+        <MenuItem>
+          <Link to="widgets/add">Add Widgets</Link>
+        </MenuItem>
       </Menu>
     </Grid>
   );
