@@ -11,7 +11,7 @@ export default class SpotifyAPI {
 	public static getFavorite(what: "artists" | "tracks") {
 		return axios.get(
 			`${this.spotifyAPIUrl}/me/top/${what}?&limit=1`
-		)
+		).then(res => res.data);
 	}
 
 	public static getFavoriteArtist() {

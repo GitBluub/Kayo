@@ -2,6 +2,11 @@ import * as React from 'react';
 import type { WidgetParam } from 'src/Components/Widget';
 import ErrorWidget from '../Components/Widgets/ErrorWidget';
 import SpotifyWidgetFactory from './WidgetFactories/SpotifyWidgetFactory';
+import WeatherWidgetFactory from './WidgetFactories/WeatherWidgetFactory';
+
+interface WidgetFactoryProps {
+	widgetName: string, widgetParams: WidgetParam[];
+}
 
 const WidgetFactory = (serviceName: string, widgetName: string, widgetParams: WidgetParam[]) => {
 	switch (serviceName) {
@@ -11,8 +16,7 @@ const WidgetFactory = (serviceName: string, widgetName: string, widgetParams: Wi
 		
 			break;
 		case 'weather':
-	
-			break;
+			return <WeatherWidgetFactory widgetName={widgetName} widgetParams={widgetParams}/>
 		case 'covid':
 
 			break;
@@ -22,3 +26,4 @@ const WidgetFactory = (serviceName: string, widgetName: string, widgetParams: Wi
 }
 
 export default WidgetFactory
+export { WidgetFactoryProps }

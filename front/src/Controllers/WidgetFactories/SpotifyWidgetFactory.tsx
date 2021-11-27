@@ -1,16 +1,13 @@
 import * as React from 'react';
-import type { WidgetParam } from '../../Components/Widget';
 import ErrorWidget from '../../Components/Widgets/ErrorWidget';
 import { FavoriteArtistWidget } from '../../Components/Widgets/Spotify/FavoriteArtistWidget';
 import { FavoriteTrackWidget } from '../../Components/Widgets/Spotify/FavoriteTrackWidget';
 import KayoAPI from '../API/KayoAPI';
 import SpotifyAPI from '../API/SpotifyAPI';
+import type { WidgetFactoryProps } from '../WidgetFactory';
 
-interface SpotifyWidgetProps {
-	widgetName: string, widgetParams: WidgetParam[];
-}
 
-const SpotifyWidgetFactory = ({ widgetName, widgetParams }: SpotifyWidgetProps) => {
+const SpotifyWidgetFactory = ({ widgetName, widgetParams }: WidgetFactoryProps) => {
 	const [widget, setWidget] = React.useState(<></>);
 	const what = widgetParams[0].value;
 	if (widgetName !== 'favorite' || widgetParams.length != 1 || !['artists', 'tracks'].includes(what))

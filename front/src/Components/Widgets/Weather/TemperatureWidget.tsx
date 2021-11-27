@@ -5,7 +5,6 @@ import Grid from '@mui/material/Grid/Grid';
 
 interface TemperatureWidgetInterface {
 	city: string,
-	country: string,
 	temperature: number
 }
 
@@ -14,7 +13,6 @@ const TemperatureWidget = (props: TemperatureWidgetInterface) => (
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
 				<h2>{props.city}</h2>
-				<h3 style={{ color: "#DDD", padding: 12 }}>{"in " + props.country}</h3>
 			</Grid>
 		</Grid>
 		<Grid item>

@@ -2,6 +2,10 @@ import * as React from 'react';
 import Card from "@mui/material/Card/Card";
 import Grid from '@mui/material/Grid/Grid';
 
+interface WidgetParam {
+	name: string;
+	value: string;
+}
 
 const WidgetParameterCard = (props: any) => {
 	let borderRadius = 8;
@@ -31,3 +35,4 @@ const Widget = (props: any) => {
 }
 
 export default Widget;
+export { WidgetParam }
