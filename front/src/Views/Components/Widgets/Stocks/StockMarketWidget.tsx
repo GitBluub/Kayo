@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Widget from '../../Widget';
-import AvailableServices from '../../Service';
+import AvailableServices from '../../../../Models/Service';
 import Button from '@mui/material/Button/Button';
 import Grid from '@mui/material/Grid/Grid';
 

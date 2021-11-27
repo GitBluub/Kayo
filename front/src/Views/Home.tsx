@@ -4,7 +4,7 @@ import Title from "./Components/Title";
 import Grid from "@mui/material/Grid/Grid";
 import Widget from "./Components/Widget";
 import Login from "./Authentication/Login";
-import AvailableServices from "./Components/Service";
+import AvailableServices from "../Models/Service";
 import { StockMarketWidget } from "./Components/Widgets/Stocks/StockMarketWidget";
 import { DailyNewInfectionWidget } from "./Components/Widgets/COVID/DailyNewInfectionWidget";
 import { DailyNewHospitalizationWidget } from "./Components/Widgets/COVID/DailyNewHospitalizationWidget";

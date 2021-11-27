@@ -5,7 +5,7 @@ import ParameterCardGroup from './Components/ParameterCard/ParameterCardGroup';
 import ServiceCard from './Components/ServiceCard';
 import { useState, useEffect } from 'react';
 import KayoAPI from '../Controllers/API/KayoAPI';
-import AvailableServices, { Service } from './Components/Service';
+import AvailableServices, { Service } from '../Models/Service';
 import SecondaryPage from './Components/SecondaryPage';
 
 

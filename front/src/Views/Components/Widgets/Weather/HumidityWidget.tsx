@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Widget from '../../Widget';
-import AvailableServices from '../../Service';
+import AvailableServices from '../../../../Models/Service';
 import Grid from '@mui/material/Grid/Grid';
 
 interface HumidityWidgetInterface {
