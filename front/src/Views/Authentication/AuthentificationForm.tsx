@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Title from '../../Components/Title';
+import Title from '../Components/Title';
 import Grid from '@mui/material/Grid/Grid';
 import { Link } from "react-router-dom";
 import { useFormManager } from "react-simple-form-manager";

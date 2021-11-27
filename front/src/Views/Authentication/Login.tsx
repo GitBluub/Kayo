@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AuthentificationForm, { AuthentificationFormState } from './AuthentificationForm';
-import Title from '../../Components/Title';
+import Title from '../Components/Title';
 import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import { Navigate } from 'react-router';

@@ -1,19 +1,19 @@
 import { Link, Navigate } from "react-router-dom";
 import React, { useState } from 'react';
-import Title from "../Components/Title";
+import Title from "./Components/Title";
 import Grid from "@mui/material/Grid/Grid";
-import Widget from "../Components/Widget";
+import Widget from "./Components/Widget";
 import Login from "./Authentication/Login";
-import AvailableServices from "../Components/Service";
-import { StockMarketWidget } from "../Components/Widgets/Stocks/StockMarketWidget";
-import { DailyNewInfectionWidget } from "../Components/Widgets/COVID/DailyNewInfectionWidget";
-import { DailyNewHospitalizationWidget } from "../Components/Widgets/COVID/DailyNewHospitalizationWidget";
-import { WeeklyNewVaccinations } from "../Components/Widgets/COVID/WeeklyNewVaccinations";
-import { FavoriteArtistWidget } from "../Components/Widgets/Spotify/FavoriteArtistWidget";
-import { FavoriteTrackWidget } from "../Components/Widgets/Spotify/FavoriteTrackWidget";
-import { TemperatureWidget } from "../Components/Widgets/Weather/TemperatureWidget";
-import { WeatherWidget } from "../Components/Widgets/Weather/WeatherWidget";
-import MainPageMenu from "../Components/MainPageMenu";
+import AvailableServices from "./Components/Service";
+import { StockMarketWidget } from "./Components/Widgets/Stocks/StockMarketWidget";
+import { DailyNewInfectionWidget } from "./Components/Widgets/COVID/DailyNewInfectionWidget";
+import { DailyNewHospitalizationWidget } from "./Components/Widgets/COVID/DailyNewHospitalizationWidget";
+import { WeeklyNewVaccinations } from "./Components/Widgets/COVID/WeeklyNewVaccinations";
+import { FavoriteArtistWidget } from "./Components/Widgets/Spotify/FavoriteArtistWidget";
+import { FavoriteTrackWidget } from "./Components/Widgets/Spotify/FavoriteTrackWidget";
+import { TemperatureWidget } from "./Components/Widgets/Weather/TemperatureWidget";
+import { WeatherWidget } from "./Components/Widgets/Weather/WeatherWidget";
+import MainPageMenu from "./Components/MainPageMenu";
 const Home = () => (
 	<Grid container alignItems="center" justifyContent="center" direction="column">
 		<MainPageMenu/>
@@ -30,7 +30,7 @@ const Home = () => (
 			<FavoriteArtistWidget illustration="https://i.scdn.co/image/ab67618600001016f6e93dd30ed67c0a07c234ad" artistName="Adele"/>
 			<FavoriteTrackWidget illustration="https://i.scdn.co/image/ab67616d0000b273cb5f30b072c99d6e450c688a" artistName="Adele" track="Rolling in the deep"/>
 			<TemperatureWidget city="Blou" temperature={30}/>
-			<WeatherWidget city="Blou" condition="rainy" illustrationUrl="cdn.weatherapi.com/weather/64x64/day/122.png"/>
+			<WeatherWidget city="Blou" condition="rainy" illustrationUrl="https://cdn.weatherapi.com/weather/64x64/day/122.png"/>
 		</Grid>
 	</Grid>
 )

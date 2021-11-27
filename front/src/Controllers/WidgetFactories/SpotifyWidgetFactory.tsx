@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ArtistTopTrack } from '../../Components/Widgets/Spotify/ArtistTopTrack';
-import ErrorWidget from '../../Components/Widgets/ErrorWidget';
-import { FavoriteArtistWidget } from '../../Components/Widgets/Spotify/FavoriteArtistWidget';
-import { FavoriteTrackWidget } from '../../Components/Widgets/Spotify/FavoriteTrackWidget';
+import { ArtistTopTrack } from '../../Views/Components/Widgets/Spotify/ArtistTopTrack';
+import ErrorWidget from '../../Views/Components/Widgets/ErrorWidget';
+import { FavoriteArtistWidget } from '../../Views/Components/Widgets/Spotify/FavoriteArtistWidget';
+import { FavoriteTrackWidget } from '../../Views/Components/Widgets/Spotify/FavoriteTrackWidget';
 import KayoAPI from '../API/KayoAPI';
 import SpotifyAPI from '../API/SpotifyAPI';
 import type { WidgetFactoryProps } from '../WidgetFactory';

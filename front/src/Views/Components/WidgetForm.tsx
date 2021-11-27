@@ -1,7 +1,7 @@
 import * as React from 'react';
-import ParameterCard from '../Components/ParameterCard/ParameterCard';
-import ParameterCardGroup from '../Components/ParameterCard/ParameterCardGroup';
-import ParameterCardButton from '../Components/ParameterCard/ParameterCardButton';
+import ParameterCard from './ParameterCard/ParameterCard';
+import ParameterCardGroup from './ParameterCard/ParameterCardGroup';
+import ParameterCardButton from './ParameterCard/ParameterCardButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import TextField from '@mui/material/TextField/TextField';
 import IconButton from '@mui/material/IconButton/IconButton';
@@ -9,8 +9,8 @@ import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button/Button';
 
 import { useState } from 'react';
-import API from '../Controllers/API/KayoAPI';
-import type { WidgetInterface, WidgetParam } from '../Components/Widget';
+import API from '../../Controllers/API/KayoAPI';
+import type { WidgetInterface, WidgetParam } from './Widget';
 
 interface WidgetSettingsProps {
 	widget: WidgetInterface;

@@ -5,7 +5,7 @@ import Login from "./Views/Authentication/Login";
 import SignUp from "./Views/Authentication/Signup";
 import Services from "./Views/Services";
 import ServiceSubscribe from './Controllers/ServiceSubscribtion';
-import ManageWidgets from "./Views/ManageWidgets";
+import ManageWidgets from "./Views/Widgets/ManageWidgets";
 import { Navigate } from 'react-router';
 import AddWidgets from './Views/Widgets/AddWidgets';
 import {

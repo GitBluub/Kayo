@@ -1,12 +1,12 @@
 import * as React from 'react';
-import Title from '../Components/Title';
+import Title from './Components/Title';
 import Grid from '@mui/material/Grid/Grid';
-import ParameterCardGroup from '../Components/ParameterCard/ParameterCardGroup';
-import ServiceCard from '../Components/ServiceCard';
+import ParameterCardGroup from './Components/ParameterCard/ParameterCardGroup';
+import ServiceCard from './Components/ServiceCard';
 import { useState, useEffect } from 'react';
 import KayoAPI from '../Controllers/API/KayoAPI';
-import AvailableServices, { Service } from '../Components/Service';
-import SecondaryPage from '../Components/SecondaryPage';
+import AvailableServices, { Service } from './Components/Service';
+import SecondaryPage from './Components/SecondaryPage';
 
 
 const Services = () => {

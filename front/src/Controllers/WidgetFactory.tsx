@@ -1,7 +1,8 @@
 import * as React from 'react';
-import type { WidgetParam } from 'src/Components/Widget';
-import ErrorWidget from '../Components/Widgets/ErrorWidget';
+import type { WidgetParam } from 'src/Views/Components/Widget';
+import ErrorWidget from '../Views/Components/Widgets/ErrorWidget';
 import SpotifyWidgetFactory from './WidgetFactories/SpotifyWidgetFactory';
+import StockMarketWidgetFactory from './WidgetFactories/StockMarketWidgetFactory';
 import WeatherWidgetFactory from './WidgetFactories/WeatherWidgetFactory';
 
 interface WidgetFactoryProps {
@@ -13,7 +14,7 @@ const WidgetFactory = (serviceName: string, widgetName: string, widgetParams: Wi
 		case 'spotify':
 			return <SpotifyWidgetFactory widgetName={widgetName} widgetParams={widgetParams}/>
 		case 'stocks':
-		
+			return <StockMarketWidgetFactory widgetName={widgetName} widgetParams={widgetParams}/>
 			break;
 		case 'weather':
 			return <WeatherWidgetFactory widgetName={widgetName} widgetParams={widgetParams}/>

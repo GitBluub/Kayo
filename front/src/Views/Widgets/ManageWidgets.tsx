@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Title from '../../Components/Title';
+import Title from '../Components/Title';
 import Grid from '@mui/material/Grid/Grid';
-import SecondaryPage from '../../Components/SecondaryPage';
+import SecondaryPage from '../Components/SecondaryPage';
 import { useState, useEffect } from 'react';
 import API from '../../Controllers/API/KayoAPI';
-import { WidgetSettingsGroup } from '../../Components/WidgetSettings';
+import { WidgetSettingsGroup } from '../Components/WidgetSettings';
 
 const ManageWidgets = () => {
 	const [widgetsGroups, setWidgetsGroups] = useState<Object[]>([])

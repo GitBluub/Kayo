@@ -1,7 +1,7 @@
 import * as React from 'react';
-import ParameterCard from '../Components/ParameterCard/ParameterCard';
-import ParameterCardGroup from '../Components/ParameterCard/ParameterCardGroup';
-import ParameterCardButton from '../Components/ParameterCard/ParameterCardButton';
+import ParameterCard from './ParameterCard/ParameterCard';
+import ParameterCardGroup from './ParameterCard/ParameterCardGroup';
+import ParameterCardButton from './ParameterCard/ParameterCardButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 

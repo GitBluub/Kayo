@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { TemperatureWidget } from '../../Components/Widgets/Weather/TemperatureWidget';
-import { WeatherWidget } from '../../Components/Widgets/Weather/WeatherWidget';
-import ErrorWidget from '../../Components/Widgets/ErrorWidget';
+import { TemperatureWidget } from '../../Views/Components/Widgets/Weather/TemperatureWidget';
+import { WeatherWidget } from '../../Views/Components/Widgets/Weather/WeatherWidget';
+import ErrorWidget from '../../Views/Components/Widgets/ErrorWidget';
 import WeatherAPI from '../API/WeatherAPI';
 import type { WidgetFactoryProps } from '../WidgetFactory';
-import { HumidityWidget } from '../../Components/Widgets/Weather/HumidityWidget';
+import { HumidityWidget } from '../../Views/Components/Widgets/Weather/HumidityWidget';
 
 const WeatherWidgetFactory = ({ widgetName, widgetParams }: WidgetFactoryProps) => {
 	const [widget, setWidget] = React.useState(<></>);
