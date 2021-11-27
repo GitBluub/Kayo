@@ -1,4 +1,6 @@
+import { ThemeProvider } from "@emotion/react";
 import axios from "axios";
+import queryString from 'query-string'
 
 export default class SpotifyAPI {
 	private static oauthToken = null as string | null;
@@ -20,5 +22,20 @@ export default class SpotifyAPI {
 
 	public static getFavoriteTrack() {
 		return this.getFavorite("tracks");
+	}
+
+	public static getArtistId(artistName: string) {
+		return axios.get(
+			`${this.spotifyAPIUrl}/v1/search?` + queryString.stringify({
+				q: artistName
+			})
+		).then((res: any) => res.items[0].id);
+	}
+
+	public static getArtistTopTrack(artistName: string) {
+		return this.getArtistId(artistName).then(id => 
+			axios.get(
+				`${this.spotifyAPIUrl}/v1/artists/${id}/top-tracks?market=FR`
+			)).then((res: any) => res.items[0])
 	}
 }

@@ -7,7 +7,7 @@ interface FavoriteArtistWidgetInterface {
 }
 
 const FavoriteArtistWidget = (props: FavoriteArtistWidgetInterface) => (
-	<SpotifyWidget type={BestType.ARTIST} title={props.artistName} illustration={props.illustration} subtitle=""/>
+	<SpotifyWidget leftTitle="Favorite artist" title={props.artistName} illustration={props.illustration} subtitle=""/>
 )
 
 export { FavoriteArtistWidget, FavoriteArtistWidgetInterface }

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { FavoriteAlbumWidget } from './FavoriteAlbumWidget';
 import { SpotifyWidget, BestType } from './SpotifyWidget';
 
 interface FavoriteTrackWidgetInterface {
@@ -9,7 +8,7 @@ interface FavoriteTrackWidgetInterface {
 }
 
 const FavoriteTrackWidget = (props: FavoriteTrackWidgetInterface) => (
-	<FavoriteAlbumWidget illustration={props.illustration} albumName={props.track} artistName={props.artistName} />
+	<SpotifyWidget leftTitle="Favorite track" title={props.track + " by " + props.artistName} illustration={props.illustration} subtitle=""/>
 )
 
 export { FavoriteTrackWidget, FavoriteTrackWidgetInterface }
