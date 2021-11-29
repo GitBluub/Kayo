@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { WidgetGroupInterface } from "src/Views/Components/Widget";
 import type { WidgetParam } from "../../Models/Widget";
 
 enum KayoAPICallMethod {
@@ -60,22 +61,22 @@ export default class KayoAPI {
 		//return this._call("/widgets", KayoAPICallMethod.GET, {});
 		return Promise.resolve([
 			{
-				"name": "spotify",
+				"service_name": "spotify",
 				"widgets": [
 					{
 						"id": 1,
-						"name": "widget1",
+						"name": "favorite",
 						"desc": "blabla",
 						"params": [
 							{
-								"name": "param1",
-								"value": "string"
+								"name": "what",
+								"value": "Adele"
 							},
 						]
 					}
 				]
 			}
-		])
+		] as WidgetGroupInterface[])
 	}
 
 	public static getAvailableWidgets() {

@@ -5,10 +5,10 @@ import { FavoriteArtistWidget } from '../../Views/Components/Widgets/Spotify/Fav
 import { FavoriteTrackWidget } from '../../Views/Components/Widgets/Spotify/FavoriteTrackWidget';
 import KayoAPI from '../API/KayoAPI';
 import SpotifyAPI from '../API/SpotifyAPI';
-import type { WidgetFactoryProps } from '../WidgetFactory';
+import type { ServiceWidgetFactoryProps } from '../WidgetFactory';
 
 
-const SpotifyWidgetFactory = ({ widgetName, widgetParams }: WidgetFactoryProps) => {
+const SpotifyWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactoryProps) => {
 	const [widget, setWidget] = React.useState(<></>);
 	const what = widgetParams[0].value;
 	
