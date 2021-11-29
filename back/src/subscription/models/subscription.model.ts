@@ -3,7 +3,7 @@ import { User } from "../../user/models/user.model"
 
 @Table({ tableName: 'subscriptions' })
 export class Subscription extends Model {
-  	@Column({allowNull: false})
+  	@Column({allowNull: false, unique: true})
   	name: string;
 
 	@Column

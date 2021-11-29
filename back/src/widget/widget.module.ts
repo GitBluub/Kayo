@@ -6,11 +6,10 @@ import { Widget } from './models/widget.model';
 import { UserModule } from 'src/user/user.module';
 import { Parameter } from './models/parameter.model';
 import { ConfigModule } from '@nestjs/config';
-import { WidgetsController } from './widgets.controller';
 
 @Module({
   imports: [UserModule, SequelizeModule.forFeature([Widget, Parameter]), ConfigModule],
-  controllers: [WidgetController, WidgetsController],
+  controllers: [WidgetController],
   providers: [WidgetService],
   exports: [SequelizeModule, WidgetService],
 })

@@ -11,6 +11,7 @@ export class Widget extends Model {
 	serviceName: string;
 
 	@ForeignKey(() => User)
+	@Column
 	userId: number;
 
 	@BelongsTo(() => User)
