@@ -2,16 +2,18 @@ import { Body, Controller, Get, Delete, Param, Post, Put, Request, UseGuards, Va
 import { WidgetService } from './widget.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateWidgetDto } from './dto/createWidget.dto';
+import { ApiCreatedResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
 @Controller()
 @UseGuards(JwtAuthGuard)
+@ApiUnauthorizedResponse({description: 'Unauthorized'})
 export class WidgetController {
 	constructor (private widgetService: WidgetService) {}
 
 	@Post("/:serviceName/:widgetName")
+	@ApiCreatedResponse({description: 'Widget has been created'})
 	async createWidget(@Param("serviceName") serviceName: string, @Param("widgetName") widgetName: string, @Request() req,
 	@Body(new ValidationPipe({transform: true})) createWidgetDto: CreateWidgetDto) {
-		console.log(createWidgetDto);
 		return await this.widgetService.createWidget(serviceName, widgetName, createWidgetDto.params, req.user.userId);
 	}
 
