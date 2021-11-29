@@ -7,6 +7,9 @@ export class Widget extends Model {
 	@Column({allowNull: false})
 	name: string;
 
+	@Column({allowNull: false})
+	serviceName: string;
+
 	@ForeignKey(() => User)
 	userId: number;
 

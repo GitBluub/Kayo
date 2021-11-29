@@ -110,12 +110,6 @@ Unsubscribe of a service
 
 Returns all the widgets' id of the connected User
 
-{
-	"widgets": [
-		widgetsIds...
-	]
-}
-
 ```json
 [
     {
@@ -160,7 +154,7 @@ Return current widget info
 }
 ```
 
-- POST /widget/add
+- POST /widget/
 
 Creates a widget with necesarry info
 
