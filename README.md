@@ -2,7 +2,7 @@
 
 # A professional, personal dashboard
 
-Kayo is a web dashboard app which lets you access your fvorite information in a blink of an eye! Enjoy them contents while having a simple, non-disruptive browsing experience.
+Kayo is a web dashboard app which lets you access your favorite information in a blink of an eye! Enjoy these content while having a simple, non-disruptive browsing experience.
 
 ## Features
 
