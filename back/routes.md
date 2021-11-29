@@ -121,6 +121,29 @@ Returns all the widgets' id of the connected User
 ]
 ```
 
+- GET /widget/:id
+
+Return the widget fetched info
+
+object returned by the service api
+{
+
+}
+
+# GET /widget/:id/data
+
+Return current widget info
+
+```json
+{
+    "service_name": "spotify",
+    "widget_name": "favorite",
+    "params": {
+        "what": "artist",
+    }
+}
+```
+
 - POST /service/:servicename/:widgetname
 
 Creates a widget with necesarry info

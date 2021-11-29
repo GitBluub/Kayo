@@ -1,6 +1,11 @@
 import { BelongsTo, Column, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { Widget } from './widget.model';
 
+export interface ParamInterface {
+	name: string,
+	value: string
+}
+
 @Table({ tableName: 'parameters'})
 export class Parameter extends Model {
 	@Column
@@ -13,6 +18,7 @@ export class Parameter extends Model {
 	value: string;
 
 	@ForeignKey(() => Widget)
+	@Column
 	widgetId: number;
 
 	@BelongsTo(() => Widget)
