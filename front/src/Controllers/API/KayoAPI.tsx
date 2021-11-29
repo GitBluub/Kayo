@@ -38,13 +38,13 @@ export default class KayoAPI {
 	}
 	
 	public static getSubscribedServices() {
-		return Promise.resolve(['weather', 'covid', 'stocks'])
-		//return this._call('/services/subscribed', KayoAPICallMethod.GET);
+		//return Promise.resolve(['weather', 'covid', 'stocks'])
+		return this._call('/service/subscribed', KayoAPICallMethod.GET, {});
 	}
 
 	public static getOtherServices() {
-		//return this._call('/services/available', KayoAPICallMethod.GET);
-		return Promise.resolve(['spotify'])
+		return this._call('/service/available', KayoAPICallMethod.GET, {});
+		//return Promise.resolve(['spotify'])
 	}
 
 	public static unsubscribe(serviceName: string) {
@@ -58,7 +58,7 @@ export default class KayoAPI {
 	}
 
 	public static getMyWidgets() {
-		//return this._call("/widgets", KayoAPICallMethod.GET, {});
+		return this._call("/widgets", KayoAPICallMethod.GET, {});
 		return Promise.resolve([
 			{
 				"service_name": "spotify",
@@ -80,7 +80,7 @@ export default class KayoAPI {
 	}
 
 	public static getAvailableWidgets() {
-		//return this._call("/services/widgets", KayoAPICallMethod.GET, {});
+		return this._call("/services/widgets", KayoAPICallMethod.GET, {});
 		return Promise.resolve([
 			{
 				"name": "spotify",

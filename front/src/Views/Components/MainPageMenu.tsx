@@ -20,15 +20,21 @@ const MainPageMenu = () => {
         <MoreVertIcon />
       </IconButton>
       <Menu id="long-menu" MenuListProps={{ 'aria-labelledby': 'long-button' }} anchorEl={anchorEl} open={open} PaperProps={{ style: { maxHeight: ITEM_HEIGHT * 4.5, width: '20ch' } }}>
-        <MenuItem>
-          <Link to="services">Services</Link>
-        </MenuItem>
-        <MenuItem>
-          <Link to="widgets/manage">Manage Widgets</Link>
-        </MenuItem>
-        <MenuItem>
-          <Link to="widgets/add">Add Widgets</Link>
-        </MenuItem>
+        <Link to="services">
+          <MenuItem>
+            Services
+          </MenuItem>
+        </Link>
+        <Link to="widgets/manage">
+          <MenuItem>
+            Manage Widgets
+          </MenuItem>
+        </Link>
+        <Link to="widgets/add">
+          <MenuItem>
+            Add Widgets
+          </MenuItem>
+        </Link>
       </Menu>
     </Grid>
   );

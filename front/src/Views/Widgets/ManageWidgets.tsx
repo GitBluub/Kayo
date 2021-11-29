@@ -5,18 +5,21 @@ import SecondaryPage from '../Components/SecondaryPage';
 import { useState, useEffect } from 'react';
 import API from '../../Controllers/API/KayoAPI';
 import { WidgetSettingsGroup } from '../Components/WidgetSettings';
+import type { WidgetGroupInterface } from '../Components/Widget';
 
 const ManageWidgets = () => {
-	const [widgetsGroups, setWidgetsGroups] = useState<Object[]>([])
+	const [widgetsGroups, setWidgetsGroups] = useState<WidgetGroupInterface[]>([])
 
 	useEffect(() => {
-		API.getMyWidgets().then((widgetsLists: Object[]) => { setWidgetsGroups(widgetsLists) })
+		API.getMyWidgets().then((widgetsLists: WidgetGroupInterface[]) => { setWidgetsGroups(widgetsLists) })
 	}, [])
 	return (
 		<SecondaryPage>
 			<Grid container alignItems="center" justifyContent="center" direction="column">
 				<Title>Manage Widgets</Title>
-				{widgetsGroups.map((widgerGroup: any) => WidgetSettingsGroup(widgerGroup))}
+				{widgetsGroups.map((widgerGroup: WidgetGroupInterface) =>
+					<WidgetSettingsGroup key={widgerGroup.service_name} service_name={widgerGroup.service_name} widgets={widgerGroup.widgets}/>
+				)}
 			</Grid>
 		</SecondaryPage>
 	)
