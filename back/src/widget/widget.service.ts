@@ -1,32 +1,45 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from "@nestjs/sequelize"
-import { use } from 'passport';
+import { use } from 'passport'
 import { Widget } from './models/widget.model';
+import { Parameter } from './models/parameter.model';
+import { ParamInterface } from './models/parameter.model';
 
-interface widgetParams
-{
-	name: string;
-	value: string;	
-}
 
 @Injectable()
 export class WidgetService {
 	constructor(
 		@InjectModel(Widget)
 		private widgetModel: typeof Widget,
+		@InjectModel(Parameter)
+		private parameterModel: typeof Parameter,
 		private configService: ConfigService
 	) {}
 
-	async createWidget(serviceName: string, widgetName: string, widgetData: widgetParams[], userId: number): Promise<Widget> {
-		return this.widgetModel.create(
+	async createWidget(serviceName: string, widgetName: string, widgetData: ParamInterface[], userId: number): Promise<Widget> {
+		
+		const services = this.configService.get('services').services;
+		const widget = await this.widgetModel.create(
 			{
 				serviceName: serviceName,
 				name: widgetName,
-				parameters: widgetData,
 				userId: userId,
 			}
 		);
+		const service = services.find(service => service.name === serviceName);
+		console.log(widgetName);
+		const widgetConf = service.widgets.find(widget => widget.name === widgetName);
+		widgetData.forEach(data => {
+			const type = widgetConf.params.find(parameter => parameter.name === data.name).type;
+			this.parameterModel.create({
+				widgetId: widget.id,
+				name: data.name,
+				value: data.value,
+				type
+			});
+		})
+		return widget;
 	}
 
 	async deleteWidget(widgetId: number, userId: number): Promise<number> {
@@ -40,8 +53,6 @@ export class WidgetService {
 
 	async getWidgets(userId: number): Promise<Widget[]> {
 		const services = this.configService.get('services').services;
-		console.log(userId);
-		
 		const userWidgets = await this.widgetModel.findAll({
 			where: {
 				userId: userId
@@ -56,7 +67,7 @@ export class WidgetService {
 		return widgets;
 	}
 
-	async updateWidget(widgetId: number, widgetData: widgetParams[], userId: number): Promise<[number, Widget[]]> {
+	async updateWidget(widgetId: number, widgetData: ParamInterface[], userId: number): Promise<[number, Widget[]]> {
 		return this.widgetModel.update({
 			parameters: widgetData
 		}, {

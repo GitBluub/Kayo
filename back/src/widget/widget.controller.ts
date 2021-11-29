@@ -1,17 +1,14 @@
-import { Body, Controller, Get, Delete, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Delete, Param, Post, Put, Request, UseGuards, ValidationPipe } from '@nestjs/common';
 import { WidgetService } from './widget.service';
 import { IsNotEmpty } from "class-validator";
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ParamInterface } from './models/parameter.model';
 
 
-interface Param {
-	name: string,
-	value: string
-}
 class CreateWidgetDto {
 
 	@IsNotEmpty()
-	params: Param[];
+	params: ParamInterface[];
 }
 
 
@@ -21,7 +18,9 @@ export class WidgetController {
 	constructor (private widgetService: WidgetService) {}
 
 	@Post("/:serviceName/:widgetName")
-	async createWidget(@Param("serviceName") serviceName: string, @Param("widgetName") widgetName: string, @Request() req, @Body() createWidgetDto: CreateWidgetDto) {
+	async createWidget(@Param("serviceName") serviceName: string, @Param("widgetName") widgetName: string, @Request() req,
+	@Body(new ValidationPipe({transform: true})) createWidgetDto: CreateWidgetDto) {
+		console.log(createWidgetDto);
 		return await this.widgetService.createWidget(serviceName, widgetName, createWidgetDto.params, req.user.userId);
 	}
 
