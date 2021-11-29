@@ -27,6 +27,16 @@
 							"type": "string"
 						}
 					]
+				},
+				{
+					"name": "artist-top-track",
+					"description": "Display the most played track of an artist",
+					"params": [
+						{
+							"name": "artist",
+							"type": "string"
+						}
+					]
 				}
 			]
 		},
@@ -52,38 +62,13 @@
 							"type": "string"
 						}
 					]
-				}
-			]
-		},
-		{
-			"name": "covid",
-			"widgets": [
-				{
-					"name": "daily_hospitalization_rate",
-					"description": "Display the daily hospitalization rate",
-					"params": [
-						{
-							"name": "county_name",
-							"type": "string"
-						}
-					]
 				},
 				{
-					"name": "daily_new_infections",
-					"description": "Display the daily new infections",
+					"name": "humidity",
+					"description": "Display the humidity rate in a city",
 					"params": [
 						{
-							"name": "county_name",
-							"type": "string"
-						}
-					]
-				},
-				{
-					"name": "weekly_new_vaccinations",
-					"description": "Display the weekly new vaccinations",
-					"params": [
-						{
-							"name": "county_name",
+							"name": "city_name",
 							"type": "string"
 						}
 					]

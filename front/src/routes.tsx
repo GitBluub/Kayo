@@ -1,12 +1,13 @@
 import React from 'react';
 import App from './App';
-import Home from "./Scenes/Home";
-import Login from "./Scenes/Login";
-import SignUp from "./Scenes/Signup";
-import Services from "./Scenes/Services";
+import Home from "./Views/Home";
+import Login from "./Views/Authentication/Login";
+import SignUp from "./Views/Authentication/Signup";
+import Services from "./Views/Services";
 import ServiceSubscribe from './Controllers/ServiceSubscribtion';
-import ManageWidgets from "./Scenes/ManageWidgets";
+import ManageWidgets from "./Views/Widgets/ManageWidgets";
 import { Navigate } from 'react-router';
+import AddWidgets from './Views/Widgets/AddWidgets';
 import {
 	BrowserRouter,
 	Routes, Route, useRoutes
@@ -26,6 +27,7 @@ const routes = (isLoggedIn: boolean) => {
     	      	  	<Route path="subscribe/:serviceID" element={<ServiceSubscribe/>}/>
     	      	</Route>
 				<Route path="widgets/manage" element={ifLogged(<ManageWidgets />)}/>
+				<Route path="widgets/add" element={ifLogged(<AddWidgets />)}/>
     	    </Route>
     	</Routes>
 	)
