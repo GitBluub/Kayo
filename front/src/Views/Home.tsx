@@ -6,24 +6,57 @@ import Widget, { WidgetGroup, WidgetGroupInterface } from "./Components/Widget";
 import KayoAPI from "../Controllers/API/KayoAPI";
 import MainPageMenu from "./Components/MainPageMenu";
 
-const Home = () => {
-	const [ widgetGroups, setWidgetGroups ] = useState<WidgetGroupInterface[]>([]);
-
-	useEffect(() => {
-		KayoAPI.getMyWidgets().then(res => setWidgetGroups(res))
-	}, [])
-	
-	return (
-		<Grid container alignItems="center" justifyContent="center" direction="column">
-			<MainPageMenu/>
-			<Title>KAYO</Title>
-			<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30}}>
-				{
-					widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.service_name} service_name={group.service_name} widgets={group.widgets} />)
-				}
-			</Grid>
-		</Grid>
-	)
+interface HomeState {
+	intervalID: number,
+	widgetGroups: WidgetGroupInterface[],
 }
 
-export default Home;
+export default class Home extends React.Component {
+
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			widgetGroups: [],
+			intervalID: 0
+		} as HomeState
+	}
+
+	tick() {
+		KayoAPI.getMyWidgets().then(res => {
+			this.setState(oldState => {
+				return {
+					...oldState,
+					widgetGroups: res
+				} as HomeState
+			}
+			)
+		})
+	}
+	componentDidMount() {
+		const newIntervalID = setInterval(() => this.tick(), 1000 * 60);
+		this.setState(oldState => {
+			return {
+				...oldState,
+				intervalID: newIntervalID,
+			} as HomeState;
+		});
+	}
+
+	componentWillUnmount() {
+		clearInterval(this.state.intervalID);
+	}
+
+	render() {
+		return (
+			<Grid container alignItems="center" justifyContent="center" direction="column">
+				<MainPageMenu />
+				<Title>KAYO</Title>
+				<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30 }}>
+					{
+						this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.service_name} service_name={group.service_name} widgets={group.widgets} />)
+					}
+				</Grid>
+			</Grid>
+		)
+	}
+}
