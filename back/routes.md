@@ -22,7 +22,7 @@ Creates a user in the database
 Returns a jwt for the user
 200
 {
-	"access_token": JWT_TOKEN
+    "access_token": JWT_TOKEN
 }
 
 400 Bad Request
@@ -39,18 +39,10 @@ Returns a jwt for the user
 Returns the services the user is subscribed to
 
 {
-	subscriptions: [
-		servicesNames...
-	]
+    subscriptions: [
+    servicesNames...
+    ]
 }
-
-
-```json
-[
-    "service_name_1",
-    "service_name_2",
-]
-```
 
 - GET /services/unsubscribed
 Returns the service the user is not subscribed to
@@ -60,12 +52,11 @@ Returns the service the user is not subscribed to
 ]
 - GET /service/:name
 
-Returns the url of the oauth2 connection needed
+Returns the oauth token of the subscribed service
 
 ```json
 {
-    "url": "https://spotify.api/authorize",
-    "type": "Spotify"
+    "serviceToken": "oauthToken1234"
 }
 ```
 
@@ -80,7 +71,7 @@ Subscribe to a service
 ```
 
 - GET /services/widgets
-Returns a list of widgets the user can subscribe to (or is already subscribed to)
+Returns a list of widgets the user can subscribe to
 [
     {
         "name": "spotify",
@@ -91,7 +82,7 @@ Returns a list of widgets the user can subscribe to (or is already subscribed to
                 "params [
                     {
                         "name": "param1",
-                        "type": "string"
+                        "value": "string"
                     },
                 ]
             }
@@ -104,7 +95,6 @@ Returns a list of widgets the user can subscribe to (or is already subscribed to
 Unsubscribe of a service
 
 - GET /service/:name/widgets
-
 
 - GET /widgets
 
@@ -154,17 +144,18 @@ Return current widget info
 }
 ```
 
-- POST /widget/
+- POST /service/:servicename/:widgetname
 
 Creates a widget with necesarry info
 
 ```json
 {
-    "service_name": "spotify",
-    "widget_name": "favorite",
-    "params": {
-        "what": "artist",
-    }
+    "params": [
+        {
+            "name": "param1",
+            "value": "actual",
+        },
+    ]
 }
 ```
 
@@ -172,20 +163,23 @@ Creates a widget with necesarry info
 
 Update a widget configuration
 {
-	"parameters": [
-		{
-			"name": "parameter name",
-			"value": "parameter value",
-			"type": "string" | "number",
-		},
-	]
+    "parameters": [
+    {
+        "name": "parameter name",
+        "value": "parameter value",
+        "type": "string" | "number",
+    },
+    ]
 }
 
 ```json
 {
-    "params": {
-        "what": "album",
-    }
+    "params": [
+        {
+            "name": "param1",
+            "value": "actual",
+        },
+    ]
 }
 ```
 
