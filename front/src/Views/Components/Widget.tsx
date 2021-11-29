@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Card from "@mui/material/Card/Card";
 import Grid from '@mui/material/Grid/Grid';
+import ParameterCardGroup from './ParameterCard/ParameterCardGroup';
+import WidgetFactory from '../../Controllers/WidgetFactory';
+import type { WidgetInterface } from '../../Models/Widget';
 
 
 const WidgetParameterCard = (props: any) => {
@@ -29,4 +32,18 @@ const Widget = (props: any) => {
 		</WidgetParameterCard>
 	);
 }
+
+interface WidgetGroupProps {
+	groupName: string,
+	widgets: WidgetInterface[];
+}
+
+const WidgetGroup = ({ groupName, widgets }: WidgetGroupProps) => {
+	return (
+		<ParameterCardGroup key={ groupName } title={groupName.toUpperCase()}>
+			{widgets.map((widget: WidgetInterface) => <WidgetFactory widgetName={widget.name} serviceName={ groupName } widgetParams={ widget.params } />)}
+		</ParameterCardGroup>
+	)
+}
 export default Widget;
+export { WidgetGroup, WidgetGroupProps }
