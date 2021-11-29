@@ -1,10 +1,10 @@
 import * as React from 'react';
 import ErrorWidget from '../../Views/Components/Widgets/ErrorWidget';
-import type { WidgetFactoryProps } from '../WidgetFactory';
+import type { ServiceWidgetFactoryProps } from '../WidgetFactory';
 import StockMarketAPI from '../API/StockMarketAPI';
 import { StockMarketWidget } from '../../Views/Components/Widgets/Stocks/StockMarketWidget';
 
-const StockMarketWidgetFactory = ({ widgetName, widgetParams }: WidgetFactoryProps) => {
+const StockMarketWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactoryProps) => {
 	const [widget, setWidget] = React.useState(<></>);
 	if (widgetParams.length != 1 || widgetName !== 'stock_market')
 		return <ErrorWidget serviceName="Stock market" widgetName={widgetName} widgetParams={widgetParams}/>
