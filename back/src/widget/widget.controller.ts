@@ -1,16 +1,7 @@
 import { Body, Controller, Get, Delete, Param, Post, Put, Request, UseGuards, ValidationPipe } from '@nestjs/common';
 import { WidgetService } from './widget.service';
-import { IsNotEmpty } from "class-validator";
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ParamInterface } from './models/parameter.model';
-
-
-class CreateWidgetDto {
-
-	@IsNotEmpty()
-	params: ParamInterface[];
-}
-
+import { CreateWidgetDto } from './dto/createWidget.dto';
 
 @Controller()
 @UseGuards(JwtAuthGuard)
