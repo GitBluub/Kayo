@@ -100,12 +100,6 @@ Unsubscribe of a service
 
 Returns all the widgets' id of the connected User
 
-{
-    "widgets": [
-    widgetsIds...
-    ]
-}
-
 ```json
 [
     {

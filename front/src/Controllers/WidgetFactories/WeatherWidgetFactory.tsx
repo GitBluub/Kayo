@@ -8,6 +8,7 @@ import { HumidityWidget } from '../../Views/Components/Widgets/Weather/HumidityW
 
 const WeatherWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactoryProps) => {
 	const [widget, setWidget] = React.useState(<></>);
+
 	if (widgetParams.length != 1)
 		return <ErrorWidget serviceName="Weather" widgetName={widgetName} widgetParams={widgetParams}/>
 	switch (widgetName) {
@@ -21,14 +22,15 @@ const WeatherWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactory
 				setWidget(<WeatherWidget city={widgetParams[0].value} illustrationUrl={condition.icon.slice(2)} condition={condition.text} />)
 			})
 			break;
-		case "weather":
+		case "humidity":
 			WeatherAPI.getCityHumidity(widgetParams[0].value).then(rate => {
 				setWidget(<HumidityWidget city={widgetParams[0].value} humidity={rate} />)
 			})
 			break;
 	
 		default:
-			return <ErrorWidget serviceName="Weather" widgetName={widgetName} widgetParams={widgetParams}/>
+			setWidget(<ErrorWidget serviceName="Weather" widgetName={widgetName} widgetParams={widgetParams}/>)
+			break;
 	} 
 	return widget;
 }
