@@ -47,8 +47,8 @@ Returns the services the user is subscribed to
 - GET /services/unsubscribed
 Returns the service the user is not subscribed to
 [
-    "service_name_1",
-    "service_name_2",
+    "serviceName_1",
+    "serviceName_2",
 ]
 - GET /service/:name
 
@@ -103,7 +103,7 @@ Returns all the widgets' id of the connected User
 ```json
 [
     {
-        "service_name": "spotify",
+        "serviceName": "spotify",
         "widgets": [
             {
                 "id": "widgetId",
@@ -136,7 +136,7 @@ Return current widget info
 
 ```json
 {
-    "service_name": "spotify",
+    "serviceName": "spotify",
     "widget_name": "favorite",
     "params": {
         "what": "artist",

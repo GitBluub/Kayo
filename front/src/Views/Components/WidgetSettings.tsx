@@ -50,7 +50,7 @@ const WidgetSettings = ({ widget }: WidgetSettingsProps) => {
 
 const WidgetSettingsGroup = (widgetGroup: WidgetGroupInterface) => {
 	return (
-		<ParameterCardGroup key={widgetGroup.service_name} title={widgetGroup.service_name.toUpperCase()}>
+		<ParameterCardGroup key={widgetGroup.serviceName} title={widgetGroup.serviceName.toUpperCase()}>
 			{widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetSettings key={widget.id} widget={widget} />)}
 		</ParameterCardGroup>
 	)

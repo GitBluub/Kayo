@@ -12,17 +12,19 @@ interface HomeState {
 }
 
 export default class Home extends React.Component {
-
+	
 	constructor(props: any) {
 		super(props);
 		this.state = {
 			widgetGroups: [],
 			intervalID: 0
 		} as HomeState
+		this.tick()
 	}
 
 	tick() {
 		KayoAPI.getMyWidgets().then(res => {
+			console.log(res)
 			this.setState(oldState => {
 				return {
 					...oldState,
@@ -53,7 +55,7 @@ export default class Home extends React.Component {
 				<Title>KAYO</Title>
 				<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30 }}>
 					{
-						this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.service_name} service_name={group.service_name} widgets={group.widgets} />)
+						this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.serviceName} serviceName={group.serviceName} widgets={group.widgets} />)
 					}
 				</Grid>
 			</Grid>

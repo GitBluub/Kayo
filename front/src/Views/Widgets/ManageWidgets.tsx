@@ -18,7 +18,7 @@ const ManageWidgets = () => {
 			<Grid container alignItems="center" justifyContent="center" direction="column">
 				<Title>Manage Widgets</Title>
 				{widgetsGroups.map((widgerGroup: WidgetGroupInterface) =>
-					<WidgetSettingsGroup key={widgerGroup.service_name} service_name={widgerGroup.service_name} widgets={widgerGroup.widgets}/>
+					<WidgetSettingsGroup key={widgerGroup.serviceName} serviceName={widgerGroup.serviceName} widgets={widgerGroup.widgets}/>
 				)}
 			</Grid>
 		</SecondaryPage>
