@@ -11,7 +11,7 @@ const AddWidgets = () => {
 	const [widgetsGroups, setWidgetsGroups] = useState<WidgetInterface[]>([])
 
 	useEffect(() => {
-		API.getAvailableWidgets().then((widgetsLists: WidgetInterface[]) => { console.log(widgetsLists); setWidgetsGroups(widgetsLists) })
+		API.getAvailableWidgets().then((widgetsLists: WidgetInterface[]) => { setWidgetsGroups(widgetsLists) })
 	}, [])
 	return (
 	<SecondaryPage>

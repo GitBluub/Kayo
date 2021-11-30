@@ -38,12 +38,14 @@ interface WidgetGroupInterface {
 	widgets: WidgetInterface[];
 }
 
-const WidgetGroup = ({ serviceName, widgets }: WidgetGroupInterface) => (
-	widgets.length != 0 && <ParameterCardGroup key={ serviceName } title={serviceName.toUpperCase()}>
+const WidgetGroup = ({ serviceName, widgets }: WidgetGroupInterface) => {
+	if (widgets.length == 0)
+		return <></>
+	return (<ParameterCardGroup key={ serviceName } title={serviceName.toUpperCase()}>
 		{
 			widgets.map((widget: WidgetInterface) => <WidgetFactory key={widget.id} widgetName={widget.name} serviceName={ serviceName } widgetParams={ widget.params } />)
 		}
-	</ParameterCardGroup>
-)
+	</ParameterCardGroup>)
+}
 export default Widget;
 export { WidgetGroup, WidgetGroupInterface }

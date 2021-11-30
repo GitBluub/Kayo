@@ -24,7 +24,6 @@ export default class Home extends React.Component {
 
 	tick() {
 		KayoAPI.getMyWidgets().then(res => {
-			console.log(res)
 			this.setState(oldState => {
 				return {
 					...oldState,
@@ -45,17 +44,19 @@ export default class Home extends React.Component {
 	}
 
 	componentWillUnmount() {
-		clearInterval(this.state.intervalID);
+		const state = this.state as HomeState
+		clearInterval(state.intervalID);
 	}
 
 	render() {
+		const state = this.state as HomeState
 		return (
 			<Grid container alignItems="center" justifyContent="center" direction="column">
 				<MainPageMenu />
 				<Title>KAYO</Title>
 				<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30 }}>
 					{
-						this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.serviceName} serviceName={group.serviceName} widgets={group.widgets} />)
+						state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.serviceName} serviceName={group.serviceName} widgets={group.widgets} />)
 					}
 				</Grid>
 			</Grid>

@@ -48,8 +48,8 @@ const WidgetForm = ({ widget, service }: WidgetSettingsProps) => {
 
 const WidgetFormsGroup = (widgetGroup: WidgetGroupInterface) => {
 	return (
-		<ParameterCardGroup key={widgetGroup.name} title={widgetGroup.name.toUpperCase()}>
-			{widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetForm key={widget.name} service={widgetGroup.name} widget={widget} />)}
+		<ParameterCardGroup key={widgetGroup.serviceName} title={widgetGroup.serviceName.toUpperCase()}>
+			{widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetForm key={widget.name} service={widgetGroup.serviceName} widget={widget} />)}
 		</ParameterCardGroup>
 	)
 }
