@@ -3,13 +3,15 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Subscription } from './models/subscription.model';
 import { SubscriptionDto } from './dto/subscription.dto';
 import { ConfigService } from '@nestjs/config';
+import { WidgetService } from 'src/widget/widget.service';
 
 @Injectable()
 export class SubscriptionService {
 	constructor(
 		@InjectModel(Subscription)
 		private subscriptionModel: typeof Subscription,
-		private configService: ConfigService
+		private configService: ConfigService,
+		private widgetService: WidgetService
 	) {}
 
 	async create(subscriptionDto: SubscriptionDto, serviceName: string, userId: number): Promise<Subscription> {
@@ -22,10 +24,12 @@ export class SubscriptionService {
 		);
 	}
 
-	async delete(subscriptionId: number): Promise<number> {
+	async delete(serviceName: string, userId: number): Promise<number> {
+		await this.widgetService.deleteServiceRelatedWidgets(serviceName, userId);
 		return this.subscriptionModel.destroy({
 			where: {
-				id: subscriptionId
+				name: serviceName,
+				userId: userId,
 			}
 		});
 	}
