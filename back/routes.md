@@ -70,7 +70,7 @@ Subscribe to a service
 }
 ```
 
-- GET /services/widgets
+- GET /widget/available
 Returns a list of widgets the user can subscribe to
 [
     {
@@ -82,7 +82,7 @@ Returns a list of widgets the user can subscribe to
                 "params [
                     {
                         "name": "param1",
-                        "value": "string"
+                        "type": "string"
                     },
                 ]
             }
