@@ -11,6 +11,7 @@ import Button from '@mui/material/Button/Button';
 import { useState } from 'react';
 import API from '../../Controllers/API/KayoAPI';
 import type { WidgetInterface, WidgetParam } from '../../Models/Widget';
+import type { WidgetGroupInterface } from './Widget';
 
 interface WidgetSettingsProps {
 	widget: WidgetInterface;
@@ -47,10 +48,10 @@ const WidgetSettings = ({ widget }: WidgetSettingsProps) => {
 	)
 }
 
-const WidgetSettingsGroup = (widgetGroup: any) => {
+const WidgetSettingsGroup = (widgetGroup: WidgetGroupInterface) => {
 	return (
-		<ParameterCardGroup key={widgetGroup.name} title={widgetGroup.name.toUpperCase()}>
-			{widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetSettings key={widget.name} widget={widget} />)}
+		<ParameterCardGroup key={widgetGroup.service_name} title={widgetGroup.service_name.toUpperCase()}>
+			{widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetSettings key={widget.service_name} widget={widget} />)}
 		</ParameterCardGroup>
 	)
 }
