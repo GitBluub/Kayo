@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid/Grid';
+import Logout from './LogoutButton';
 const ITEM_HEIGHT = 48;
 
 const MainPageMenu = () => {
@@ -28,6 +29,9 @@ const MainPageMenu = () => {
         </MenuItem>
         <MenuItem>
           <Link to="widgets/add">Add Widgets</Link>
+        </MenuItem>
+        <MenuItem>
+          <Logout/>
         </MenuItem>
       </Menu>
     </Grid>
