@@ -50,6 +50,7 @@ export default class Home extends React.Component {
 
 	render() {
 		const state = this.state as HomeState
+		console.log(state.widgetGroups)
 		return (
 			<Grid container alignItems="center" justifyContent="center" direction="column">
 				<MainPageMenu />

@@ -58,50 +58,33 @@ export default class KayoAPI {
 	}
 
 	public static getMyWidgets() {
-		return this._call("/widgets", KayoAPICallMethod.GET, {});
-		// return Promise.resolve([
-		// 	{
-		// 		"serviceName": "spotify",
-		// 		"widgets": [
-		// 			{
-		// 				"id": 1,
-		// 				"name": "favorite",
-		// 				"desc": "blabla",
-		// 				"params": [
-		// 					{
-		// 						"name": "what",
-		// 						"value": "Adele"
-		// 					},
-		// 				]
-		// 			}
-		// 		]
-		// 	}
-		// ] as WidgetGroupInterface[])
+		//return this._call("/widgets", KayoAPICallMethod.GET, {});
+		return Promise.resolve([
+			{
+				"serviceName": "spotify",
+				"widgets": [
+					{
+						"id": 1,
+						"name": "favorite",
+						"desc": "blabla",
+						"params": [
+							{
+								"name": "what",
+								"value": "Adele"
+							},
+						]
+					}
+				]
+			}
+		] as WidgetGroupInterface[])
 	}
 
 	public static getAvailableWidgets() {
-		return this._call("/service/available", KayoAPICallMethod.GET, {});
-		// return Promise.resolve([
-		// 	{
-		// 		"name": "spotify",
-		// 		"widgets": [
-		// 			{
-		// 				"name": "widget1",
-		// 				"desc": "blabla",
-		// 				"params": [
-		// 					{
-		// 						"name": "param1",
-		// 						"type": "string"
-		// 					},
-		// 				]
-		// 			}
-		// 		]
-		// 	}
-		// ])
+		return this._call("/widget/available", KayoAPICallMethod.GET, {});
 	}
 
 	public static deleteWidget(widgetId: number) {
-		return this._call(`/widgets/${widgetId}`, KayoAPICallMethod.DELETE, {});
+		return this._call(`/widget/${widgetId}`, KayoAPICallMethod.DELETE, {});
 	}
 
 	public static updateWidgetParams(widgetId: number, params: WidgetParam[]) {
@@ -109,7 +92,7 @@ export default class KayoAPI {
 	}
 
 	public static addWidget(serviceName: string, widgetName: string, params: WidgetParam[]) {
-		return this._call(`/service/${serviceName}/${widgetName}`, KayoAPICallMethod.POST, { params: params})
+		return this._call(`/${serviceName}/${widgetName}`, KayoAPICallMethod.POST, { params: params})
 	}
 
 	public static getOAuthToken(serviceName: string) {

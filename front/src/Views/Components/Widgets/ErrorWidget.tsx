@@ -2,7 +2,7 @@ import * as React from 'react';
 import Widget from '../Widget';
 import AvailableServices from '../../../Models/Service';
 import Grid from '@mui/material/Grid/Grid';
-import type { WidgetParam } from '../../../Models/Widget';
+import type { WidgetInterface, WidgetParam } from '../../../Models/Widget';
 
 interface ErrorWidgetParams {
 	widgetName: string,
@@ -18,8 +18,7 @@ const ErrorWidget = (props: ErrorWidgetParams) => (
 			</Grid>
 		</Grid>
 		<Grid item>
-			<h1>Service name: {props.serviceName}</h1>
-			<h1>Widget name: {props.widgetName}</h1>
+			<h1>Widget name: {props.name}</h1>
 		</Grid>
 	</Widget>
 )
