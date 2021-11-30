@@ -36,7 +36,7 @@ const WidgetForm = ({ widget, service }: WidgetSettingsProps) => {
 				)
 			}
 			{changed ?
-				<Button href="#" color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20, marginTop: 10 }} onClick={() => { API.addWidget(service, widget.name, params) }}>
+				<Button href="#" color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20, marginTop: 10 }} onClick={() => { API.addWidget(service, widget.name, params), alert("Widget created!"); }}>
 					<DoneIcon />
 					Add Widget
 				</Button>
