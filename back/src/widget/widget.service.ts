@@ -28,7 +28,6 @@ export class WidgetService {
 			}
 		);
 		const service = services.find(service => service.name === serviceName);
-		console.log(widgetName);
 		const widgetConf = service.widgets.find(widget => widget.name === widgetName);
 		widgetData.forEach(data => {
 			const type = widgetConf.params.find(parameter => parameter.name === data.name).type;
@@ -49,6 +48,15 @@ export class WidgetService {
 				userId: userId
 			}
 		});
+	}
+
+	async deleteServiceRelatedWidgets(serviceName: string, userId: number) {
+		return this.widgetModel.destroy({
+			where: {
+				serviceName,
+				userId
+			}
+		})
 	}
 
 	async getWidgets(userId: number): Promise<Widget[]> {
