@@ -29,6 +29,11 @@ const MainPageMenu = () => {
         <MenuItem>
           <Link to="widgets/add">Add Widgets</Link>
         </MenuItem>
+        <Link to="/logout">
+        <MenuItem style={{ color: 'red'}}>
+          Logout
+        </MenuItem>
+        </Link>
       </Menu>
     </Grid>
   );

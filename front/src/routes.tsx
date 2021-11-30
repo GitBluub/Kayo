@@ -8,6 +8,7 @@ import ServiceSubscribe from './Controllers/ServiceSubscribtion';
 import ManageWidgets from "./Views/Widgets/ManageWidgets";
 import { Navigate } from 'react-router';
 import AddWidgets from './Views/Widgets/AddWidgets';
+import Logout from './Views/Authentication/Logout';
 import {
 	BrowserRouter,
 	Routes, Route, useRoutes
@@ -21,6 +22,7 @@ const routes = (isLoggedIn: boolean) => {
     	    <Route path="/" element={<App/>}>
 				<Route index element={ifLogged(<Home />)}/>
 				<Route path="login" element={ifLogged(<Navigate replace to="/"/>)}/>
+				<Route path="logout" element={ifLogged(<Logout/>)}/>
 				<Route path="signup" element={ifLogged(<Navigate replace to="/"/>, <SignUp />)}/>
     	      	<Route path="services">
     	      	  	<Route index element={<Services/>}/>
