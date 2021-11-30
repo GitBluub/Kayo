@@ -80,7 +80,7 @@ export default class KayoAPI {
 	}
 
 	public static getAvailableWidgets() {
-		return this._call("/services/widgets", KayoAPICallMethod.GET, {});
+		return this._call("/service/available", KayoAPICallMethod.GET, {});
 		// return Promise.resolve([
 		// 	{
 		// 		"name": "spotify",
