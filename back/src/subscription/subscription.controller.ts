@@ -1,8 +1,8 @@
-import { Controller, Param, Post, Body, UseGuards, Request, Get } from '@nestjs/common';
+import { Controller, Param, Post, Body, UseGuards, Request, Get, Delete } from '@nestjs/common';
 import { SubscriptionDto } from './dto/subscription.dto';
 import { SubscriptionService } from './subscription.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiNoContentResponse, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
 @Controller('service')
 @UseGuards(JwtAuthGuard)
@@ -29,5 +29,9 @@ export class SubscriptionController {
 		return this.subscriptionService.getSubscribed(req.user.userId);
 	}
 
-	//todo: delete
+	@Delete("/:name")
+	@ApiNoContentResponse({description: 'The subscription has been deleted succesfully'})
+	async deleteSubscription(@Param('name') name: string, @Request() req){
+		return this.subscriptionService.delete(name, req.user.userId);
+	}
 }
