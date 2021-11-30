@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Subscription } from './models/subscription.model';
 import { SubscriptionDto } from './dto/subscription.dto';
@@ -11,6 +11,7 @@ export class SubscriptionService {
 		@InjectModel(Subscription)
 		private subscriptionModel: typeof Subscription,
 		private configService: ConfigService,
+		@Inject(forwardRef(() => WidgetService))
 		private widgetService: WidgetService
 	) {}
 

@@ -1,10 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from "@nestjs/sequelize"
 import { use } from 'passport'
 import { Widget } from './models/widget.model';
 import { Parameter } from './models/parameter.model';
 import { ParamInterface } from './models/parameter.model';
+import { SubscriptionService } from 'src/subscription/subscription.service';
 
 
 @Injectable()
@@ -14,7 +15,9 @@ export class WidgetService {
 		private widgetModel: typeof Widget,
 		@InjectModel(Parameter)
 		private parameterModel: typeof Parameter,
-		private configService: ConfigService
+		private configService: ConfigService,
+		@Inject(forwardRef(() => SubscriptionService))
+		private subscriptionService: SubscriptionService,
 	) {}
 
 	async createWidget(serviceName: string, widgetName: string, widgetData: ParamInterface[], userId: number): Promise<Widget> {
@@ -73,6 +76,16 @@ export class WidgetService {
 				widgets: userWidgets.filter(widget => widget.serviceName === service.name)
 			}});
 		return widgets;
+	}
+
+	async getAvailableWidgets(userId: number) {
+		const subscribed = await this.subscriptionService.getSubscribed(userId);
+		const services = this.configService.get('services').services.filter(service => subscribed.includes(service.name))
+		return services.map(service => {
+			return {
+				serviceName: service.name,
+				widgets: service.widgets
+			}});
 	}
 
 	async updateWidget(widgetId: number, widgetData: ParamInterface[], userId: number): Promise<[number, Widget[]]> {

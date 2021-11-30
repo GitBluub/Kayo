@@ -31,4 +31,9 @@ export class WidgetController {
 	async getWidgets(@Request() req) {
 		return this.widgetService.getWidgets(req.user.userId);
 	}
+
+	@Get("/widget/available")
+	async getAvailableWidgets(@Request() req) {
+		return this.widgetService.getAvailableWidgets(req.user.userId);
+	}
 }
