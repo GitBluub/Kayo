@@ -2,10 +2,12 @@ import { Controller, Param, Post, Body, UseGuards, Request, Get } from '@nestjs/
 import { SubscriptionDto } from './dto/subscription.dto';
 import { SubscriptionService } from './subscription.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { ApiCreatedResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
 @Controller('service')
 @UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
+@ApiUnauthorizedResponse({description: 'Unauthorized'})
 export class SubscriptionController {
 	constructor (private subscriptionService: SubscriptionService) {}
 
@@ -16,12 +18,16 @@ export class SubscriptionController {
 	}
 
 	@Get("/available")
+	@ApiOkResponse({description: 'Returns the services the user can subscribe to'})
 	async getAvailable(@Request() req){
 		return this.subscriptionService.getAvailable(req.user.userId);
 	}
 
 	@Get("/subscribed")
+	@ApiOkResponse({description: 'Returns the services the user is subscribed to'})
 	async getSubscribed(@Request() req){
 		return this.subscriptionService.getSubscribed(req.user.userId);
 	}
+
+	//todo: delete
 }
