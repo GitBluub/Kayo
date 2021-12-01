@@ -7,42 +7,26 @@ import KayoAPI from '../API/KayoAPI';
 import SpotifyAPI from '../API/SpotifyAPI';
 import type { ServiceWidgetFactoryProps } from '../WidgetFactory';
 
+interface SpotifyWidgetData {
+	illustrationUrl: string,
+	artistName: string,
+	trackName: string | undefined
+}
 
-const SpotifyWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactoryProps) => {
-	const [widget, setWidget] = useState(<></>);
-	const what = widgetParams[0].value;
 
-	useEffect(() => {
+const SpotifyWidgetFactory = ({ widgetName, widgetData, widgetParams }: ServiceWidgetFactoryProps) => {
 	switch (widgetName) {
 		case 'favorite':
-			KayoAPI.getOAuthToken('spotify').then(token => {
-				SpotifyAPI.setOauthToken(token);
-				SpotifyAPI.getFavorite(what as "artists" | "tracks").then((res: any) => setWidget((_) => {
-					if (res.items == [])
-						return <FavoriteArtistWidget artistName="John Doe" illustration="https://image.shutterstock.com/image-vector/pictogram-head-question-mark-john-260nw-171638717.jpg"/>
-					if (what == "artists") {
-						return <FavoriteArtistWidget artistName={res.items[0].name} illustration={res.items[0].images[0].url}/>
-					} else {
-						return <FavoriteTrackWidget artistName={res.items[0].artists[0].name} track={res.items[0].name} illustration={res.items[0].album.images[0].url}/>
-					}
-				}))
-			})
-			break;
+			if (widgetParams[0].value == "artists") {
+				return <FavoriteArtistWidget artistName={widgetData.artistName} illustration={widgetData.illustrationUrl}/>
+			} else {
+				return <FavoriteTrackWidget artistName={widgetData.artistName} track={widgetData.trackName} illustration={widgetData.illustrationUrl}/>
+			}
 		case 'artist-top-track':
-		KayoAPI.getOAuthToken('spotify').then(token => {
-				SpotifyAPI.setOauthToken(token);
-				SpotifyAPI.getArtistTopTrack(what).then((item: any) => setWidget((_) => {
-					return <ArtistTopTrack artistName={item.artists[0].name} track={item.name} illustration={item.album.images[0].url}/>
-				}))
-			})
-			break;
+			return <ArtistTopTrack artistName={widgetData.artistName} track={widgetData.trackName} illustration={widgetData.illustrationUrl}/>
 		default:
-			setWidget(<ErrorWidget serviceName="Spotify" widgetName={widgetName} widgetParams={widgetParams}/>)
-	}}, [])
-
-	
-	return widget
-	
+			return (<ErrorWidget serviceName="Spotify" widgetName={widgetName} widgetParams={widgetParams}/>)
+	}
 }
 
 export default SpotifyWidgetFactory

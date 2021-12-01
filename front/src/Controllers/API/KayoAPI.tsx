@@ -80,4 +80,8 @@ export default class KayoAPI {
 	public static getOAuthToken(serviceName: string) {
 		return this._call(`/service/${serviceName}`, KayoAPICallMethod.GET, {}).then(res => res.serviceToken);
 	}
+
+	public static getWidgetData(widgetId: number) {
+		return this._call(`/widget/${widgetId}`,  KayoAPICallMethod.GET, {});
+	}
 }
