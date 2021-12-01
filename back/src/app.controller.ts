@@ -1,12 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
+import { ApiOkResponse } from '@nestjs/swagger';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get("/health")
+  @ApiOkResponse({ description: "The server is alive"})
+  getHealth(@Res() res) {
+    return ""
+  }
+
+  @Get("/about.json")
+  @ApiOkResponse({ description: "Returns the about.json"})
+  getAbout() {
+    return this.appService.getAbout();
   }
 }
