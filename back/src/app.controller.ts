@@ -1,20 +1,27 @@
-import { Controller, Get, HttpStatus, Res } from '@nestjs/common';
+import { Controller, Get, HttpStatus, Req, Res } from '@nestjs/common';
 import { ApiOkResponse } from '@nestjs/swagger';
 import { AppService } from './app.service';
+
+type HostHeader = Request & {
+  headers: {
+    host: string
+  },
+  ip: string
+}
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get("/health")
+  @Get("health")
   @ApiOkResponse({ description: "The server is alive"})
-  getHealth(@Res() res) {
+  async getHealth(@Res() res) {
     return ""
   }
 
-  @Get("/about.json")
+  @Get("about.json")
   @ApiOkResponse({ description: "Returns the about.json"})
-  getAbout() {
-    return this.appService.getAbout();
+  async getAbout(@Req() req: HostHeader) {
+    return this.appService.getAbout(req.ip);
   }
 }
