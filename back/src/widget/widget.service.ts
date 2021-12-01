@@ -1,4 +1,4 @@
-import { forwardRef, HttpException, Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, forwardRef, HttpException, Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from "@nestjs/sequelize"
 import { use } from 'passport'
@@ -84,8 +84,7 @@ export class WidgetService {
 		return services.map(service => {
 			return {
 				serviceName: service.name,
-				widgets: [
-					userWidgets
+				widgets: userWidgets
 					.filter(widget => widget.serviceName === service.name)
 					.map(widget => {
 						const widgetService = services.find(service => service.name === widget.serviceName)
@@ -93,6 +92,7 @@ export class WidgetService {
 						const finalWidget = 
 						{
 							...widgetConf,
+							id: widget.id,
 							params: widgetConf.params.map(param => {
 								const currParam = userWidgetsParams.find(widgetParam => {
 									return widgetParam.name === param.name &&
@@ -103,7 +103,6 @@ export class WidgetService {
 						}
 						return finalWidget
 					})
-				]
 			}});
 	}
 
@@ -148,7 +147,7 @@ export class WidgetService {
 			case "stocks":
 				return this.stocksService.getData(widget.name, parameters, subscription.token)
 			default:
-				throw HttpException
+				throw BadRequestException
 		}
 	}
 }

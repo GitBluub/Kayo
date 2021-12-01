@@ -16,6 +16,11 @@ export class WidgetController {
 	@Body(new ValidationPipe({transform: true})) createWidgetDto: CreateWidgetDto) {
 		return await this.widgetService.createWidget(serviceName, widgetName, createWidgetDto.params, req.user.userId);
 	}
+	
+	@Get("/widget/available")
+	async getAvailableWidgets(@Request() req) {
+		return this.widgetService.getAvailableWidgets(req.user.userId);
+	}
 
 	@Get("/widget/:id")
 	@ApiOkResponse({ description: "Returns the data of the widget requested"})
@@ -36,10 +41,5 @@ export class WidgetController {
 	@Get("/widgets")
 	async getWidgets(@Request() req) {
 		return this.widgetService.getWidgets(req.user.userId);
-	}
-
-	@Get("/widget/available")
-	async getAvailableWidgets(@Request() req) {
-		return this.widgetService.getAvailableWidgets(req.user.userId);
 	}
 }

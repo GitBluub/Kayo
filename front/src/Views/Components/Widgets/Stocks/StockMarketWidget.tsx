@@ -25,7 +25,7 @@ const StockMarketWidget = (props: StockMarketWidgetInterface) => {
 				</Grid>
 				<Grid item style={{ padding: 3 }}>
 					<Button size="small" variant="contained" color={props.variation >= 0 ? 'success' : 'error'} disableElevation>
-						{props.variation >= 0 ? "+" : ""}{props.variation}
+						{props.variation >= 0 ? "+" : ""}{props.variation.toFixed(2)}%
 					</Button>
 				</Grid>
 			</Grid>

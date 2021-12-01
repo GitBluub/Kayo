@@ -26,6 +26,7 @@ const WidgetFactory = ({ serviceName, widgetName, widgetid, widgetParams}: Widge
 	if (widgetData === null)
 		return <></>
 	else {
+		console.log(widgetData)
 		switch (serviceName) {
 			case 'spotify':
 				return <SpotifyWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
