@@ -134,15 +134,19 @@ export class WidgetService {
 				id
 			}
 		})
-		const parameters = widget.parameters;
+		const parameters = await this.parameterModel.findAll({
+			where: {
+				widgetId: widget.id
+			}
+		});
 		const subscription = await this.subscriptionService.find(userId, widget.serviceName);
 		switch (widget.serviceName) {
 			case "spotify":
-				this.spotifyService.getData(widget.name, parameters, subscription.token)
+				return this.spotifyService.getData(widget.name, parameters, subscription.token)
 			case "weather":
-				this.weatherService.getData(widget.name, parameters, subscription.token)
+				return this.weatherService.getData(widget.name, parameters, subscription.token)
 			case "stocks":
-				this.stocksService.getData(widget.name, parameters, subscription.token)
+				return this.stocksService.getData(widget.name, parameters, subscription.token)
 			default:
 				throw HttpException
 		}
