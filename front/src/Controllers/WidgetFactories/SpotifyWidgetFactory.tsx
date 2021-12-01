@@ -17,7 +17,7 @@ interface SpotifyWidgetData {
 const SpotifyWidgetFactory = ({ widgetName, widgetData, widgetParams }: ServiceWidgetFactoryProps) => {
 	switch (widgetName) {
 		case 'favorite':
-			if (widgetParams[0].value == "artists") {
+			if (widgetParams[0].value == "artist") {
 				return <FavoriteArtistWidget artistName={widgetData.artistName} illustration={widgetData.illustrationUrl}/>
 			} else {
 				return <FavoriteTrackWidget artistName={widgetData.artistName} track={widgetData.trackName} illustration={widgetData.illustrationUrl}/>
@@ -29,4 +29,5 @@ const SpotifyWidgetFactory = ({ widgetName, widgetData, widgetParams }: ServiceW
 	}
 }
 
-export default SpotifyWidgetFactory
+export default SpotifyWidgetFactory;
+export { SpotifyWidgetData }

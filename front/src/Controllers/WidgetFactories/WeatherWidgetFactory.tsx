@@ -6,6 +6,14 @@ import WeatherAPI from '../API/WeatherAPI';
 import type { ServiceWidgetFactoryProps } from '../WidgetFactory';
 import { HumidityWidget } from '../../Views/Components/Widgets/Weather/HumidityWidget';
 
+interface WeatherWidgetData {
+	city: string,
+	temperature: number | undefined,
+	illustrationUrl: string | undefined,
+	humidity: number | undefined,
+	condition: string | undefined,
+}
+
 const WeatherWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactoryProps) => {
 	const [widget, setWidget] = React.useState(<></>);
 
@@ -39,3 +47,4 @@ const WeatherWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactory
 }
 
 export default WeatherWidgetFactory;
+export { WeatherWidgetData }

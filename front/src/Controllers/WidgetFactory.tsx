@@ -2,21 +2,23 @@ import React, { useEffect, useState } from 'react';
 import type { WidgetParam } from '../Models/Widget';
 import ErrorWidget from '../Views/Components/Widgets/ErrorWidget';
 import KayoAPI from './API/KayoAPI';
-import SpotifyWidgetFactory from './WidgetFactories/SpotifyWidgetFactory';
-import StockMarketWidgetFactory from './WidgetFactories/StockMarketWidgetFactory';
-import WeatherWidgetFactory from './WidgetFactories/WeatherWidgetFactory';
+import SpotifyWidgetFactory, { SpotifyWidgetData } from './WidgetFactories/SpotifyWidgetFactory';
+import StockMarketWidgetFactory, { StockMarketWidgetData } from './WidgetFactories/StockMarketWidgetFactory';
+import WeatherWidgetFactory, { WeatherWidgetData } from './WidgetFactories/WeatherWidgetFactory';
 
 interface WidgetFactoryProps {
 	serviceName: string, widgetName: string, widgetid: number, widgetParams: WidgetParam[];
 }
 
 interface ServiceWidgetFactoryProps {
-	widgetName: string, widgetParams: WidgetParam[], widgetData: any;
+	widgetName: string,
+	widgetParams: WidgetParam[],
+	widgetData: StockMarketWidgetData | SpotifyWidgetData | WeatherWidgetData;
 }
 
 const WidgetFactory = ({ serviceName, widgetName, widgetid, widgetParams}: WidgetFactoryProps) => {
 
-	const [widgetData, setWidgetData] = useState({})
+	const [widgetData, setWidgetData] = useState<StockMarketWidgetData | SpotifyWidgetData | WeatherWidgetData>({})
 
 	useEffect(() => {
 		KayoAPI.getWidgetData(widgetid).then(res => setWidgetData(res))
