@@ -63,16 +63,38 @@ export class WidgetService {
 		const services = this.configService.get('services').services;
 		const userWidgets = await this.widgetModel.findAll({
 			where: {
-				userId: userId
+				userId
 			}
-		});
-
-		const widgets = services.map(service => {
+		});	
+		const userWidgetsParams = await this.parameterModel.findAll({
+			where: {
+				widgetId: userWidgets.map(widget => widget.id)
+			}
+		})
+		return services.map(service => {
 			return {
 				serviceName: service.name,
-				widgets: userWidgets.filter(widget => widget.serviceName === service.name)
+				widgets: [
+					userWidgets
+					.filter(widget => widget.serviceName === service.name)
+					.map(widget => {
+						const widgetService = services.find(service => service.name === widget.serviceName)
+						const widgetConf = widgetService.widgets.find(widgetElem => widgetElem.name === widget.name)
+						const finalWidget = 
+						{
+							...widgetConf,
+							params: widgetConf.params.map(param => {
+								const currParam = userWidgetsParams.find(widgetParam => {
+									return widgetParam.name === param.name &&
+									widgetConf.name === userWidgets.find(p => p.id === widget.id).name
+								})
+								return {...param, value: currParam.value}
+							})
+						}
+						return finalWidget
+					})
+				]
 			}});
-		return widgets;
 	}
 
 	async updateWidget(widgetId: number, widgetData: ParamInterface[], userId: number): Promise<[number, Widget[]]> {
