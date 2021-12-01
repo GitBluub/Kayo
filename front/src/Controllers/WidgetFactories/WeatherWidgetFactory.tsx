@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { TemperatureWidget } from '../../Views/Components/Widgets/Weather/TemperatureWidget';
 import { WeatherWidget } from '../../Views/Components/Widgets/Weather/WeatherWidget';
 import ErrorWidget from '../../Views/Components/Widgets/ErrorWidget';
-import WeatherAPI from '../API/WeatherAPI';
 import type { ServiceWidgetFactoryProps } from '../WidgetFactory';
 import { HumidityWidget } from '../../Views/Components/Widgets/Weather/HumidityWidget';
 

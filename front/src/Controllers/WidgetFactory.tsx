@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { WidgetParam } from '../Models/Widget';
 import ErrorWidget from '../Views/Components/Widgets/ErrorWidget';
-import KayoAPI from './API/KayoAPI';
+import KayoAPI from './KayoAPI';
 import SpotifyWidgetFactory, { SpotifyWidgetData } from './WidgetFactories/SpotifyWidgetFactory';
 import StockMarketWidgetFactory, { StockMarketWidgetData } from './WidgetFactories/StockMarketWidgetFactory';
 import WeatherWidgetFactory, { WeatherWidgetData } from './WidgetFactories/WeatherWidgetFactory';

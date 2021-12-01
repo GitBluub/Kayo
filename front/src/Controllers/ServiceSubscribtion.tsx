@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Navigate, useParams } from 'react-router';
 import { useSearchParams } from 'react-router-dom';
-import KayoAPI from './API/KayoAPI';
+import KayoAPI from './KayoAPI';
 
 const ServiceSubscribe = () => {
 	const [searchParams, setter] = useSearchParams();

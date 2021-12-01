@@ -3,8 +3,7 @@ import { ArtistTopTrack } from '../../Views/Components/Widgets/Spotify/ArtistTop
 import ErrorWidget from '../../Views/Components/Widgets/ErrorWidget';
 import { FavoriteArtistWidget } from '../../Views/Components/Widgets/Spotify/FavoriteArtistWidget';
 import { FavoriteTrackWidget } from '../../Views/Components/Widgets/Spotify/FavoriteTrackWidget';
-import KayoAPI from '../API/KayoAPI';
-import SpotifyAPI from '../API/SpotifyAPI';
+import KayoAPI from '../KayoAPI';
 import type { ServiceWidgetFactoryProps } from '../WidgetFactory';
 
 interface SpotifyWidgetData {

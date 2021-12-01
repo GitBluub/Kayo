@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ErrorWidget from '../../Views/Components/Widgets/ErrorWidget';
 import type { ServiceWidgetFactoryProps } from '../WidgetFactory';
-import StockMarketAPI from '../API/StockMarketAPI';
 import { StockMarketWidget } from '../../Views/Components/Widgets/Stocks/StockMarketWidget';
 import type { WidgetInterface } from 'src/Models/Widget';
 

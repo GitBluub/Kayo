@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { WidgetGroupInterface } from "src/Views/Components/Widget";
-import type { WidgetParam } from "../../Models/Widget";
+import type { WidgetParam } from "../Models/Widget";
 
 enum KayoAPICallMethod {
 	POST = "post",
