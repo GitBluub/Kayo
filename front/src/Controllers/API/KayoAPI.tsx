@@ -58,25 +58,7 @@ export default class KayoAPI {
 	}
 
 	public static getMyWidgets() {
-		//return this._call("/widgets", KayoAPICallMethod.GET, {});
-		return Promise.resolve([
-			{
-				"serviceName": "spotify",
-				"widgets": [
-					{
-						"id": 1,
-						"name": "favorite",
-						"desc": "blabla",
-						"params": [
-							{
-								"name": "what",
-								"value": "Adele"
-							},
-						]
-					}
-				]
-			}
-		] as WidgetGroupInterface[])
+		return this._call("/widgets", KayoAPICallMethod.GET, {}).then(res => { 	console.log("res", res); return res});
 	}
 
 	public static getAvailableWidgets() {
