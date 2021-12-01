@@ -43,7 +43,7 @@ const WidgetGroup = ({ serviceName, widgets }: WidgetGroupInterface) => {
 		return <></>
 	return (<ParameterCardGroup key={serviceName} title={serviceName.toUpperCase()}>
 		{
-			widgets.map((widget: WidgetInterface) => <WidgetFactory key={widget.id} widgetName={widget.name} serviceName={ serviceName } widgetParams={ widget.params } />)
+			widgets.map((widget: WidgetInterface) => <WidgetFactory key={widget.name} widgetName={widget.name} serviceName={ serviceName } widgetParams={ widget.params } />)
 		}
 	</ParameterCardGroup>)
 }
