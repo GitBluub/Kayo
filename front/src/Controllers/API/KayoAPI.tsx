@@ -58,7 +58,7 @@ export default class KayoAPI {
 	}
 
 	public static getMyWidgets() {
-		return this._call("/widgets", KayoAPICallMethod.GET, {}).then(res => { 	console.log("res", res); return res});
+		return this._call("/widgets", KayoAPICallMethod.GET, {});
 	}
 
 	public static getAvailableWidgets() {

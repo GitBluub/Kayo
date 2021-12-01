@@ -7,7 +7,7 @@ export default class WeatherAPI {
 
 	public static _call(cityName: string) {
 		return axios.get(
-			`${this.weatherAPIUrl}&key=${this.apiKey}&q${cityName}&aqi=no`
+			`${this.weatherAPIUrl}?key=${this.apiKey}&q=${cityName}&aqi=no`
 		).then(res => res.data);
 	}
 

@@ -41,9 +41,6 @@ const AuthentificationForm = (props: AuthentificationFormProps) => {
     },
     onSubmit: (formState: AuthentificationFormState) => {
       props.onSubmit(formState);
-      if (props.debug) {
-        console.log("Saved form state: ", formState);
-      }
     },
     initialState: {
       username: "",

@@ -20,10 +20,10 @@ const WeatherWidget = ({ city, condition, illustrationUrl}: WeatherWidgetInterfa
 		<Grid item>
 			<Grid container direction="row" alignItems="center">
 				<Grid item style={{textAlign: 'right'}}>
-					<h4>{ condition }</h4>
+					<h1>{ condition }</h1>
 				</Grid>
 				<Grid item style={{ padding: 3, paddingLeft: 30 }}>
-					<img src={illustrationUrl} style={{ width: '50px', paddingTop: 5 }} />
+					<img src={'https://' + illustrationUrl} style={{ width: '50px', paddingTop: 5 }} />
 				</Grid>
 			</Grid>
 		</Grid>

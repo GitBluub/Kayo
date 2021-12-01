@@ -16,7 +16,7 @@ const HumidityWidget = (props: HumidityWidgetInterface) => (
 			</Grid>
 		</Grid>
 		<Grid item>
-			<h1>{props.humidity + "%"}</h1>
+			<h1>{props.humidity + "%"} Humidity</h1>
 		</Grid>
 	</Widget>
 )
