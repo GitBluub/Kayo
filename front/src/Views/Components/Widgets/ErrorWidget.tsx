@@ -18,7 +18,8 @@ const ErrorWidget = (props: ErrorWidgetParams) => (
 			</Grid>
 		</Grid>
 		<Grid item>
-			<h1>Widget name: {props.name}</h1>
+			<h1>Service name: {props.serviceName}</h1>
+			<h1>Widget name: {props.widgetName}</h1>
 		</Grid>
 	</Widget>
 )
