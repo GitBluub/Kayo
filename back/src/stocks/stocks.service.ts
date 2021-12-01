@@ -19,10 +19,8 @@ export class StocksService {
 	async getData(widgetName: string, params: Parameter[], token: string) {
 		const symbol = params[0].value;
 		const res = await this.axiosInstance.get(`query?function=TIME_SERIES_INTRADAY&symbol=${params[0].value}&interval=5min&apikey=${this.apiKey}`)
-		console.log(res)
 		const quotes = res.data["Time Series (5min)"]
 		const keys = Object.keys(quotes);
-		console.log(quotes[keys[0]])
 		return {
 			symbol,
 			total: quotes[keys[0]]['2. high'],

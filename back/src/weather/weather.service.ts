@@ -13,12 +13,12 @@ export class WeatherService {
 	) {
 		this.apiKey = this.configService.get("WEATHER_API_KEY")
 		this.axiosInstance = axios.create({
-			baseURL: "http://api.weatherapi.com/v1/current.json",
+			baseURL: "http://api.weatherapi.com/v1",
 		});
 	}
 
 	async apiCall(params: Parameter[]) {
-		return this.axiosInstance.get(`?key=${this.apiKey}&q=${params[0].value}&aqi=no`)
+		return this.axiosInstance.get(`/current.json?key=${this.apiKey}&q=${params[0].value}&aqi=no`)
 	}
 
 	async getData(widgetName: string, params: Parameter[], token: string) {
@@ -36,7 +36,7 @@ export class WeatherService {
 			case "weather":
 				return {
 					...result,
-					condition: current.condition,
+					condition: current.condition.text,
 					illustrationURL: "https:" + current.condition.icon
 				}
 			case "humidity":

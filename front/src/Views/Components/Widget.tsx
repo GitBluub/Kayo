@@ -41,7 +41,6 @@ interface WidgetGroupInterface {
 const WidgetGroup = ({ serviceName, widgets }: WidgetGroupInterface) => {
 	if (widgets.length == 0)
 		return <></>
-	console.log(widgets)
 	return (<ParameterCardGroup key={serviceName} title={serviceName.toUpperCase()}>
 		{
 			widgets.map((widget: WidgetInterface) => <WidgetFactory key={widget.name} widgetid={widget.id} widgetName={widget.name} serviceName={ serviceName } widgetParams={ widget.params } />)

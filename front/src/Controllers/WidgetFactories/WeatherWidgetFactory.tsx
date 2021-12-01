@@ -8,19 +8,19 @@ import { HumidityWidget } from '../../Views/Components/Widgets/Weather/HumidityW
 interface WeatherWidgetData {
 	city: string,
 	temperature?: number,
-	illustrationUrl?: string,
+	illustrationURL?: string,
 	humidity?: number,
 	condition?: string,
 }
 
 const WeatherWidgetFactory = ({ widgetName, widgetParams, widgetData }: ServiceWidgetFactoryProps) => {
 	const data = widgetData as WeatherWidgetData;
-
+	console.log(data)
 	switch (widgetName) {
 		case "temperature":
 			return (<TemperatureWidget city={data.city} temperature={data.temperature as number} />)
 		case "weather":
-			return (<WeatherWidget city={data.city} illustrationUrl={data.illustrationUrl as string} condition={data.condition as string} />)
+			return (<WeatherWidget city={data.city} illustrationUrl={data.illustrationURL as string} condition={data.condition as string} />)
 		case "humidity":
 			return (<HumidityWidget city={data.city} humidity={data.humidity as number} />)
 	}
