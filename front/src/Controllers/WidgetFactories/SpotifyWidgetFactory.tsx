@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArtistTopTrack } from '../../Views/Components/Widgets/Spotify/ArtistTopTrack';
 import ErrorWidget from '../../Views/Components/Widgets/ErrorWidget';
 import { FavoriteArtistWidget } from '../../Views/Components/Widgets/Spotify/FavoriteArtistWidget';
@@ -9,15 +9,15 @@ import type { ServiceWidgetFactoryProps } from '../WidgetFactory';
 
 
 const SpotifyWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactoryProps) => {
-	const [widget, setWidget] = React.useState(<></>);
+	const [widget, setWidget] = useState(<></>);
 	const what = widgetParams[0].value;
-	
+
+	useEffect(() => {
 	switch (widgetName) {
 		case 'favorite':
 			KayoAPI.getOAuthToken('spotify').then(token => {
 				SpotifyAPI.setOauthToken(token);
 				SpotifyAPI.getFavorite(what as "artists" | "tracks").then((res: any) => setWidget((_) => {
-		
 					if (res.items == [])
 						return <FavoriteArtistWidget artistName="John Doe" illustration="https://image.shutterstock.com/image-vector/pictogram-head-question-mark-john-260nw-171638717.jpg"/>
 					if (what == "artists") {
@@ -28,7 +28,6 @@ const SpotifyWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactory
 				}))
 			})
 			break;
-	
 		case 'artist-top-track':
 		KayoAPI.getOAuthToken('spotify').then(token => {
 				SpotifyAPI.setOauthToken(token);
@@ -38,8 +37,9 @@ const SpotifyWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactory
 			})
 			break;
 		default:
-			return <ErrorWidget serviceName="Spotify" widgetName={widgetName} widgetParams={widgetParams}/>
-	}
+			setWidget(<ErrorWidget serviceName="Spotify" widgetName={widgetName} widgetParams={widgetParams}/>)
+	}}, [])
+
 	
 	return widget
 	

@@ -14,6 +14,7 @@ interface ServiceWidgetFactoryProps {
 }
 
 const WidgetFactory = ({ serviceName, widgetName, widgetParams}: WidgetFactoryProps) => {
+	
 	switch (serviceName) {
 		case 'spotify':
 			return <SpotifyWidgetFactory widgetName={widgetName} widgetParams={widgetParams}/>
