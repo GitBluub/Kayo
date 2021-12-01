@@ -54,4 +54,13 @@ export class SubscriptionService {
 		});
 		return subscriptions.map(subscription => subscription.name);
 	}
+
+	async find(userId: number, serviceName: string) {
+		return this.subscriptionModel.findOne({
+			where: {
+				userId,
+				name: serviceName
+			}
+		})
+	}
 }

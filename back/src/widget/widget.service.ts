@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Injectable } from '@nestjs/common';
+import { forwardRef, HttpException, Inject, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectModel } from "@nestjs/sequelize"
 import { use } from 'passport'
@@ -6,6 +6,9 @@ import { Widget } from './models/widget.model';
 import { Parameter } from './models/parameter.model';
 import { ParamInterface } from './models/parameter.model';
 import { SubscriptionService } from 'src/subscription/subscription.service';
+import { StocksService } from 'src/stocks/stocks.service';
+import { SpotifyService } from 'src/spotify/spotify.service';
+import { WeatherService } from 'src/weather/weather.service';
 
 
 @Injectable()
@@ -18,6 +21,10 @@ export class WidgetService {
 		private configService: ConfigService,
 		@Inject(forwardRef(() => SubscriptionService))
 		private subscriptionService: SubscriptionService,
+
+		private stocksService: StocksService,
+		private spotifyService: SpotifyService,
+		private weatherService: WeatherService
 	) {}
 
 	async createWidget(serviceName: string, widgetName: string, widgetData: ParamInterface[], userId: number): Promise<Widget> {
@@ -119,5 +126,25 @@ export class WidgetService {
 				userId: userId
 			}
 		});
+	}
+
+	async getWidgetData(id: number, userId: number) {
+		const widget = await this.widgetModel.findOne({
+			where: {
+				id
+			}
+		})
+		const parameters = widget.parameters;
+		const subscription = await this.subscriptionService.find(userId, widget.serviceName);
+		switch (widget.serviceName) {
+			case "spotify":
+				this.spotifyService.getData(widget.name, parameters, subscription.token)
+			case "weather":
+				this.weatherService.getData(widget.name, parameters, subscription.token)
+			case "stocks":
+				this.stocksService.getData(widget.name, parameters, subscription.token)
+			default:
+				throw HttpException
+		}
 	}
 }
