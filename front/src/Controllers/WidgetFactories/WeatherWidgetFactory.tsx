@@ -8,42 +8,24 @@ import { HumidityWidget } from '../../Views/Components/Widgets/Weather/HumidityW
 
 interface WeatherWidgetData {
 	city: string,
-	temperature: number | undefined,
-	illustrationUrl: string | undefined,
-	humidity: number | undefined,
-	condition: string | undefined,
+	temperature?: number,
+	illustrationUrl?: string,
+	humidity?: number,
+	condition?: string,
 }
 
-const WeatherWidgetFactory = ({ widgetName, widgetParams }: ServiceWidgetFactoryProps) => {
-	const [widget, setWidget] = React.useState(<></>);
+const WeatherWidgetFactory = ({ widgetName, widgetParams, widgetData }: ServiceWidgetFactoryProps) => {
+	const data = widgetData as WeatherWidgetData;
 
-	useEffect(() => {
-		setWidget((widget) => {
-		if (widgetParams.length != 1)
-			return <ErrorWidget serviceName="Weather" widgetName={widgetName} widgetParams={widgetParams}/>
-		switch (widgetName) {
-			case "temperature":
-				WeatherAPI.getCityTemperature(widgetParams[0].value).then(temp => {
-					return (<TemperatureWidget city={widgetParams[0].value} temperature={temp} />)
-				})
-				break;
-			case "weather":
-				WeatherAPI.getCityWeather(widgetParams[0].value).then(condition => {
-					return (<WeatherWidget city={widgetParams[0].value} illustrationUrl={condition.icon.slice(2)} condition={condition.text} />)
-				})
-				break;
-			case "humidity":
-				WeatherAPI.getCityHumidity(widgetParams[0].value).then(rate => {
-					return (<HumidityWidget city={widgetParams[0].value} humidity={rate} />)
-				})
-				break;
-			default:
-				return (<ErrorWidget serviceName="Weather" widgetName={widgetName} widgetParams={widgetParams}/>)
-		}
-		return widget
+	switch (widgetName) {
+		case "temperature":
+			return (<TemperatureWidget city={data.city} temperature={data.temperature as number} />)
+		case "weather":
+			return (<WeatherWidget city={data.city} illustrationUrl={data.illustrationUrl as string} condition={data.condition as string} />)
+		case "humidity":
+			return (<HumidityWidget city={data.city} humidity={data.humidity as number} />)
 	}
-	)}, [])
-	return widget;
+	return <ErrorWidget widgetName={widgetName} serviceName="Weather" widgetParams={widgetParams}/>
 }
 
 export default WeatherWidgetFactory;

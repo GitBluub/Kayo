@@ -15,15 +15,16 @@ interface SpotifyWidgetData {
 
 
 const SpotifyWidgetFactory = ({ widgetName, widgetData, widgetParams }: ServiceWidgetFactoryProps) => {
+	const data = widgetData as SpotifyWidgetData
 	switch (widgetName) {
 		case 'favorite':
 			if (widgetParams[0].value == "artist") {
-				return <FavoriteArtistWidget artistName={widgetData.artistName} illustration={widgetData.illustrationUrl}/>
+				return <FavoriteArtistWidget artistName={data.artistName} illustration={data.illustrationUrl}/>
 			} else {
-				return <FavoriteTrackWidget artistName={widgetData.artistName} track={widgetData.trackName} illustration={widgetData.illustrationUrl}/>
+				return <FavoriteTrackWidget artistName={data.artistName} track={data.trackName as string} illustration={data.illustrationUrl}/>
 			}
 		case 'artist-top-track':
-			return <ArtistTopTrack artistName={widgetData.artistName} track={widgetData.trackName} illustration={widgetData.illustrationUrl}/>
+			return <ArtistTopTrack artistName={data.artistName} track={data.trackName as string} illustration={data.illustrationUrl}/>
 		default:
 			return (<ErrorWidget serviceName="Spotify" widgetName={widgetName} widgetParams={widgetParams}/>)
 	}

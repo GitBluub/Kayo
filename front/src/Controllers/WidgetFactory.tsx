@@ -7,34 +7,36 @@ import StockMarketWidgetFactory, { StockMarketWidgetData } from './WidgetFactori
 import WeatherWidgetFactory, { WeatherWidgetData } from './WidgetFactories/WeatherWidgetFactory';
 
 interface WidgetFactoryProps {
-	serviceName: string, widgetName: string, widgetid: number, widgetParams: WidgetParam[];
+	serviceName: string, widgetName: string, widgetid?: number, widgetParams: WidgetParam[];
 }
 
 interface ServiceWidgetFactoryProps {
 	widgetName: string,
 	widgetParams: WidgetParam[],
-	widgetData: StockMarketWidgetData | SpotifyWidgetData | WeatherWidgetData;
+	widgetData: StockMarketWidgetData | SpotifyWidgetData | WeatherWidgetData | null;
 }
 
 const WidgetFactory = ({ serviceName, widgetName, widgetid, widgetParams}: WidgetFactoryProps) => {
 
-	const [widgetData, setWidgetData] = useState<StockMarketWidgetData | SpotifyWidgetData | WeatherWidgetData>({})
+	const [widgetData, setWidgetData] = useState(null)
 
 	useEffect(() => {
-		KayoAPI.getWidgetData(widgetid).then(res => setWidgetData(res))
+		KayoAPI.getWidgetData(widgetid as number).then(res => setWidgetData(res))
 	}, [])
-	if (widgetData == {})
+	if (widgetData === null)
 		return <></>
-	switch (serviceName) {
-		case 'spotify':
-			return <SpotifyWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
-		case 'stocks':
-			return <StockMarketWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
-		case 'weather':
-			return <WeatherWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
+	else {
+		switch (serviceName) {
+			case 'spotify':
+				return <SpotifyWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
+			case 'stocks':
+				return <StockMarketWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
+			case 'weather':
+				return <WeatherWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
+		}
+		return <ErrorWidget serviceName={serviceName} widgetName={widgetName} widgetParams={widgetParams} widgetid={widgetid}/>
 	}
-	return <ErrorWidget serviceName={serviceName} widgetName={widgetName} widgetParams={widgetParams} widgetid={widgetid}/>
-}
+}	
 
 export default WidgetFactory
 export { ServiceWidgetFactoryProps, WidgetFactoryProps }

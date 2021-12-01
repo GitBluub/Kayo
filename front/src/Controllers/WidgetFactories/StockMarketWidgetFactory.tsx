@@ -12,9 +12,10 @@ interface StockMarketWidgetData {
 }
 
 const StockMarketWidgetFactory = ({ widgetName, widgetData, widgetParams }: ServiceWidgetFactoryProps) => {
+	const data = widgetData as StockMarketWidgetData
 	if (widgetParams.length != 1 || widgetName !== 'stock_market')
 		return <ErrorWidget widgetName={widgetName} serviceName="Stocks" widgetParams={widgetParams}/>
-	return (<StockMarketWidget shortName={widgetParams[0].value} total={widgetData.total} variation={(widgetData.total - widgetData.open) / widgetData.open}/>)
+	return (<StockMarketWidget shortName={widgetParams[0].value} total={data.total} variation={(data.total - data.open) / data.open}/>)
 }
 
 export default StockMarketWidgetFactory;

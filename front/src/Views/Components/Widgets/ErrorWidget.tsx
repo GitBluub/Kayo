@@ -2,7 +2,7 @@ import * as React from 'react';
 import Widget from '../Widget';
 import AvailableServices from '../../../Models/Service';
 import Grid from '@mui/material/Grid/Grid';
-import type { WidgetFactoryProps } from '../../Controllers/WidgetFactory';
+import type { WidgetFactoryProps } from '../../../Controllers/WidgetFactory';
 
 const ErrorWidget = (props: WidgetFactoryProps) => (
 	<Widget service={AvailableServices['error']}>
@@ -14,7 +14,6 @@ const ErrorWidget = (props: WidgetFactoryProps) => (
 		<Grid item>
 			<h1>Service name: {props.serviceName}</h1>
 			<h1>Widget name: {props.widgetName}</h1>
-			<h1>Widget id: {props.widgetid}</h1>
 		</Grid>
 	</Widget>
 )
