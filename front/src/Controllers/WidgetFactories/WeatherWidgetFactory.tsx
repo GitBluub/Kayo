@@ -15,7 +15,6 @@ interface WeatherWidgetData {
 
 const WeatherWidgetFactory = ({ widgetName, widgetParams, widgetData }: ServiceWidgetFactoryProps) => {
 	const data = widgetData as WeatherWidgetData;
-	console.log(data)
 	switch (widgetName) {
 		case "temperature":
 			return (<TemperatureWidget city={data.city} temperature={data.temperature as number} />)
