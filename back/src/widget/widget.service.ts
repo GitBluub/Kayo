@@ -117,15 +117,17 @@ export class WidgetService {
 			}});
 	}
 
-	async updateWidget(widgetId: number, widgetData: ParamInterface[], userId: number): Promise<[number, Widget[]]> {
-		return this.widgetModel.update({
-			parameters: widgetData
-		}, {
-			where: {
-				id: widgetId,
-				userId: userId
-			}
-		});
+	async updateWidget(widgetId: number, widgetData: ParamInterface[], userId: number) {
+		for (let param of widgetData) {
+			await this.parameterModel.update({
+				value: param.value
+			}, {
+				where: {
+					name: param.name,
+					id: widgetId
+				}
+			});
+		}
 	}
 
 	async getWidgetData(id: number, userId: number) {
