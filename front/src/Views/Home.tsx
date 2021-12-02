@@ -61,7 +61,7 @@ export default class Home extends React.Component {
 								<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
 								<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
 							</>
-							: this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.serviceName} service_name={group.serviceName} widgets={group.widgets} />)
+							: this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.serviceName} serviceName={group.serviceName} widgets={group.widgets} />)
 					}
 				</Grid>
 			</Grid>
