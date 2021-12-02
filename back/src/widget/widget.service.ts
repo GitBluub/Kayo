@@ -123,12 +123,10 @@ export class WidgetService {
 			}, {
 				where: {
 					name: param.name,
-					id: widgetId,
-					userId: userId
+					id: widgetId
 				}
 			});
 		}
-		
 	}
 
 	async getWidgetData(id: number, userId: number) {
