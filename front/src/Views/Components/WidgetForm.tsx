@@ -14,12 +14,12 @@ import type { WidgetInterface, WidgetParam } from '../../Models/Widget';
 import type { WidgetGroupInterface } from './Widget';
 import { Navigate } from 'react-router';
 
-interface WidgetSettingsProps {
+interface WidgetFormProps {
 	widget: WidgetInterface;
 	service: string
 }
 
-const WidgetForm = ({ widget, service }: WidgetSettingsProps) => {
+const WidgetForm = ({ widget, service }: WidgetFormProps) => {
 	const [params, setParamsState] = useState(widget.params);
 	const [changed, setFilledChanged] = useState(false)
 	const [validated, setValidated] = useState(false)

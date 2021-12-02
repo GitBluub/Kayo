@@ -36,7 +36,6 @@ const Widget = (props: any) => {
 interface WidgetGroupInterface {
 	serviceName: string,
 	widgets: WidgetInterface[];
-	setWidgetGroupState?: (value : (group: WidgetGroupInterface[]) => WidgetGroupInterface[]) => void;
 }
 
 const WidgetGroup = ({ serviceName, widgets }: WidgetGroupInterface) => {

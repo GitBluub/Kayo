@@ -16,13 +16,14 @@ import { Navigate } from 'react-router';
 
 interface WidgetSettingsProps {
 	widget: WidgetInterface;
-	setWidgetGroupState: (fun : (groups: WidgetGroupInterface[]) => WidgetGroupInterface[]) => void;
+	setWidgetGroupState: () => void;
 }
 
 const WidgetSettings = ({ widget, setWidgetGroupState }: WidgetSettingsProps) => {
 	const [params, setParamsState] = useState(widget.params);
 	const [changed, setFilledChanged] = useState(false)
 	const [updated, setUpdated] = useState(false)
+
 	if (updated)
 		return <Navigate replace to="/"/>
 	return (
@@ -46,25 +47,30 @@ const WidgetSettings = ({ widget, setWidgetGroupState }: WidgetSettingsProps) =>
 				</Button>
 				: <></>
 			}
-			<ParameterCardButton onClick={() => { /*API.deleteWidget(widget.id);*/ setWidgetGroupState((groups: WidgetGroupInterface[]) => {
-				groups.forEach((group, _, __) => { group.widgets = group.widgets.filter((tmp, _, __) => tmp.id != widget.id) })
-				console.log(groups)
-				return groups;
-			} )}}>
+			<ParameterCardButton onClick={setWidgetGroupState}>
 				<DeleteOutlineIcon sx={{ color: "red", fontSize: 35 }} />
 			</ParameterCardButton>
 		</ParameterCard>
 	)
 }
 
-const WidgetSettingsGroup = (widgetGroup: WidgetGroupInterface) => {
+type WidgetSettingsGroupProps = WidgetGroupInterface & {
+	setState: any
+} 
 
-	if (widgetGroup.widgets.length == 0)
+const WidgetSettingsGroup = ({ serviceName, widgets, setState }: WidgetSettingsGroupProps) => {
+
+	if (widgets.length == 0)
 		return <></>
-	const setState = widgetGroup.setWidgetGroupState as (value : (group: WidgetGroupInterface[]) => WidgetGroupInterface[]) => void
 	return (
-		<ParameterCardGroup key={widgetGroup.serviceName} title={widgetGroup.serviceName.toUpperCase()}>
-			{ widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetSettings key={widget.id} widget={widget} setWidgetGroupState={setState} />)}
+		<ParameterCardGroup key={serviceName} title={serviceName.toUpperCase()}>
+			{ widgets.map((widget: WidgetInterface) => <WidgetSettings key={widget.id} widget={widget} setWidgetGroupState={
+				() => setState((groups: WidgetGroupInterface[]) => {
+					groups.forEach((group, _, __) => { group.widgets = group.widgets.filter((tmp, _, __) => tmp.id != widget.id);
+					console.log(groups)
+					return groups })
+				})}
+			/>)}
 		</ParameterCardGroup>
 	)
 }

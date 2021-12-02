@@ -15,6 +15,8 @@ const ManageWidgets = () => {
 	useEffect(() => {
 		API.getMyWidgets().then((widgetsLists: WidgetGroupInterface[]) => { setWidgetsGroups(widgetsLists) })
 	}, [])
+	console.log("Hello")
+	console.log(widgetsGroups)
 	return (
 		<SecondaryPage>
 			<Grid container alignItems="center" justifyContent="center" direction="column">
@@ -23,7 +25,7 @@ const ManageWidgets = () => {
 					<><Subtitle >No widget available, please consider one of the following options:</Subtitle>
 						<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
 						<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
-					</> : widgetsGroups.map((widgerGroup: WidgetGroupInterface) => <WidgetSettingsGroup key={widgerGroup.serviceName} serviceName={widgerGroup.serviceName} widgets={widgerGroup.widgets} setWidgetGroupState={setWidgetsGroups}/>)}
+					</> : widgetsGroups.map((widgerGroup: WidgetGroupInterface) => <WidgetSettingsGroup key={widgerGroup.serviceName} serviceName={widgerGroup.serviceName} widgets={widgerGroup.widgets} setState={setWidgetsGroups}/>)}
 			</Grid>
 		</SecondaryPage>
 	)
