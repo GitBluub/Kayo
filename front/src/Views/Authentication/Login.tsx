@@ -4,7 +4,7 @@ import Title from '../Components/Title';
 import Alert from '@mui/material/Alert/Alert';
 import AlertTitle from '@mui/material/AlertTitle/AlertTitle';
 import { Navigate } from 'react-router';
-import KayoAPI from '../../Controllers/API/KayoAPI';
+import KayoAPI from '../../Controllers/KayoAPI';
 import { setToken } from '../../Store/jwtToken/jwtTokenSlice';
 import { useDispatch } from 'react-redux'
 

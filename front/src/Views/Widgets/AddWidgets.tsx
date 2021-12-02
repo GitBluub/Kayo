@@ -3,16 +3,17 @@ import SecondaryPage from '../Components/SecondaryPage';
 import Grid from '@mui/material/Grid/Grid';
 import Title from '../Components/Title';
 import { useState, useEffect } from 'react';
-import API from '../../Controllers/API/KayoAPI';
+import API from '../../Controllers/KayoAPI';
 import { WidgetFormsGroup } from '../Components/WidgetForm';
+import type { WidgetInterface } from 'src/Models/Widget';
 import { Link, Navigate } from "react-router-dom";
 import { Subtitle } from '../Components/Title';
 
 const AddWidgets = () => {
-	const [widgetsGroups, setWidgetsGroups] = useState<Object[]>([])
+	const [widgetsGroups, setWidgetsGroups] = useState<WidgetInterface[]>([])
 
 	useEffect(() => {
-		API.getAvailableWidgets().then((widgetsLists: Object[]) => { setWidgetsGroups(widgetsLists) })
+		API.getAvailableWidgets().then((widgetsLists: WidgetInterface[]) => { setWidgetsGroups(widgetsLists) })
 	}, [])
 	return (
 		<SecondaryPage>

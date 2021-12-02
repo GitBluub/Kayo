@@ -3,16 +3,17 @@ import Title from '../Components/Title';
 import Grid from '@mui/material/Grid/Grid';
 import SecondaryPage from '../Components/SecondaryPage';
 import { useState, useEffect } from 'react';
-import API from '../../Controllers/API/KayoAPI';
+import API from '../../Controllers/KayoAPI';
 import { WidgetSettingsGroup } from '../Components/WidgetSettings';
+import type { WidgetGroupInterface } from '../Components/Widget';
 import { Subtitle } from '../Components/Title';
 import { Link } from 'react-router-dom';
 
 const ManageWidgets = () => {
-	const [widgetsGroups, setWidgetsGroups] = useState<Object[]>([])
+	const [widgetsGroups, setWidgetsGroups] = useState<WidgetGroupInterface[]>([])
 
 	useEffect(() => {
-		API.getMyWidgets().then((widgetsLists: Object[]) => { setWidgetsGroups(widgetsLists) })
+		API.getMyWidgets().then((widgetsLists: WidgetGroupInterface[]) => { setWidgetsGroups(widgetsLists) })
 	}, [])
 	return (
 		<SecondaryPage>
@@ -22,7 +23,7 @@ const ManageWidgets = () => {
 					<><Subtitle >No widget available, please consider one of the following options:</Subtitle>
 						<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
 						<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
-					</> : widgetsGroups.map((widgerGroup: any) => WidgetSettingsGroup(widgerGroup))}
+					</> : widgetsGroups.map((widgerGroup: WidgetGroupInterface) => <WidgetSettingsGroup key={widgerGroup.serviceName} serviceName={widgerGroup.serviceName} widgets={widgerGroup.widgets}/>)}
 			</Grid>
 		</SecondaryPage>
 	)

@@ -7,6 +7,9 @@ import { AuthModule } from './auth/auth.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { WidgetModule } from './widget/widget.module';
+import { SpotifyModule } from './spotify/spotify.module';
+import { StocksModule } from './stocks/stocks.module';
+import { WeatherModule } from './weather/weather.module';
 import authConfig from './config/authConfig';
 import serviceConfig from './config/serviceConfig';
 
@@ -30,6 +33,9 @@ import serviceConfig from './config/serviceConfig';
     AuthModule,
     SubscriptionModule,
     WidgetModule,
+    SpotifyModule,
+    StocksModule,
+    WeatherModule,
   ],
   controllers: [AppController],
   providers: [AppService],

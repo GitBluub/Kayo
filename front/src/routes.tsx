@@ -15,7 +15,7 @@ import {
 
 
 const routes = (isLoggedIn: boolean) => {
-	const ifLogged = ((ifLogged: any, ifNotLogged:any = <Login />) => isLoggedIn ? ifLogged :ifNotLogged);
+	const ifLogged = ((ifLog: any, ifNotLog:any = <Login />) => isLoggedIn ? ifLog :ifNotLog);
 	return  (
 		<Routes>
     	    <Route path="/" element={<App/>}>
@@ -23,8 +23,8 @@ const routes = (isLoggedIn: boolean) => {
 				<Route path="login" element={ifLogged(<Navigate replace to="/"/>)}/>
 				<Route path="signup" element={ifLogged(<Navigate replace to="/"/>, <SignUp />)}/>
     	      	<Route path="services">
-    	      	  	<Route index element={<Services/>}/>
-    	      	  	<Route path="subscribe/:serviceID" element={<ServiceSubscribe/>}/>
+    	      	  	<Route index element={ifLogged(<Services/>)}/>
+    	      	  	<Route path="subscribe/:serviceID" element={ifLogged(<ServiceSubscribe/>)}/>
     	      	</Route>
 				<Route path="widgets/manage" element={ifLogged(<ManageWidgets />)}/>
 				<Route path="widgets/add" element={ifLogged(<AddWidgets />)}/>

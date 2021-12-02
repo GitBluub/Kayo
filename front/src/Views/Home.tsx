@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Title, { Subtitle } from "./Components/Title";
 import Grid from "@mui/material/Grid/Grid";
 import Widget, { WidgetGroup, WidgetGroupInterface } from "./Components/Widget";
-import KayoAPI from "../Controllers/API/KayoAPI";
+import KayoAPI from "../Controllers/KayoAPI";
 import MainPageMenu from "./Components/MainPageMenu";
 
 interface HomeState {
@@ -12,13 +12,14 @@ interface HomeState {
 }
 
 export default class Home extends React.Component {
-
+	
 	constructor(props: any) {
 		super(props);
 		this.state = {
 			widgetGroups: [],
 			intervalID: 0
 		} as HomeState
+		this.tick()
 	}
 
 	tick() {
@@ -43,11 +44,12 @@ export default class Home extends React.Component {
 	}
 
 	componentWillUnmount() {
-		clearInterval(this.state.intervalID);
+		const state = this.state as HomeState
+		clearInterval(state.intervalID);
 	}
 
 	render() {
-		console.log(this.state.widgetGroups)
+		const state = this.state as HomeState
 		return (
 			<Grid container alignItems="center" justifyContent="center" direction="column">
 				<MainPageMenu />
@@ -59,7 +61,7 @@ export default class Home extends React.Component {
 								<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
 								<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
 							</>
-							: this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.service_name} service_name={group.service_name} widgets={group.widgets} />)
+							: this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.serviceName} serviceName={group.serviceName} widgets={group.widgets} />)
 					}
 				</Grid>
 			</Grid>

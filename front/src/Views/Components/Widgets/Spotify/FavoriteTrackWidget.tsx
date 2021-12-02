@@ -3,12 +3,12 @@ import { SpotifyWidget, BestType } from './SpotifyWidget';
 
 interface FavoriteTrackWidgetInterface {
 	artistName: string,
-	track: string
-	illustration: string,
+	trackName: string
+	illustrationUrl: string,
 }
 
 const FavoriteTrackWidget = (props: FavoriteTrackWidgetInterface) => (
-	<SpotifyWidget leftTitle="Favorite track" title={props.track + " by " + props.artistName} illustration={props.illustration} subtitle=""/>
+	<SpotifyWidget leftTitle="Favorite track" title={props.trackName + " by " + props.artistName} illustration={props.illustrationUrl} subtitle=""/>
 )
 
 export { FavoriteTrackWidget, FavoriteTrackWidgetInterface }

@@ -5,9 +5,13 @@ import { BrowserRouter, useRoutes } from "react-router-dom";
 import routes from './routes';
 import store from './Store/store';
 import { useSelector, Provider } from 'react-redux';
+import axios from 'axios';
 
 function Router() {
   const jwtToken = useSelector((state: any) => state.jwtToken.value);
+
+  if (jwtToken !== undefined)
+    axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`
   return (
     <BrowserRouter>
       { routes(jwtToken != null) }

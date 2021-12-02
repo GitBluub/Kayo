@@ -9,7 +9,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import Button from '@mui/material/Button/Button';
 
 import { useState } from 'react';
-import API from '../../Controllers/API/KayoAPI';
+import API from '../../Controllers/KayoAPI';
 import type { WidgetInterface, WidgetParam } from '../../Models/Widget';
 import type { WidgetGroupInterface } from './Widget';
 import { Navigate } from 'react-router';
@@ -50,10 +50,10 @@ const WidgetForm = ({ widget, service }: WidgetSettingsProps) => {
 	)
 }
 
-const WidgetFormsGroup = (widgetGroup: any) => {
+const WidgetFormsGroup = (widgetGroup: WidgetGroupInterface) => {
 	return (
-		<ParameterCardGroup key={widgetGroup.name} title={widgetGroup.name.toUpperCase()}>
-			{widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetForm key={widget.name} service={widgetGroup.name} widget={widget} />)}
+		<ParameterCardGroup key={widgetGroup.serviceName} title={widgetGroup.serviceName.toUpperCase()}>
+			{widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetForm key={widget.name} service={widgetGroup.serviceName} widget={widget} />)}
 		</ParameterCardGroup>
 	)
 }

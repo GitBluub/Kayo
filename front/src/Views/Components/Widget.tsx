@@ -34,18 +34,18 @@ const Widget = (props: any) => {
 }
 
 interface WidgetGroupInterface {
-	service_name: string,
+	serviceName: string,
 	widgets: WidgetInterface[];
 }
 
-const WidgetGroup = ({ service_name, widgets }: WidgetGroupInterface) => {
-	return (
-		<ParameterCardGroup key={ service_name } title={service_name.toUpperCase()}>
-			{
-				widgets != [] && widgets.map((widget: WidgetInterface) => <WidgetFactory key={widget.id} widgetName={widget.name} serviceName={ service_name } widgetParams={ widget.params } />)
-			}
-		</ParameterCardGroup>
-	)
+const WidgetGroup = ({ serviceName, widgets }: WidgetGroupInterface) => {
+	if (widgets.length == 0)
+		return <></>
+	return (<ParameterCardGroup key={serviceName} title={serviceName.toUpperCase()}>
+		{
+			widgets.map((widget: WidgetInterface) => <WidgetFactory key={widget.id} widgetid={widget.id} widgetName={widget.name} serviceName={ serviceName } widgetParams={ widget.params } />)
+		}
+	</ParameterCardGroup>)
 }
 export default Widget;
 export { WidgetGroup, WidgetGroupInterface }

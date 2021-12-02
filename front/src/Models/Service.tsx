@@ -29,7 +29,7 @@ const AvailableServices: { [id: string]: Service; }= {
 		return 'https://accounts.spotify.com/authorize?' +
     	queryString.stringify({
     	  response_type: 'code',
-    	  client_id: import.meta.env.SNOWPACK_PUBLIC_SPOTIFY_KEY,
+    	  client_id: import.meta.env.SNOWPACK_PUBLIC_SPOTIFY_CLIENT_ID,
     	  scope: 'user-top-read',
     	  redirect_uri: `http://${frontHost}:${frontPort}/${subscribeRoute}/spotify`,
     	  state: 'kayo'
