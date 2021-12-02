@@ -66,11 +66,12 @@ const WidgetSettingsGroup = ({ serviceName, widgets, setState }: WidgetSettingsG
 		<ParameterCardGroup key={serviceName} title={serviceName.toUpperCase()}>
 			{ widgets.map((widget: WidgetInterface) => <WidgetSettings key={widget.id} widget={widget} setWidgetGroupState={
 				() => setState((groups: WidgetGroupInterface[]) => {
-					groups.forEach((group, _, __) => { group.widgets = group.widgets.filter((tmp, _, __) => tmp.id != widget.id);
-					console.log(groups)
-					return groups })
-				})}
-			/>)}
+					console.log("Before:", groups)
+					groups.forEach((group, _, __) => { group.widgets = group.widgets.filter((tmp, _, __) => tmp.id != widget.id); })
+					console.log("After:", groups)
+					return groups
+				})
+			}/>)}
 		</ParameterCardGroup>
 	)
 }
