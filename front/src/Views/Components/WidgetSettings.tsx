@@ -16,9 +16,10 @@ import { Navigate } from 'react-router';
 
 interface WidgetSettingsProps {
 	widget: WidgetInterface;
+	setWidgetGroupState: (fun : (groups: WidgetGroupInterface[]) => WidgetGroupInterface[]) => void;
 }
 
-const WidgetSettings = ({ widget }: WidgetSettingsProps) => {
+const WidgetSettings = ({ widget, setWidgetGroupState }: WidgetSettingsProps) => {
 	const [params, setParamsState] = useState(widget.params);
 	const [changed, setFilledChanged] = useState(false)
 	const [updated, setUpdated] = useState(false)
@@ -45,7 +46,11 @@ const WidgetSettings = ({ widget }: WidgetSettingsProps) => {
 				</Button>
 				: <></>
 			}
-			<ParameterCardButton onClick={() => API.deleteWidget(widget.id)} href="/widgets/manage">
+			<ParameterCardButton onClick={() => { /*API.deleteWidget(widget.id);*/ setWidgetGroupState((groups: WidgetGroupInterface[]) => {
+				groups.forEach((group, _, __) => { group.widgets = group.widgets.filter((tmp, _, __) => tmp.id != widget.id) })
+				console.log(groups)
+				return groups;
+			} )}}>
 				<DeleteOutlineIcon sx={{ color: "red", fontSize: 35 }} />
 			</ParameterCardButton>
 		</ParameterCard>
@@ -53,11 +58,13 @@ const WidgetSettings = ({ widget }: WidgetSettingsProps) => {
 }
 
 const WidgetSettingsGroup = (widgetGroup: WidgetGroupInterface) => {
+
 	if (widgetGroup.widgets.length == 0)
 		return <></>
+	const setState = widgetGroup.setWidgetGroupState as (value : (group: WidgetGroupInterface[]) => WidgetGroupInterface[]) => void
 	return (
 		<ParameterCardGroup key={widgetGroup.serviceName} title={widgetGroup.serviceName.toUpperCase()}>
-			{widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetSettings key={widget.id} widget={widget} />)}
+			{ widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetSettings key={widget.id} widget={widget} setWidgetGroupState={setState} />)}
 		</ParameterCardGroup>
 	)
 }

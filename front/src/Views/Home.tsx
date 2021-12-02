@@ -50,18 +50,19 @@ export default class Home extends React.Component {
 
 	render() {
 		const state = this.state as HomeState
+		console.log(state.widgetGroups)
 		return (
 			<Grid container alignItems="center" justifyContent="center" direction="column">
 				<MainPageMenu />
 				<Title>KAYO</Title>
 				<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30 }}>
 					{
-						this.state.widgetGroups.length == 0 ?
+						state.widgetGroups.length !== 0 && state.widgetGroups.map((serviceGroup: WidgetGroupInterface) => serviceGroup.widgets.length).reduce((a, b) => a + b) == 0 ?
 							<><Subtitle >No new widget, please consider one of the following options:</Subtitle>
 								<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
 								<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
 							</>
-							: this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.serviceName} serviceName={group.serviceName} widgets={group.widgets} />)
+							: state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.serviceName} serviceName={group.serviceName} widgets={group.widgets} />)
 					}
 				</Grid>
 			</Grid>
