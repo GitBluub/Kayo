@@ -12,6 +12,7 @@ import { useState } from 'react';
 import API from '../../Controllers/KayoAPI';
 import type { WidgetInterface, WidgetParam } from '../../Models/Widget';
 import type { WidgetGroupInterface } from './Widget';
+import { Navigate } from 'react-router';
 
 interface WidgetSettingsProps {
 	widget: WidgetInterface;
@@ -21,6 +22,9 @@ interface WidgetSettingsProps {
 const WidgetForm = ({ widget, service }: WidgetSettingsProps) => {
 	const [params, setParamsState] = useState(widget.params);
 	const [changed, setFilledChanged] = useState(false)
+	const [validated, setValidated] = useState(false)
+	if (validated)
+		return <Navigate replace to="/"/>
 	return (
 		<ParameterCard name={widget.name}>
 			{
@@ -36,7 +40,7 @@ const WidgetForm = ({ widget, service }: WidgetSettingsProps) => {
 				)
 			}
 			{changed ?
-				<Button href="#" color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20, marginTop: 10 }} onClick={() => { API.addWidget(service, widget.name, params), alert("Widget created!"); }}>
+				<Button href="#" color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20, marginTop: 10 }} onClick={() => { API.addWidget(service, widget.name, params), setValidated(true); }}>
 					<DoneIcon />
 					Add Widget
 				</Button>
