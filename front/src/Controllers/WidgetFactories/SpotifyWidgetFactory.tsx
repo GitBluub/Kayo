@@ -17,10 +17,10 @@ const SpotifyWidgetFactory = ({ widgetName, widgetData, widgetParams }: ServiceW
 	const data = widgetData as SpotifyWidgetData
 	switch (widgetName) {
 		case 'favorite':
-			if (widgetParams[0].value == "artist") {
-				return <FavoriteArtistWidget artistName={data.artistName} illustration={data.illustrationUrl}/>
+			if (widgetParams[0].value === "artists") {
+				return <FavoriteArtistWidget artistName={data.artistName} illustrationUrl={data.illustrationUrl}/>
 			} else {
-				return <FavoriteTrackWidget artistName={data.artistName} track={data.trackName as string} illustration={data.illustrationUrl}/>
+				return <FavoriteTrackWidget artistName={data.artistName} trackName={data.trackName as string} illustrationUrl={data.illustrationUrl}/>
 			}
 		case 'artist-top-track':
 			return <ArtistTopTrack artistName={data.artistName} track={data.trackName as string} illustration={data.illustrationUrl}/>
