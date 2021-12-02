@@ -1,6 +1,8 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { Parameter } from 'src/widget/models/parameter.model';
 import axios, { Axios, AxiosInstance } from "axios"
+import { query } from 'express';
+import * as queryString from 'query-string'
 
 @Injectable()
 export class SpotifyService {
@@ -13,9 +15,17 @@ export class SpotifyService {
 	}
 
 	async getTopTrackData(params: Parameter[]) {
-		const artistId = (await this.axiosInstance.get(`/search?&q=${params[0].value}`)).data.items[0]
+		let artistId = ""
+		try {
+			artistId = (await this.axiosInstance.get('/search?' + queryString.stringify({
+				q: params[0].value,
+				type: 'artist'
+			}))).data.artists.items[0].id;
+		} catch (error) {
+			console.error(error) // from creation or business logic
+		}
 		const res = await this.axiosInstance.get(`/artists/${artistId}/top-tracks?market=FR`);
-		const track = res.data.items[0];
+		const track = res.data.tracks[0];
 		return {
 			artistName: track.artists[0].name,
 			trackName: track.name,
