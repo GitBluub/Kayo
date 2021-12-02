@@ -23,7 +23,7 @@ const ManageWidgets = () => {
 					<><Subtitle >No widget available, please consider one of the following options:</Subtitle>
 						<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
 						<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
-					</> : widgetsGroups.map((widgerGroup: WidgetGroupInterface) => <WidgetSettingsGroup key={widgerGroup.serviceName} serviceName={widgerGroup.serviceName} widgets={widgerGroup.widgets} setState={setWidgetsGroups} groups={JSON.stringify(widgetsGroups)}/>)}
+					</> : widgetsGroups.map((widgerGroup: WidgetGroupInterface) => <WidgetSettingsGroup key={widgerGroup.serviceName} serviceName={widgerGroup.serviceName} widgets={widgerGroup.widgets} setState={setWidgetsGroups} groups={JSON.parse(JSON.stringify(widgetsGroups))}/>)}
 			</Grid>
 		</SecondaryPage>
 	)

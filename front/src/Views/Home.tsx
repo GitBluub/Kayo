@@ -57,7 +57,7 @@ export default class Home extends React.Component {
 				<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30 }}>
 					{
 						state.widgetGroups.length !== 0 && state.widgetGroups.map((serviceGroup: WidgetGroupInterface) => serviceGroup.widgets.length).reduce((a, b) => a + b) == 0 ?
-							<><Subtitle >No new widget, please consider one of the following options:</Subtitle>
+							<><Subtitle >No widget, please consider one of the following options:</Subtitle>
 								<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
 								<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
 							</>
