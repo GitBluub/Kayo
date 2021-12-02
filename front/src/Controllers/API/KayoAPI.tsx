@@ -58,46 +58,30 @@ export default class KayoAPI {
 	}
 
 	public static getMyWidgets() {
-		//return this._call("/widgets", KayoAPICallMethod.GET, {});
-		return Promise.resolve([
-			{
-				"service_name": "spotify",
-				"widgets": [
-					{
-						"id": 1,
-						"name": "favorite",
-						"desc": "blabla",
-						"params": [
-							{
-								"name": "what",
-								"value": "Adele"
-							},
-						]
-					}
-				]
-			}
-		] as WidgetGroupInterface[])
+		return this._call("/widgets", KayoAPICallMethod.GET, {});
+		// return Promise.resolve([
+		// 	{
+		// 		"service_name": "spotify",
+		// 		"widgets": [
+		// 			{
+		// 				"id": 1,
+		// 				"name": "favorite",
+		// 				"desc": "blabla",
+		// 				"params": [
+		// 					{
+		// 						"name": "what",
+		// 						"value": "Adele"
+		// 					},
+		// 				]
+		// 			}
+		// 		]
+		// 	}
+		// ] as WidgetGroupInterface[])
 	}
 
 	public static getAvailableWidgets() {
-		//return this._call("/services/widgets", KayoAPICallMethod.GET, {});
-		return Promise.resolve([
-			{
-				"name": "spotify",
-				"widgets": [
-					{
-						"name": "widget1",
-						"desc": "blabla",
-						"params": [
-							{
-								"name": "param1",
-								"type": "string"
-							},
-						]
-					}
-				]
-			}
-		])
+		return this._call("/services/widgets", KayoAPICallMethod.GET, {});
+
 	}
 
 	public static deleteWidget(widgetId: number) {
