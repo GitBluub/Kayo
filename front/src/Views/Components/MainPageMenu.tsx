@@ -26,14 +26,14 @@ const MainPageMenu = () => {
             Services
           </MenuItem>
         </Link>
-        <Link to="widgets/manage">
-          <MenuItem>
-            Manage Widgets
-          </MenuItem>
-        </Link>
         <Link to="widgets/add">
           <MenuItem>
             Add Widgets
+          </MenuItem>
+        </Link>
+        <Link to="widgets/manage">
+          <MenuItem>
+            Manage Widgets
           </MenuItem>
         </Link>
         <MenuItem>

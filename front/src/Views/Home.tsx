@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Title, { Subtitle } from "./Components/Title";
 import Grid from "@mui/material/Grid/Grid";
 import Widget, { WidgetGroup, WidgetGroupInterface } from "./Components/Widget";
-import KayoAPI from "../Controllers/API/KayoAPI";
+import KayoAPI from "../Controllers/KayoAPI";
 import MainPageMenu from "./Components/MainPageMenu";
 
 interface HomeState {
