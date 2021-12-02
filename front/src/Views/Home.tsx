@@ -1,6 +1,6 @@
 import { Link, Navigate } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
-import Title from "./Components/Title";
+import Title, { Subtitle } from "./Components/Title";
 import Grid from "@mui/material/Grid/Grid";
 import Widget, { WidgetGroup, WidgetGroupInterface } from "./Components/Widget";
 import KayoAPI from "../Controllers/API/KayoAPI";
@@ -47,13 +47,19 @@ export default class Home extends React.Component {
 	}
 
 	render() {
+		console.log(this.state.widgetGroups)
 		return (
 			<Grid container alignItems="center" justifyContent="center" direction="column">
 				<MainPageMenu />
 				<Title>KAYO</Title>
 				<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30 }}>
 					{
-						this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.service_name} service_name={group.service_name} widgets={group.widgets} />)
+						this.state.widgetGroups.length == 0 ? 
+							<><Subtitle >No widget, please consider one of the following options:</Subtitle>
+							<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
+							<Subtitle><Link to="/service">Subscribe to a service</Link></Subtitle>
+							</>
+						: this.state.widgetGroups.map((group: WidgetGroupInterface) => <WidgetGroup key={group.service_name} service_name={group.service_name} widgets={group.widgets} />)
 					}
 				</Grid>
 			</Grid>
