@@ -7,21 +7,21 @@ const cookies = new Cookies();
 export const jwtTokenSlice = createSlice({
   name: 'jwtToken',
   initialState: {
-    value: cookies.get('kayo'), // read localState
+    value: cookies.get('kayo'),
   },
   reducers: {
     setToken: (jwtToken, action) => {
       jwtToken.value = action.payload
       cookies.set('kayo', jwtToken.value, {sameSite: 'lax'})
-      axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken.value}`
     },
-    unset: (jwtToken) => {
+    unsetToken: (jwtToken) => {
 	    jwtToken.value = null
+      cookies.remove('kayo')
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setToken, unset } = jwtTokenSlice.actions
+export const { setToken, unsetToken } = jwtTokenSlice.actions
 
 export default jwtTokenSlice.reducer
