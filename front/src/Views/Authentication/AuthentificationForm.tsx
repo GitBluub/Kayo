@@ -57,7 +57,7 @@ const AuthentificationForm = (props: AuthentificationFormProps) => {
             value={formManager.formState.password}  onChange={(a) => formManager.updateAndValidateState({ password: a.target.value })}/>
         </Grid>
         <Grid item justifyContent="center">
-          <Button type="submit" fullWidth variant="contained" color="info" sx={{ my: 1 }} >Sign Up</Button>
+          <Button type="submit" fullWidth variant="contained" color="info" sx={{ my: 1 }} >{ props.signup ? "Sign Up" : "Log in" }</Button>
         </Grid>
       </form>
       <Grid item justifyContent="center">
