@@ -1,30 +1,42 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import type { WidgetParam } from '../Models/Widget';
 import ErrorWidget from '../Views/Components/Widgets/ErrorWidget';
-import SpotifyWidgetFactory from './WidgetFactories/SpotifyWidgetFactory';
-import StockMarketWidgetFactory from './WidgetFactories/StockMarketWidgetFactory';
-import WeatherWidgetFactory from './WidgetFactories/WeatherWidgetFactory';
+import KayoAPI from './KayoAPI';
+import SpotifyWidgetFactory, { SpotifyWidgetData } from './WidgetFactories/SpotifyWidgetFactory';
+import StockMarketWidgetFactory, { StockMarketWidgetData } from './WidgetFactories/StockMarketWidgetFactory';
+import WeatherWidgetFactory, { WeatherWidgetData } from './WidgetFactories/WeatherWidgetFactory';
 
 interface WidgetFactoryProps {
-	serviceName: string, widgetName: string, widgetParams: WidgetParam[];
+	serviceName: string, widgetName: string, widgetid?: number, widgetParams: WidgetParam[];
 }
 
 interface ServiceWidgetFactoryProps {
-	widgetName: string, widgetParams: WidgetParam[];
+	widgetName: string,
+	widgetParams: WidgetParam[],
+	widgetData: StockMarketWidgetData | SpotifyWidgetData | WeatherWidgetData | null;
 }
 
-const WidgetFactory = ({ serviceName, widgetName, widgetParams}: WidgetFactoryProps) => {
-	
-	switch (serviceName) {
-		case 'spotify':
-			return <SpotifyWidgetFactory widgetName={widgetName} widgetParams={widgetParams}/>
-		case 'stocks':
-			return <StockMarketWidgetFactory widgetName={widgetName} widgetParams={widgetParams}/>
-		case 'weather':
-			return <WeatherWidgetFactory widgetName={widgetName} widgetParams={widgetParams}/>
+const WidgetFactory = ({ serviceName, widgetName, widgetid, widgetParams}: WidgetFactoryProps) => {
+
+	const [widgetData, setWidgetData] = useState(null)
+
+	useEffect(() => {
+		KayoAPI.getWidgetData(widgetid as number).then(res => setWidgetData(res))
+	}, [])
+	if (widgetData === null)
+		return <></>
+	else {
+		switch (serviceName) {
+			case 'spotify':
+				return <SpotifyWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
+			case 'stocks':
+				return <StockMarketWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
+			case 'weather':
+				return <WeatherWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
+		}
+		return <ErrorWidget serviceName={serviceName} widgetName={widgetName} widgetParams={widgetParams} widgetid={widgetid}/>
 	}
-	return <ErrorWidget serviceName={serviceName} widgetName={widgetName} widgetParams={widgetParams}/>
-}
+}	
 
 export default WidgetFactory
 export { ServiceWidgetFactoryProps, WidgetFactoryProps }

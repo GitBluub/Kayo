@@ -3,39 +3,23 @@ import axios from "axios";
 import queryString from 'query-string'
 
 export default class SpotifyAPI {
-	private static oauthToken = null as string | null;
-	private static spotifyAPIUrl = 'https://api.spotify.com'
+	private static frontHost = import.meta.env.SNOWPACK_PUBLIC_FRONT_END_HOST
+	private static frontPort = import.meta.env.SNOWPACK_PUBLIC_FRONT_END_PORT
+	private static clientId = import.meta.env.SNOWPACK_PUBLIC_SPOTIFY_CLIENT_ID
+	private static clientSecret = import.meta.env.SNOWPACK_PUBLIC_SPOTIFY_CLIENT_SECRET
+	private static spotifyAPIUrl = 'https://accounts.spotify.com'
 
-	public static setOauthToken(token: string) {
-		this.oauthToken = token;
-	}
-
-	public static getFavorite(what: "artists" | "tracks") {
-		return axios.get(
-			`${this.spotifyAPIUrl}/me/top/${what}?&limit=1`
-		).then(res => res.data);
-	}
-
-	public static getFavoriteArtist() {
-		return this.getFavorite("artists");
-	}
-
-	public static getFavoriteTrack() {
-		return this.getFavorite("tracks");
-	}
-
-	public static getArtistId(artistName: string) {
-		return axios.get(
-			`${this.spotifyAPIUrl}/v1/search?` + queryString.stringify({
-				q: artistName
-			})
-		).then((res: any) => res.items[0].id);
-	}
-
-	public static getArtistTopTrack(artistName: string) {
-		return this.getArtistId(artistName).then(id => 
-			axios.get(
-				`${this.spotifyAPIUrl}/v1/artists/${id}/top-tracks?market=FR`
-			)).then((res: any) => res.items[0])
+	public static getAccessToken(code: string) {
+		const params = new URLSearchParams()
+		params.append("grant_type", 'authorization_code')
+		params.append("code", code)
+		params.append('redirect_uri', `http://${this.frontHost}:${this.frontPort}/services/subscribe/spotify`)
+		return axios.post(
+			`${this.spotifyAPIUrl}/api/token`,
+			params, { headers: {
+				'Authorization': 'Basic ' + btoa(`${this.clientId}:${this.clientSecret}`),
+				'content-type': 'application/x-www-form-urlencoded'
+			  }
+			}).then(res => res.data);
 	}
 }

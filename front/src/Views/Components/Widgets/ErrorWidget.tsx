@@ -2,15 +2,9 @@ import * as React from 'react';
 import Widget from '../Widget';
 import AvailableServices from '../../../Models/Service';
 import Grid from '@mui/material/Grid/Grid';
-import type { WidgetInterface, WidgetParam } from '../../../Models/Widget';
+import type { WidgetFactoryProps } from '../../../Controllers/WidgetFactory';
 
-interface ErrorWidgetParams {
-	widgetName: string,
-	serviceName: string,
-	widgetParams: WidgetParam[]
-}
-
-const ErrorWidget = (props: ErrorWidgetParams) => (
+const ErrorWidget = (props: WidgetFactoryProps) => (
 	<Widget service={AvailableServices['error']}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">

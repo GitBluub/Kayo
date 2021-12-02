@@ -2,7 +2,7 @@ import { Body, Controller, Get, Delete, Param, Post, Put, Request, UseGuards, Va
 import { WidgetService } from './widget.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateWidgetDto } from './dto/createWidget.dto';
-import { ApiCreatedResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
 @Controller()
 @UseGuards(JwtAuthGuard)
@@ -15,6 +15,17 @@ export class WidgetController {
 	async createWidget(@Param("serviceName") serviceName: string, @Param("widgetName") widgetName: string, @Request() req,
 	@Body(new ValidationPipe({transform: true})) createWidgetDto: CreateWidgetDto) {
 		return await this.widgetService.createWidget(serviceName, widgetName, createWidgetDto.params, req.user.userId);
+	}
+	
+	@Get("/widget/available")
+	async getAvailableWidgets(@Request() req) {
+		return this.widgetService.getAvailableWidgets(req.user.userId);
+	}
+
+	@Get("/widget/:id")
+	@ApiOkResponse({ description: "Returns the data of the widget requested"})
+	async getWidget(@Param("id") id: number, @Request() req) {
+		return this.widgetService.getWidgetData(id, req.user.userId);
 	}
 
 	@Delete("/widget/:id")
@@ -30,10 +41,5 @@ export class WidgetController {
 	@Get("/widgets")
 	async getWidgets(@Request() req) {
 		return this.widgetService.getWidgets(req.user.userId);
-	}
-
-	@Get("/widget/available")
-	async getAvailableWidgets(@Request() req) {
-		return this.widgetService.getAvailableWidgets(req.user.userId);
 	}
 }

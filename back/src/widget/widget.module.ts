@@ -7,9 +7,20 @@ import { UserModule } from 'src/user/user.module';
 import { Parameter } from './models/parameter.model';
 import { ConfigModule } from '@nestjs/config';
 import { SubscriptionModule } from 'src/subscription/subscription.module';
+import { WeatherModule } from 'src/weather/weather.module';
+import { SpotifyModule } from 'src/spotify/spotify.module';
+import { StocksModule } from 'src/stocks/stocks.module';
 
 @Module({
-  imports: [UserModule, SequelizeModule.forFeature([Widget, Parameter]), ConfigModule, forwardRef(() => SubscriptionModule)],
+  imports: [
+    UserModule,
+    SequelizeModule.forFeature([Widget, Parameter]),
+    ConfigModule,
+    forwardRef(() => SubscriptionModule),
+    WeatherModule,
+    SpotifyModule,
+    StocksModule
+  ],
   controllers: [WidgetController],
   providers: [WidgetService],
   exports: [SequelizeModule, WidgetService],
