@@ -18,7 +18,7 @@ const GithubActionsWidget = ({ owner, repoName, badges }: GithubWidgetData) => (
 		<Grid item>
 			{
 				badges?.slice(0, 3).map((badgeUrl: string) => (
-					<img key={badgeUrl} src={badgeUrl} style={{ padding: 10 }} />
+					<img key={badgeUrl} src={badgeUrl} style={{ padding: 10 }}/>
 				))
 			}
 		</Grid>
