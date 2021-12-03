@@ -4,8 +4,14 @@ import Grid from '@mui/material/Grid/Grid';
 import ParameterCardGroup from './ParameterCard/ParameterCardGroup';
 import WidgetFactory from '../../Controllers/WidgetFactory';
 import type { WidgetInterface } from '../../Models/Widget';
+import type KayoComponentProps from './KayoComponent';
+import type { Service } from 'src/Models/Service';
 
-const Widget = (props: any) => {
+interface WidgetProps extends KayoComponentProps {
+	service: Service
+}
+
+const Widget = (props: WidgetProps) => {
 	let service = props.service;
 	return (
 		<Card style={{ borderRadius: 30, backgroundColor: service.widget.backgroundColor , color: service.widget.fontColor, width: "80%"}} sx={{marginBottom: 1, display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 10}}>
