@@ -5,31 +5,14 @@ import ParameterCardGroup from './ParameterCard/ParameterCardGroup';
 import WidgetFactory from '../../Controllers/WidgetFactory';
 import type { WidgetInterface } from '../../Models/Widget';
 
-
-const WidgetParameterCard = (props: any) => {
-	let borderRadius = 8;
-	let bcolor = "";
-	let tcolor = "";
-	if (typeof props.borderRadius != 'undefined')
-		borderRadius= props.borderRadius
-	if (typeof props.backgroundColor != 'undefined')
-		bcolor= props.backgroundColor
-	if (typeof props.fontColor != 'undefined')
-		tcolor= props.fontColor
-	return <Card style={{ borderRadius: borderRadius, backgroundColor: bcolor , color: tcolor, width: "80%"}} sx={{marginBottom: 1, display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 10}}>
-	{props.children}
-	</Card>
-}
-
-
 const Widget = (props: any) => {
 	let service = props.service;
 	return (
-		<WidgetParameterCard borderRadius={30} backgroundColor={service.widget.backgroundColor} fontColor={service.widget.fontColor}>
+		<Card style={{ borderRadius: 30, backgroundColor: service.widget.backgroundColor , color: service.widget.fontColor, width: "80%"}} sx={{marginBottom: 1, display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 10}}>
 			<Grid container direction="row" justifyContent="space-between" alignItems="center" sx={{marginLeft: 8, paddingRight: 8}}>
 				{props.children}
 			</Grid>
-		</WidgetParameterCard>
+		</Card>
 	);
 }
 
