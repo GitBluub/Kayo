@@ -99,7 +99,7 @@ export class WidgetService {
 								const currParam = userWidgetsParams.find(widgetParam => {
 									return widgetParam.name === param.name &&
 									widgetConf.name === userWidgets.find(p => p.id === widget.id).name &&
-									widget.id === widgetParam.id
+									widget.id === widgetParam.widgetId
 								})
 								return {...param, value: currParam.value}
 							})

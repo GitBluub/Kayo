@@ -10,7 +10,7 @@ export class GithubService {
 		private configService: ConfigService
 	) {
 		this.axiosInstance = axios.create({
-			baseURL: "https://api.github.com/",
+			baseURL: "https://api.github.com",
 		})
 
 	}
@@ -19,14 +19,17 @@ export class GithubService {
 		const owner = params[0].value
 		const repoName = params[1].value
 		try {
-			const res = await this.axiosInstance.get(`/${owner}/${repoName}/actions/workflows`)
+			const res = await this.axiosInstance.get(`repos/${owner}/${repoName}/actions/workflows`)
+			console.log(res)
 			return {
+				owner,
+				repoName,
 				badges: res.data.workflows.map(action => {
 					return action.badge_url;
 				})
 			}
 		} catch (err) {
-			throw BadRequestException
+			throw new BadRequestException()
 		}
 	}
 
@@ -36,7 +39,7 @@ export class GithubService {
 				return {...(await this.getActionsBadges(params))};
 				break;
 			default:
-				throw BadRequestException
+				throw new BadRequestException()
 		}
 	}
 }

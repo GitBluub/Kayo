@@ -35,7 +35,7 @@ const WidgetForm = ({ widget, service }: WidgetFormProps) => {
 							paramsState[index].value = newValue.target.value;
 							return paramsState
 						}
-						)}
+						)} style={{marginLeft: 8}}
 					/>
 				)
 			}

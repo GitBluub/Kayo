@@ -37,7 +37,7 @@ const WidgetSettings = ({ widget, setWidgetGroupState }: WidgetSettingsProps) =>
 							paramsState[index].value = newValue.target.value;
 							return paramsState
 						}
-						)}
+						)}  style={{marginLeft: 8}}
 					/>
 				)
 			}

@@ -10,6 +10,7 @@ import { SubscriptionModule } from 'src/subscription/subscription.module';
 import { WeatherModule } from 'src/weather/weather.module';
 import { SpotifyModule } from 'src/spotify/spotify.module';
 import { StocksModule } from 'src/stocks/stocks.module';
+import { GithubModule } from 'src/github/github.module';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { StocksModule } from 'src/stocks/stocks.module';
     forwardRef(() => SubscriptionModule),
     WeatherModule,
     SpotifyModule,
-    StocksModule
+    StocksModule,
+    GithubModule
   ],
   controllers: [WidgetController],
   providers: [WidgetService],

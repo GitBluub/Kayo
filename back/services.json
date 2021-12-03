@@ -23,11 +23,11 @@
 					"description": "Display the state of a GitHub repo's actions",
 					"params": [
 						{
-							"name": "username",
+							"name": "owner",
 							"type": "string"
 						},
 						{
-							"name": "project_name",
+							"name": "repoName",
 							"type": "string"
 						}
 					]
