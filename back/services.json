@@ -16,6 +16,25 @@
 			]
 		},
 		{
+			"name": "github",
+			"widgets": [
+				{
+					"name": "actions",
+					"description": "Display the state of a GitHub repo's actions",
+					"params": [
+						{
+							"name": "username",
+							"type": "string"
+						},
+						{
+							"name": "project_name",
+							"type": "string"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "spotify",
 			"widgets": [
 				{

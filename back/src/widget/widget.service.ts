@@ -9,6 +9,7 @@ import { SubscriptionService } from 'src/subscription/subscription.service';
 import { StocksService } from 'src/stocks/stocks.service';
 import { SpotifyService } from 'src/spotify/spotify.service';
 import { WeatherService } from 'src/weather/weather.service';
+import { GithubService } from 'src/github/github.service';
 
 
 @Injectable()
@@ -24,7 +25,8 @@ export class WidgetService {
 
 		private stocksService: StocksService,
 		private spotifyService: SpotifyService,
-		private weatherService: WeatherService
+		private weatherService: WeatherService,
+		private githubService: GithubService
 	) {}
 
 	async createWidget(serviceName: string, widgetName: string, widgetData: ParamInterface[], userId: number): Promise<Widget> {
@@ -154,6 +156,8 @@ export class WidgetService {
 				return this.weatherService.getData(widget.name, parameters, subscription.token)
 			case "stocks":
 				return this.stocksService.getData(widget.name, parameters, subscription.token)
+			case "github":
+				return this.githubService.getData(widget.name, parameters, subscription.token)
 			default:
 				throw BadRequestException
 		}
