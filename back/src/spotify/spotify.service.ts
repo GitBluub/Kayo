@@ -3,11 +3,18 @@ import { Parameter } from 'src/widget/models/parameter.model';
 import axios, { Axios, AxiosInstance } from "axios"
 import { query } from 'express';
 import * as queryString from 'query-string'
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class SpotifyService {
+	clientId: string
+	clientSecret: string
 	axiosInstance: AxiosInstance
-	constructor() {
+	constructor(
+		private configService: ConfigService
+	) {
+		this.clientId = this.configService.get("SPOTIFY_CLIENT_ID")
+		this.clientSecret = this.configService.get("SPOTIFY_CLIENT_SECRET")
 		this.axiosInstance = axios.create({
 			baseURL: "https://api.spotify.com/v1",
 		})
@@ -66,5 +73,21 @@ export class SpotifyService {
 			default:
 				throw HttpException
 		}
+	}
+
+	async updateTokens(token: string) {
+		this.axiosInstance.post("/api/token", {
+
+		})
+		const params = new URLSearchParams()
+		params.append("grant_type", 'refresh_token')
+		params.append("refresh_token", ..)
+		return axios.post(
+			"https://accounts.spotify.com/api/token",
+			params, { headers: {
+				'Authorization': 'Basic ' + (`${this.clientId}:${this.clientSecret}`).toString('base64'),
+				'content-type': 'application/x-www-form-urlencoded'
+			  }
+			}).then(res => res.data);
 	}
 }
