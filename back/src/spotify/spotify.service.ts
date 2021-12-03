@@ -1,4 +1,4 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, HttpException, Injectable } from '@nestjs/common';
 import { Parameter } from 'src/widget/models/parameter.model';
 import axios, { Axios, AxiosInstance } from "axios"
 import { query } from 'express';
@@ -61,33 +61,38 @@ export class SpotifyService {
 		}
 	}
 
-	async getData(widgetName: string, params: Parameter[], token: string) {
+	async getData(widgetName: string, params: Parameter[], token: string, refreshToken: string) {
+		const accessToken = await this.updateTokens(refreshToken)
+		if (accessToken == null) throw ForbiddenException
 		this.axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 		switch(widgetName) {
 			case "favorite":
-				return this.getFavoriteData(params);
+				return {...(await this.getFavoriteData(params)), accessToken};
 				break;
 			case "artist-top-track":
-				return this.getTopTrackData(params);
+				return {...(await this.getTopTrackData(params)), accessToken};
 				break;
 			default:
-				throw HttpException
+				throw BadRequestException
 		}
 	}
 
-	async updateTokens(token: string) {
-		this.axiosInstance.post("/api/token", {
-
-		})
+	async updateTokens(refreshToken: string) {
 		const params = new URLSearchParams()
 		params.append("grant_type", 'refresh_token')
-		params.append("refresh_token", ..)
-		return axios.post(
-			"https://accounts.spotify.com/api/token",
-			params, { headers: {
-				'Authorization': 'Basic ' + (`${this.clientId}:${this.clientSecret}`).toString('base64'),
-				'content-type': 'application/x-www-form-urlencoded'
-			  }
-			}).then(res => res.data);
+		params.append("refresh_token", refreshToken)
+		const basicAuth = Buffer.from(`${this.clientId}:${this.clientSecret}`, 'binary').toString('base64');
+		try {
+			const res = await axios.post(
+				"https://accounts.spotify.com/api/token",
+				params, { headers: {
+					'Authorization': `Basic ${basicAuth}`,
+					'content-type': 'application/x-www-form-urlencoded'
+				}
+			});
+			return res.data.access_token
+		} catch (error) {
+			return null
+		}
 	}
 }
