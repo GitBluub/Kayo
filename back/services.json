@@ -24,7 +24,7 @@
 					"params": [
 						{
 							"name": "what",
-							"type": "string"
+							"type": "options artists tracks"
 						}
 					]
 				},

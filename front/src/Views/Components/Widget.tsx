@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Card from "@mui/material/Card/Card";
 import Grid from '@mui/material/Grid/Grid';
 import ParameterCardGroup from './ParameterCard/ParameterCardGroup';
