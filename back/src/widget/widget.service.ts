@@ -121,12 +121,13 @@ export class WidgetService {
 
 	async updateWidget(widgetId: number, widgetData: ParamInterface[], userId: number) {
 		for (let param of widgetData) {
+			console.log(param)
 			await this.parameterModel.update({
 				value: param.value
 			}, {
 				where: {
 					name: param.name,
-					id: widgetId
+					widgetId
 				}
 			});
 		}

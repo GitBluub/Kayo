@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid/Grid';
 import type { GithubWidgetData } from '../../../../Controllers/WidgetFactories/GithubWidgetFactory';
 
 
-const GithubActionsWidget = ({ owner, repoName, badges }: GithubWidgetData) => (
+const GithubRepoStatWidget = ({ owner, repoName, starCount, forkCount, watchCount, language }: GithubWidgetData) => (
 	<Widget service={AvailableServices['github']}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
@@ -16,13 +16,13 @@ const GithubActionsWidget = ({ owner, repoName, badges }: GithubWidgetData) => (
 			</Grid>
 		</Grid>
 		<Grid item>
-			{
-				badges?.slice(0, 3).map((badgeUrl: string) => (
-					<img key={badgeUrl} src={badgeUrl} style={{ padding: 10 }} />
-				))
-			}
+			{ starCount }
+			{ forkCount }
+			{ watchCount }
+			{ language }
+			<img src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${language?.toLowerCase()}/${language?.toLowerCase()}-original.svg`} />
 		</Grid>
 	</Widget>
 )
 
-export default GithubActionsWidget
+export default GithubRepoStatWidget

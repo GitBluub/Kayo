@@ -31,6 +31,20 @@
 							"type": "string"
 						}
 					]
+				},
+				{
+					"name": "stats",
+					"description": "Display the stats of a GitHub repo",
+					"params": [
+						{
+							"name": "owner",
+							"type": "string"
+						},
+						{
+							"name": "repoName",
+							"type": "string"
+						}
+					]
 				}
 			]
 		},
