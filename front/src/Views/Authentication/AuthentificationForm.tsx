@@ -36,8 +36,8 @@ interface AuthentificationFormProps {
 const AuthentificationForm = (props: AuthentificationFormProps) => {
   const formManager = useFormManager<AuthentificationFormState>({
     validators: {
-      username: (field: any) => fieldValidator(minimumUsernameLengthLength, field),
-      password: (field: any) => fieldValidator(minimumPasswordLength, field),
+      username: (field: string) => fieldValidator(minimumUsernameLengthLength, field),
+      password: (field: string) => fieldValidator(minimumPasswordLength, field),
     },
     onSubmit: (formState: AuthentificationFormState) => {
       props.onSubmit(formState);
