@@ -8,6 +8,7 @@ import { WidgetFormsGroup } from '../Components/WidgetForm';
 import type { WidgetInterface } from 'src/Models/Widget';
 import { Link, Navigate } from "react-router-dom";
 import { Subtitle } from '../Components/Title';
+import type { WidgetGroupInterface } from '../Components/Widget';
 
 const AddWidgets = () => {
 	const [widgetsGroups, setWidgetsGroups] = useState<WidgetInterface[]>([])
@@ -19,7 +20,7 @@ const AddWidgets = () => {
 		<SecondaryPage>
 			<Grid container alignItems="center" justifyContent="center" direction="column">
 				<Title>Add new Widgets</Title>
-				{widgetsGroups.length == 0 ?
+				{ widgetsGroups.length == 0 ?
 					<><Subtitle >No widget, please consider going to this page:</Subtitle>
 						<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
 					</> : widgetsGroups.map((widgerGroup: any) => WidgetFormsGroup(widgerGroup))}
