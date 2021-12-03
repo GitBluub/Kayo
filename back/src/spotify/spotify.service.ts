@@ -36,6 +36,7 @@ export class SpotifyService {
 		return {
 			artistName: track.artists[0].name,
 			trackName: track.name,
+			albumName: track.album.name,
 			illustrationUrl: track.album.images[0].url	
 		}
 	}
@@ -63,7 +64,7 @@ export class SpotifyService {
 
 	async getData(widgetName: string, params: Parameter[], token: string, refreshToken: string) {
 		const accessToken = await this.updateTokens(refreshToken)
-		if (accessToken == null) throw ForbiddenException
+		if (accessToken == null) throw new ForbiddenException()
 		this.axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 		switch(widgetName) {
 			case "favorite":
@@ -92,6 +93,7 @@ export class SpotifyService {
 			});
 			return res.data.access_token
 		} catch (error) {
+			console.log(error);
 			return null
 		}
 	}
