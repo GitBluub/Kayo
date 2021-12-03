@@ -51,9 +51,10 @@ export default class KayoAPI {
 		return this._call(`/service/${serviceName}`, KayoAPICallMethod.DELETE, {});
 	}
 
-	public static subscribe(serviceName: string, token: string) {
+	public static subscribe(serviceName: string, token: string, refreshToken: string | null) {
 		return this._call(`/service/${serviceName}`, KayoAPICallMethod.POST, {
-			serviceToken: token
+			serviceToken: token,
+			refreshToken
 		});
 	}
 
