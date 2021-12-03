@@ -15,7 +15,7 @@ import {
 
 
 const routes = (isLoggedIn: boolean) => {
-	const ifLogged = ((ifLog: any, ifNotLog:any = <Login />) => isLoggedIn ? ifLog :ifNotLog);
+	const ifLogged = ((ifLog: JSX.Element, ifNotLog:JSX.Element = <Login />) => isLoggedIn ? ifLog :ifNotLog);
 	return  (
 		<Routes>
     	    <Route path="/" element={<App/>}>

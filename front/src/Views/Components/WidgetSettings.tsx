@@ -29,8 +29,7 @@ const WidgetSettings = ({ widget, setWidgetGroupState }: WidgetSettingsProps) =>
 		return <Navigate replace to="/"/>
 	return (
 		<ParameterCard name={widget.name}>
-			{
-				widget.params.map((_, index, __) =>
+			{ widget.params.map((_, index, __) =>
 					<TextField key={index} id="filled-basic" label={params[index].name} variant="filled" defaultValue={params[index].value}
 						onChange={(newValue) => setParamsState((paramsState: WidgetParam[]) => {
 							setFilledChanged(true);
