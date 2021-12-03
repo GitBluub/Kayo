@@ -20,6 +20,7 @@ export class SubscriptionService {
 			{
 				name: serviceName,
 				token: subscriptionDto.serviceToken,
+				refreshToken: subscriptionDto.refreshToken,
 				userId: userId
 			}
 		);

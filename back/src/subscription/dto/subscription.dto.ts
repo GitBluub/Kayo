@@ -5,4 +5,8 @@ export class SubscriptionDto {
 	@ApiProperty()
 	@IsString()
 	serviceToken: string;
+
+	@ApiProperty()
+	@IsString()
+	refreshToken: string;
 }

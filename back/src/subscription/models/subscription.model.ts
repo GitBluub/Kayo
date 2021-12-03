@@ -9,6 +9,9 @@ export class Subscription extends Model {
 	@Column
 	token: string;
 
+	@Column
+	refreshToken: string;
+
 	@ForeignKey(() => User)
 	@Column
 	userId: number;

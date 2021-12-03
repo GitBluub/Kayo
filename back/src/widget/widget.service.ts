@@ -144,7 +144,12 @@ export class WidgetService {
 		const subscription = await this.subscriptionService.find(userId, widget.serviceName);
 		switch (widget.serviceName) {
 			case "spotify":
-				return this.spotifyService.getData(widget.name, parameters, subscription.token)
+				const res = await this.spotifyService.getData(widget.name, parameters, subscription.token, subscription.refreshToken);
+				subscription.update({
+					token: res.accessToken,
+				})
+				delete res.accessToken;
+				return res;
 			case "weather":
 				return this.weatherService.getData(widget.name, parameters, subscription.token)
 			case "stocks":
