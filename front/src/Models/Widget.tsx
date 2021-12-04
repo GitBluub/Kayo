@@ -10,7 +10,7 @@ interface WidgetParam {
 interface WidgetInterface {
 	id: number;
 	name: string;
-	desc: string;
+	description: string;
 	params: WidgetParam[];
 }
 
