@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import type { WidgetParam } from '../Models/Widget';
 import ErrorWidget from '../Views/Components/Widgets/ErrorWidget';
 import KayoAPI from './KayoAPI';
+import type { GithubWidgetData } from './WidgetFactories/GithubWidgetFactory';
+import GithubWidgetFactory from './WidgetFactories/GithubWidgetFactory';
 import SpotifyWidgetFactory, { SpotifyWidgetData } from './WidgetFactories/SpotifyWidgetFactory';
 import StockMarketWidgetFactory, { StockMarketWidgetData } from './WidgetFactories/StockMarketWidgetFactory';
 import WeatherWidgetFactory, { WeatherWidgetData } from './WidgetFactories/WeatherWidgetFactory';
@@ -13,7 +15,7 @@ interface WidgetFactoryProps {
 interface ServiceWidgetFactoryProps {
 	widgetName: string,
 	widgetParams: WidgetParam[],
-	widgetData: StockMarketWidgetData | SpotifyWidgetData | WeatherWidgetData | null;
+	widgetData: StockMarketWidgetData | SpotifyWidgetData | WeatherWidgetData | GithubWidgetData | null;
 }
 
 const WidgetFactory = ({ serviceName, widgetName, widgetid, widgetParams}: WidgetFactoryProps) => {
@@ -27,6 +29,8 @@ const WidgetFactory = ({ serviceName, widgetName, widgetid, widgetParams}: Widge
 		return <></>
 	else {
 		switch (serviceName) {
+			case 'github':
+				return <GithubWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
 			case 'spotify':
 				return <SpotifyWidgetFactory widgetName={widgetName} widgetParams={widgetParams} widgetData={widgetData}/>
 			case 'stocks':

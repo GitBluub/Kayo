@@ -9,6 +9,7 @@ import { SubscriptionService } from 'src/subscription/subscription.service';
 import { StocksService } from 'src/stocks/stocks.service';
 import { SpotifyService } from 'src/spotify/spotify.service';
 import { WeatherService } from 'src/weather/weather.service';
+import { GithubService } from 'src/github/github.service';
 
 
 @Injectable()
@@ -24,7 +25,8 @@ export class WidgetService {
 
 		private stocksService: StocksService,
 		private spotifyService: SpotifyService,
-		private weatherService: WeatherService
+		private weatherService: WeatherService,
+		private githubService: GithubService
 	) {}
 
 	async createWidget(serviceName: string, widgetName: string, widgetData: ParamInterface[], userId: number): Promise<Widget> {
@@ -97,7 +99,7 @@ export class WidgetService {
 								const currParam = userWidgetsParams.find(widgetParam => {
 									return widgetParam.name === param.name &&
 									widgetConf.name === userWidgets.find(p => p.id === widget.id).name &&
-									widget.id === widgetParam.id
+									widget.id === widgetParam.widgetId
 								})
 								return {...param, value: currParam.value}
 							})
@@ -119,12 +121,13 @@ export class WidgetService {
 
 	async updateWidget(widgetId: number, widgetData: ParamInterface[], userId: number) {
 		for (let param of widgetData) {
+			console.log(param)
 			await this.parameterModel.update({
 				value: param.value
 			}, {
 				where: {
 					name: param.name,
-					id: widgetId
+					widgetId
 				}
 			});
 		}
@@ -154,6 +157,8 @@ export class WidgetService {
 				return this.weatherService.getData(widget.name, parameters, subscription.token)
 			case "stocks":
 				return this.stocksService.getData(widget.name, parameters, subscription.token)
+			case "github":
+				return this.githubService.getData(widget.name, parameters, subscription.token)
 			default:
 				throw BadRequestException
 		}

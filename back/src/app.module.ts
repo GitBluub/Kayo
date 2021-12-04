@@ -12,6 +12,7 @@ import { StocksModule } from './stocks/stocks.module';
 import { WeatherModule } from './weather/weather.module';
 import authConfig from './config/authConfig';
 import serviceConfig from './config/serviceConfig';
+import { GithubModule } from './github/github.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import serviceConfig from './config/serviceConfig';
     SubscriptionModule,
     WidgetModule,
     SpotifyModule,
+    GithubModule,
     StocksModule,
     WeatherModule,
   ],

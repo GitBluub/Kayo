@@ -16,6 +16,39 @@
 			]
 		},
 		{
+			"name": "github",
+			"widgets": [
+				{
+					"name": "actions",
+					"description": "Display the state of a GitHub repo's actions",
+					"params": [
+						{
+							"name": "owner",
+							"type": "string"
+						},
+						{
+							"name": "repoName",
+							"type": "string"
+						}
+					]
+				},
+				{
+					"name": "stats",
+					"description": "Display the stats of a GitHub repo",
+					"params": [
+						{
+							"name": "owner",
+							"type": "string"
+						},
+						{
+							"name": "repoName",
+							"type": "string"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "spotify",
 			"widgets": [
 				{
