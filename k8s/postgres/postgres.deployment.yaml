@@ -1,0 +1,49 @@
+       16:41:37
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  type: ClusterIP
+  selector:
+    app: postgres
+  ports:
+    - port: 5432
+      targetPort: 5432⏎                                                                                                                                                
+whanos on  main [$!?] via 🐍 v3.9.7 on ☁️ louis.auzuret@gmail.com 
+➜ cat ../bernstein/postgres.deployment.yaml                                                                                                     16:48:28
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: postgres
+  template:
+    metadata:
+      name: postgres
+      labels: 
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:12
+        ports:
+          - containerPort: 5432
+            hostPort: 5432
+        volumeMounts:
+          - mountPath: "/var/lib/postgresql/data"
+            name: postgres-volume-claim
+        envFrom:
+        - configMapRef:
+            name: configmap-postgres
+        - secretRef:
+            name: secret-postgres
+      volumes:
+        - name: postgres-volume-claim
+          persistentVolumeClaim:
+            claimName: volume-claim-postgres
+      
+      restartPolicy: Always
