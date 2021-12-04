@@ -1,4 +1,4 @@
-import { BelongsTo, Column, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
+import { AutoIncrement, BelongsTo, Column, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { User } from "../../user/models/user.model"
 import { Parameter } from "./parameter.model"
 
@@ -9,6 +9,9 @@ export class Widget extends Model {
 
 	@Column({allowNull: false})
 	serviceName: string;
+
+	@Column({allowNull: false})
+	index: number;
 
 	@ForeignKey(() => User)
 	@Column
