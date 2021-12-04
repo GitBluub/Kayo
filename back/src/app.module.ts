@@ -7,13 +7,17 @@ import { AuthModule } from './auth/auth.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { WidgetModule } from './widget/widget.module';
+import { SpotifyModule } from './spotify/spotify.module';
+import { StocksModule } from './stocks/stocks.module';
+import { WeatherModule } from './weather/weather.module';
 import authConfig from './config/authConfig';
+import serviceConfig from './config/serviceConfig';
+import { GithubModule } from './github/github.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
-      load: [authConfig]
+      load: [authConfig, serviceConfig]
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
@@ -30,6 +34,10 @@ import authConfig from './config/authConfig';
     AuthModule,
     SubscriptionModule,
     WidgetModule,
+    SpotifyModule,
+    GithubModule,
+    StocksModule,
+    WeatherModule,
   ],
   controllers: [AppController],
   providers: [AppService],

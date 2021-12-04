@@ -1,12 +1,112 @@
 {
-	"services": [{
-		"name": "weather",
-		"widgets": [{
-			"description": "display current temperature of a city",
-			"params": [{
-				"name": "city",
-				"type": "string"
-			}]
-		}]
-	}]
+	"services": [
+		{
+			"name": "stocks",
+			"widgets": [
+				{
+					"name": "stock_market",
+					"description": "Display the stock situation of a company",
+					"params": [
+						{
+							"name": "company_short_name",
+							"type": "string"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "github",
+			"widgets": [
+				{
+					"name": "actions",
+					"description": "Display the state of a GitHub repo's actions",
+					"params": [
+						{
+							"name": "owner",
+							"type": "string"
+						},
+						{
+							"name": "repoName",
+							"type": "string"
+						}
+					]
+				},
+				{
+					"name": "stats",
+					"description": "Display the stats of a GitHub repo",
+					"params": [
+						{
+							"name": "owner",
+							"type": "string"
+						},
+						{
+							"name": "repoName",
+							"type": "string"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "spotify",
+			"widgets": [
+				{
+					"name": "favorite",
+					"description": "Display the favorite element of the subscriber",
+					"params": [
+						{
+							"name": "what",
+							"type": "options artists tracks"
+						}
+					]
+				},
+				{
+					"name": "artist-top-track",
+					"description": "Display the most played track of an artist",
+					"params": [
+						{
+							"name": "artist",
+							"type": "string"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "weather",
+			"widgets": [
+				{
+					"name": "temperature",
+					"description": "Display temperature in celsius in a city",
+					"params": [
+						{
+							"name": "city_name",
+							"type": "string"
+						}
+					]
+				},
+				{
+					"name": "weather",
+					"description": "Display the weather situation in a city",
+					"params": [
+						{
+							"name": "city_name",
+							"type": "string"
+						}
+					]
+				},
+				{
+					"name": "humidity",
+					"description": "Display the humidity rate in a city",
+					"params": [
+						{
+							"name": "city_name",
+							"type": "string"
+						}
+					]
+				}
+			]
+		}
+	]
 }
