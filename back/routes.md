@@ -168,6 +168,20 @@ Update a widget configuration
     ]
 }
 
+- PUT /widgets/reorder
+
+Reorder order of widgets
+
+```json
+{ 
+    "ids": [
+    widgetIdAtFirstPosition,
+    widgetIdAtSecondPosition,
+    ...
+    ]
+}
+```
+
 ```json
 {
     "params": [

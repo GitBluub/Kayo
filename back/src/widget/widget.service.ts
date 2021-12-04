@@ -163,4 +163,16 @@ export class WidgetService {
 				throw BadRequestException
 		}
 	}
+
+	async reorderWidgets(userId: number, ids: number[]) {
+		ids.forEach(async (id, newIndex, array) => {
+			await this.widgetModel.update({
+				index: newIndex
+			}, {
+				where: {
+					id
+				}
+			});
+		})
+	}
 }

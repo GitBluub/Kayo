@@ -3,6 +3,7 @@ import { WidgetService } from './widget.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateWidgetDto } from './dto/createWidget.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ReorderWidgetsDto } from './dto/reorderWidgets.dto';
 
 @Controller()
 @UseGuards(JwtAuthGuard)
@@ -41,5 +42,10 @@ export class WidgetController {
 	@Get("/widgets")
 	async getWidgets(@Request() req) {
 		return this.widgetService.getWidgets(req.user.userId);
+	}
+
+	@Put("/widgets/reorder")
+	async reorderWidgets(@Request() req, @Body() reorderWidgetsDto: ReorderWidgetsDto) {
+		return this.widgetService.reorderWidgets(req.user.userId, reorderWidgetsDto.ids);
 	}
 }

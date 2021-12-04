@@ -85,4 +85,8 @@ export default class KayoAPI {
 	public static getWidgetData(widgetId: number) {
 		return this._call(`/widget/${widgetId}`,  KayoAPICallMethod.GET, {});
 	}
+
+	public static reorderWidgetsData(ids: number[]) {
+		return this._call(`/widgets/reorder`,  KayoAPICallMethod.PUT, { ids });
+	}
 }
