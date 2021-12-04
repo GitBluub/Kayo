@@ -25,7 +25,7 @@ jobs:
       - name: Build images
         run: |-
           docker build -t $IMAGE_NAME_FRONT:latest -f ./front/Dockerfile front
-          docker build -t $IMAGE_NAME_BACK:latest -f ./front/Dockerfile back
+          docker build -t $IMAGE_NAME_BACK:latest -f ./back/Dockerfile back
       
       - name: Configure docker
         run: |-
