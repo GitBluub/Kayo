@@ -29,7 +29,7 @@ const AddWidgets = () => {
 						<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
 					</> : widgetsGroups.map((widgerGroup: WidgetGroupInterface) => {
 						
-						return <WidgetFormsGroup serviceName={widgerGroup.serviceName} widgets={widgerGroup.widgets} onValidate={() => setAddStatus(true)}/>
+						return <WidgetFormsGroup key={widgerGroup.serviceName} serviceName={widgerGroup.serviceName} widgets={widgerGroup.widgets} onValidate={() => setAddStatus(true)}/>
 					})}
 			</Grid>
 		</SecondaryPage>
