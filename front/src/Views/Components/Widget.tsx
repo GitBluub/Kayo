@@ -14,7 +14,7 @@ interface WidgetProps extends KayoComponentProps {
 const Widget = (props: WidgetProps) => {
 	let service = props.service;
 	return (
-		<Card style={{ borderRadius: 30, backgroundColor: service.widget.backgroundColor , color: service.widget.fontColor, width: "80%"}} sx={{marginBottom: 1, display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 10}}>
+		<Card style={{ borderRadius: 30, backgroundColor: service.widget.backgroundColor , color: service.widget.fontColor, width: "100%"}} sx={{marginBottom: 1, display: 'flex',flexDirection: 'column',alignItems: 'center', boxShadow: 10}}>
 			<Grid container direction="row" justifyContent="space-between" alignItems="center" sx={{marginLeft: 8, paddingRight: 8}}>
 				{props.children}
 			</Grid>
@@ -25,6 +25,7 @@ const Widget = (props: WidgetProps) => {
 interface WidgetGroupInterface {
 	serviceName: string,
 	widgets: WidgetInterface[];
+	onValidate?: () => void
 }
 
 const WidgetGroup = ({ serviceName, widgets }: WidgetGroupInterface) => {

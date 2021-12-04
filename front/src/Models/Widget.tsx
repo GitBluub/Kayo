@@ -11,6 +11,8 @@ interface WidgetInterface {
 	id: number;
 	name: string;
 	description: string;
+	index: number;
+	serviceName: string;
 	params: WidgetParam[];
 }
 

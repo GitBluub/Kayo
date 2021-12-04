@@ -18,15 +18,13 @@ import KayoAPI from '../../Controllers/KayoAPI';
 interface WidgetSettingsProps {
 	widget: WidgetInterface;
 	setWidgetGroupState: () => void;
+	onValidate: () => void
 }
 
-const WidgetSettings = ({ widget, setWidgetGroupState }: WidgetSettingsProps) => {
+const WidgetSettings = ({ widget, setWidgetGroupState, onValidate }: WidgetSettingsProps) => {
 	const [params, setParamsState] = useState(widget.params);
 	const [changed, setFilledChanged] = useState(false)
-	const [updated, setUpdated] = useState(false)
 
-	if (updated)
-		return <Navigate replace to="/"/>
 	return (
 		<ParameterCard name={widget.name}>
 			{ widget.params.map((_, index, __) =>
@@ -41,7 +39,7 @@ const WidgetSettings = ({ widget, setWidgetGroupState }: WidgetSettingsProps) =>
 				)
 			}
 			{changed ?
-				<Button color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20 }} onClick={() => { API.updateWidgetParams(widget.id, params).then(res => setUpdated(true)) }}>
+				<Button color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20 }} onClick={() => { API.updateWidgetParams(widget.id, params); onValidate(); setFilledChanged(false) }}>
 					<DoneIcon />
 					Update
 				</Button>
@@ -59,7 +57,7 @@ type WidgetSettingsGroupProps = WidgetGroupInterface & {
 	groups:  WidgetGroupInterface[] 
 } 
 
-const WidgetSettingsGroup = ({ serviceName, widgets, setState, groups }: WidgetSettingsGroupProps) => {
+const WidgetSettingsGroup = ({ serviceName, widgets, onValidate, setState, groups }: WidgetSettingsGroupProps) => {
 	if (widgets.length == 0)
 		return <></>
 	return (
@@ -69,7 +67,7 @@ const WidgetSettingsGroup = ({ serviceName, widgets, setState, groups }: WidgetS
 					groups.forEach((group, _, __) => { group.widgets = group.widgets.filter((tmp, _, __) => tmp.id != widget.id); })
 					setState(groups)
 				}
-			}/>)}
+			} onValidate={onValidate as () => void} />)}
 		</ParameterCardGroup>
 	)
 }
