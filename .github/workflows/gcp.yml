@@ -33,9 +33,8 @@ jobs:
           gcloud auth configure-docker $ARTIFACT_ZONE --quiet
       
       - name: Push Images to artifact registry
-        run:
+        run: |-
           docker tag $IMAGE_NAME_FRONT:latest $ARTIFACT_ZONE/$PROJECT_ID/images/$IMAGE_NAME_FRONT:latest
           docker push $ARTIFACT_ZONE/$PROJECT_ID/images/$IMAGE_NAME_FRONT:latest
-
           docker tag $IMAGE_NAME_BACK:latest $ARTIFACT_ZONE/$PROJECT_ID/images/$IMAGE_NAME_BACK:latest
           docker push $ARTIFACT_ZONE/$PROJECT_ID/images/$IMAGE_NAME_BACK:latest
