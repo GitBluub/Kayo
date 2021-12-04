@@ -5,6 +5,7 @@ import { LocalAuthGuard } from './local-auth.guard';
 import { RegisterDto } from './dto/register.dto';
 import { Response } from 'express';
 import { UserService } from 'src/user/user.service';
+import { GoogleOauthGuard } from './google-oauth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -34,4 +35,18 @@ export class AuthController {
 	getProfile(@Request() req) {
   		return req.user;
   	}
+
+	@Get("/google")
+	@UseGuards(GoogleOauthGuard)
+	async googleAuth() {
+	// Guard redirects
+	}
+
+	@Get('/google/redirect')
+	@UseGuards(GoogleOauthGuard)
+	async googleAuthRedirect(@Request() req, @Res() res: Response) {
+		const { access_token } = await this.authService.login(req.user);
+		res.cookie('kayo', access_token);
+		return res.redirect('http://localhost:3435');
+	  }
 }

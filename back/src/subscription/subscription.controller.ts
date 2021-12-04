@@ -14,24 +14,24 @@ export class SubscriptionController {
 	@Post('/:name')
 	@ApiCreatedResponse({ description: "The subscription has been created succesfully"})
 	async create(@Body() body: SubscriptionDto, @Param('name') name: string, @Request() req){
-		return this.subscriptionService.create(body, name, req.user.userId);
+		return this.subscriptionService.create(body, name, req.user.id);
 	}
 
 	@Get("/available")
 	@ApiOkResponse({description: 'Returns the services the user can subscribe to'})
 	async getAvailable(@Request() req){
-		return this.subscriptionService.getAvailable(req.user.userId);
+		return this.subscriptionService.getAvailable(req.user.id);
 	}
 
 	@Get("/subscribed")
 	@ApiOkResponse({description: 'Returns the services the user is subscribed to'})
 	async getSubscribed(@Request() req){
-		return this.subscriptionService.getSubscribed(req.user.userId);
+		return this.subscriptionService.getSubscribed(req.user.id);
 	}
 
 	@Delete("/:name")
 	@ApiNoContentResponse({description: 'The subscription has been deleted succesfully'})
 	async deleteSubscription(@Param('name') name: string, @Request() req){
-		return this.subscriptionService.delete(name, req.user.userId);
+		return this.subscriptionService.delete(name, req.user.id);
 	}
 }

@@ -15,4 +15,10 @@ export class User extends Model {
 
   @HasMany(() => Subscription)
   subscriptions: Subscription[]
+
+  @Column
+  provider: string
+
+  @Column
+  providerId: string
 }

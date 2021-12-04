@@ -15,33 +15,33 @@ export class WidgetController {
 	@ApiCreatedResponse({description: 'Widget has been created'})
 	async createWidget(@Param("serviceName") serviceName: string, @Param("widgetName") widgetName: string, @Request() req,
 	@Body(new ValidationPipe({transform: true})) createWidgetDto: CreateWidgetDto) {
-		return await this.widgetService.createWidget(serviceName, widgetName, createWidgetDto.params, req.user.userId);
+		return await this.widgetService.createWidget(serviceName, widgetName, createWidgetDto.params, req.user.id);
 	}
 	
 	@Get("/widget/available")
 	async getAvailableWidgets(@Request() req) {
-		return this.widgetService.getAvailableWidgets(req.user.userId);
+		return this.widgetService.getAvailableWidgets(req.user.id);
 	}
 
 	@Get("/widget/:id")
 	@ApiOkResponse({ description: "Returns the data of the widget requested"})
 	async getWidget(@Param("id") id: number, @Request() req) {
-		return this.widgetService.getWidgetData(id, req.user.userId);
+		return this.widgetService.getWidgetData(id, req.user.id);
 	}
 
 	@Delete("/widget/:id")
 	async deleteWidget(@Param("id") id: number, @Request() req) {
-		return await this.widgetService.deleteWidget(id, req.user.userId);
+		return await this.widgetService.deleteWidget(id, req.user.id);
 	}
 
 	@Put("/widget/:id")
 	async updateWidget(@Param("id") id: number, @Request() req, @Body() createWidgetDto: CreateWidgetDto) {
-		return await this.widgetService.updateWidget(id, createWidgetDto.params, req.user.userId);
+		return await this.widgetService.updateWidget(id, createWidgetDto.params, req.user.id);
 	}
 
 	@Get("/widgets")
 	async getWidgets(@Request() req) {
-		return this.widgetService.getWidgets(req.user.userId);
+		return this.widgetService.getWidgets(req.user.id);
 	}
 
 	@Put("/widgets/reorder")
