@@ -30,13 +30,14 @@ export class WidgetService {
 	) {}
 
 	async createWidget(serviceName: string, widgetName: string, widgetData: ParamInterface[], userId: number): Promise<Widget> {
-		
+		const maxIndex = await this.widgetModel.max('index') as number;
 		const services = this.configService.get('services').services;
 		const widget = await this.widgetModel.create(
 			{
 				serviceName: serviceName,
 				name: widgetName,
 				userId: userId,
+				index: maxIndex + 1
 			}
 		);
 		const service = services.find(service => service.name === serviceName);
@@ -76,37 +77,36 @@ export class WidgetService {
 		const userWidgets = await this.widgetModel.findAll({
 			where: {
 				userId
-			}
+			},
+			order: [
+				['index', 'ASC']
+			]
 		});	
 		const userWidgetsParams = await this.parameterModel.findAll({
 			where: {
 				widgetId: userWidgets.map(widget => widget.id)
 			}
 		})
-		return services.map(service => {
-			return {
-				serviceName: service.name,
-				widgets: userWidgets
-					.filter(widget => widget.serviceName === service.name)
-					.map(widget => {
-						const widgetService = services.find(service => service.name === widget.serviceName)
-						const widgetConf = widgetService.widgets.find(widgetElem => widgetElem.name === widget.name)
-						const finalWidget = 
-						{
-							...widgetConf,
-							id: widget.id,
-							params: widgetConf.params.map(param => {
-								const currParam = userWidgetsParams.find(widgetParam => {
-									return widgetParam.name === param.name &&
-									widgetConf.name === userWidgets.find(p => p.id === widget.id).name &&
-									widget.id === widgetParam.widgetId
-								})
-								return {...param, value: currParam.value}
-							})
-						}
-						return finalWidget
+		return userWidgets.map(widget => {
+			const widgetService = services.find(service => service.name === widget.serviceName)
+			const widgetConf = widgetService.widgets.find(widgetElem => widgetElem.name === widget.name)
+			const finalWidget = 
+			{
+				...widgetConf,
+				id: widget.id,
+				serviceName: widget.serviceName,
+				index: widget.index,
+				params: widgetConf.params.map(param => {
+					const currParam = userWidgetsParams.find(widgetParam => {
+						return widgetParam.name === param.name &&
+						widgetConf.name === userWidgets.find(p => p.id === widget.id).name &&
+						widget.id === widgetParam.widgetId
 					})
-			}});
+					return {...param, value: currParam.value}
+				})
+			}
+			return finalWidget
+		});
 	}
 
 	async getAvailableWidgets(userId: number) {

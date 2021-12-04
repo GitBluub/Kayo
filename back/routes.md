@@ -103,19 +103,15 @@ Returns all the widgets' id of the connected User
 ```json
 [
     {
+        "name": "widget1",
+        "desc": "blabla",
         "serviceName": "spotify",
-        "widgets": [
+        "index": 1,
+        "params": [
             {
-                "id": "widgetId",
-                "name": "widget1",
-                "desc": "blabla",
-                "params": [
-                    {
-                        "name": "param1",
-                        "value": "actual",
-                    },
-                ]
-            }
+                "name": "param1",
+                "type": "string"
+            },
         ]
     }
 ]
