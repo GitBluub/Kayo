@@ -18,7 +18,6 @@ const AddWidgets = () => {
 	useEffect(() => {
 		API.getAvailableWidgets().then((widgetsLists: WidgetGroupInterface[]) => { setWidgetsGroups(widgetsLists) })
 	}, [])
-	console.log(widgetsGroups)
 	return (
 		<SecondaryPage>
 			<Grid container alignItems="center" justifyContent="center" direction="column">
