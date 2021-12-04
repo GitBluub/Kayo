@@ -13,8 +13,8 @@ export class UserController {
 	constructor(private userService: UserService) {}
 
 	@Get('users')
-  	findAll(@Req() req) {
-		if (this.userService.isAdmin(req.user.id)) {
+  	async findAll(@Req() req) {
+		if (await this.userService.isAdmin(req.user.id)) {
 			return this.userService.findAll();
 		} else {
 			throw new UnauthorizedException();
@@ -22,8 +22,8 @@ export class UserController {
   	}
 
 	@Delete('user/:id')
-	delete(@Req() req, @Param('id') id: number) {
-		if (this.userService.isAdmin(req.user.id)) {
+	async delete(@Req() req, @Param('id') id: number) {
+		if (await this.userService.isAdmin(req.user.id)) {
 			return this.userService.deleteUser(id);
 		} else {
 			throw new UnauthorizedException();
