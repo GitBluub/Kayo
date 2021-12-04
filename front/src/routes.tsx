@@ -12,6 +12,7 @@ import {
 	BrowserRouter,
 	Routes, Route, useRoutes
   } from "react-router-dom";
+import Admin from './Views/Admin';
 
 
 const routes = (isLoggedIn: boolean) => {
@@ -22,6 +23,7 @@ const routes = (isLoggedIn: boolean) => {
 				<Route index element={ifLogged(<Home />)}/>
 				<Route path="login" element={ifLogged(<Navigate replace to="/"/>)}/>
 				<Route path="signup" element={ifLogged(<Navigate replace to="/"/>, <SignUp />)}/>
+				<Route path="admin" element={ifLogged(<Admin/>)}/>
     	      	<Route path="services">
     	      	  	<Route index element={ifLogged(<Services/>)}/>
     	      	  	<Route path="subscribe/:serviceID" element={ifLogged(<ServiceSubscribe/>)}/>

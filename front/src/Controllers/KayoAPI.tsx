@@ -89,4 +89,12 @@ export default class KayoAPI {
 	public static reorderWidgetsData(ids: number[]) {
 		return this._call(`/widgets/reorder`,  KayoAPICallMethod.PUT, { ids });
 	}
+
+	public static getUsers() {
+		return this._call('/users', KayoAPICallMethod.GET, {})
+	}
+
+	public static deleteUser(id: number) {
+		return this._call(`/user/${id}`, KayoAPICallMethod.DELETE, {})
+	}
 }

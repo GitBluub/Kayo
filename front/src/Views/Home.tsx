@@ -11,6 +11,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 interface HomeState {
 	intervalID: number,
 	widgets: WidgetInterface[],
+	isAdmin: boolean
 }
 
 
@@ -20,9 +21,16 @@ export default class Home extends React.Component {
 		super(props);
 		this.state = {
 			widgets: [],
-			intervalID: 0
+			intervalID: 0,
+			isAdmin: false,
 		} as HomeState
 		this.tick()
+		KayoAPI.getUsers().then(_ => this.setState(oldState => {
+			return {
+				...oldState,
+				isAdmin: true,
+			} as HomeState
+		}))
 	}
 
 	reorder(list: any[], startIndex: number, endIndex: number) {
@@ -76,7 +84,7 @@ export default class Home extends React.Component {
 
 			}}>
 				<Grid container alignItems="center" justifyContent="center" direction="column">
-					<MainPageMenu />
+					<MainPageMenu isAdmin={state.isAdmin}/>
 					<Title>KAYO</Title>
 					<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30 }}>
 						<Droppable droppableId="widgets">
