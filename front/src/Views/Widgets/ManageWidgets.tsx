@@ -31,7 +31,7 @@ const ManageWidgets = () => {
 		<SecondaryPage>
 			<Grid container alignItems="center" justifyContent="center" direction="column">
 				<Title>Manage Widgets</Title>
-				{ widgetsGroups.length !== 0 && widgetsGroups.map((serviceGroup: WidgetGroupInterface) => serviceGroup.widgets.length).reduce((a, b) => a + b) == 0 ?
+				{ widgetsGroups.length === 0 ?
 					<><Subtitle >No widget available, please consider one of the following options:</Subtitle>
 						<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
 						<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
