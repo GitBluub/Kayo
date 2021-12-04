@@ -15,7 +15,7 @@ interface HomeState {
 
 
 export default class Home extends React.Component {
-	
+
 	constructor(props: any) {
 		super(props);
 		this.state = {
@@ -24,14 +24,14 @@ export default class Home extends React.Component {
 		} as HomeState
 		this.tick()
 	}
-	
+
 	reorder(list: any[], startIndex: number, endIndex: number) {
 		const result = Array.from(list);
 		const [removed] = result.splice(startIndex, 1);
 		result.splice(endIndex, 0, removed);
-	  
+
 		return result;
-	  };
+	};
 	tick() {
 		KayoAPI.getMyWidgets().then(res => {
 			this.setState(oldState => {
@@ -62,20 +62,21 @@ export default class Home extends React.Component {
 		const state = this.state as HomeState
 		return (
 			<DragDropContext onDragEnd={(result) => {
-					if (!result.destination) {
-					  return;
-					}
-					const sourceIndex = result.source.index
-					const destIndex = result.destination.index
-					this.setState((oldState: HomeState) => {
-						const sourceWidget = oldState.widgets.findIndex(widget => widget.index == sourceIndex)
-						const destWidget = oldState.widgets.findIndex(widget => widget.index == destIndex)
-						oldState.widgets[sourceWidget].index = destIndex;
-						oldState.widgets[destWidget].index = sourceIndex;
-						oldState.widgets.sort((w1, w2) => w1.index - w2.index)
-					})
+				if (!result.destination) {
+					return;
+				}
+				const sourceIndex = result.source.index
+				const destIndex = result.destination.index
+				this.setState((oldState: HomeState) => {
+					const sourceWidget = oldState.widgets.findIndex(widget => widget.index == sourceIndex)
+					const destWidget = oldState.widgets.findIndex(widget => widget.index == destIndex)
+					oldState.widgets[sourceWidget].index = destIndex;
+					oldState.widgets[destWidget].index = sourceIndex;
+					oldState.widgets.sort((w1, w2) => w1.index - w2.index)
+					return oldState
+				})
 
-				}}>
+			}}>
 				<Grid container alignItems="center" justifyContent="center" direction="column">
 					<MainPageMenu />
 					<Title>KAYO</Title>
@@ -83,24 +84,24 @@ export default class Home extends React.Component {
 						<Droppable droppableId="widgets">
 							{(provided, snapshot) => (
 								<div {...provided.droppableProps} ref={provided.innerRef}>
-									{ state.widgets.length == 0 &&
-									<>
-										<Subtitle >No widget, please consider one of the following options:</Subtitle>
-										<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
-										<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
-									</>}
-									{ state.widgets.length > 0 &&
+									{state.widgets.length == 0 &&
+										<>
+											<Subtitle >No widget, please consider one of the following options:</Subtitle>
+											<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
+											<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
+										</>}
+									{state.widgets.length > 0 &&
 										state.widgets.map((widget: WidgetInterface) => (
-										<Draggable key={widget.id.toString()} draggableId={widget.id.toString()} index={widget.index}>
-											{(provided, snapshot) => (
-												<div ref={provided.innerRef}
-												{...provided.draggableProps}
-												{...provided.dragHandleProps}
-											  	>
-													<WidgetFactory key={widget.id} widgetid={widget.id} widgetName={widget.name} serviceName={widget.serviceName} widgetParams={widget.params} />
-												</div>
-											)}
-										</Draggable>
+											<Draggable key={widget.id.toString()} draggableId={widget.id.toString()} index={widget.index}>
+												{(provided, snapshot) => (
+													<div ref={provided.innerRef}
+														{...provided.draggableProps}
+														{...provided.dragHandleProps}
+													>
+														<WidgetFactory key={widget.id} widgetid={widget.id} widgetName={widget.name} serviceName={widget.serviceName} widgetParams={widget.params} />
+													</div>
+												)}
+											</Draggable>
 										))
 									}
 									{provided.placeholder}
