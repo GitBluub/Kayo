@@ -19,6 +19,14 @@ const MainPageMenu = ({ isAdmin }: MainPageMenuProps) => {
         setAnchorEl(event.currentTarget);
     };
 
+    const Administration = () => (isAdmin ?
+    <Link to="/admin">
+        <MenuItem>
+            Administration
+        </MenuItem>
+    </Link>
+    : <></>)
+
     return (
         <Grid container justifyContent="right" style={{ paddingRight: 30, paddingTop: 30 }}>
             <IconButton aria-label="more" id="long-button" aria-controls="long-menu" aria-expanded={open ? 'true' : undefined} aria-haspopup="true" onClick={handleClick}>
@@ -40,15 +48,7 @@ const MainPageMenu = ({ isAdmin }: MainPageMenuProps) => {
                         Manage Widgets
                     </MenuItem>
                 </Link>
-                {
-                    isAdmin ?
-                    <Link to="/admin">
-                        <MenuItem>
-                            Administration
-                        </MenuItem>
-                    </Link>
-                    : <></>
-                }
+                <Administration />
                 <MenuItem>
                     <LogoutButton />
                 </MenuItem>
