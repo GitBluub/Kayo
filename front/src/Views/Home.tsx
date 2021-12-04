@@ -11,6 +11,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 interface HomeState {
 	intervalID: number,
 	widgets: WidgetInterface[],
+	isAdmin: boolean
 }
 
 
@@ -20,7 +21,8 @@ export default class Home extends React.Component {
 		super(props);
 		this.state = {
 			widgets: [],
-			intervalID: 0
+			intervalID: 0,
+			isAdmin: false,
 		} as HomeState
 		this.tick()
 	}
@@ -44,10 +46,13 @@ export default class Home extends React.Component {
 		})
 	}
 	componentDidMount() {
+		let isAdmin = true;
 		const newIntervalID = setInterval(() => this.tick(), 1000 * 60);
+		KayoAPI.getUsers().catch(_ => isAdmin = false)
 		this.setState(oldState => {
 			return {
 				...oldState,
+				isAdmin,
 				intervalID: newIntervalID,
 			} as HomeState;
 		});
@@ -76,7 +81,7 @@ export default class Home extends React.Component {
 
 			}}>
 				<Grid container alignItems="center" justifyContent="center" direction="column">
-					<MainPageMenu />
+					<MainPageMenu isAdmin={state.isAdmin}/>
 					<Title>KAYO</Title>
 					<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30 }}>
 						<Droppable droppableId="widgets">

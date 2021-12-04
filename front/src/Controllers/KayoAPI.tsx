@@ -93,4 +93,8 @@ export default class KayoAPI {
 	public static getUsers() {
 		return this._call('/users', KayoAPICallMethod.GET, {})
 	}
+
+	public static deleteUser(id: number) {
+		return this._call(`/user/${id}`, KayoAPICallMethod.DELETE, {})
+	}
 }
