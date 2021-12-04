@@ -83,11 +83,11 @@ export default class Home extends React.Component {
 							{(provided, snapshot) => (
 								<div ref={provided.innerRef}>
 									{state.widgets.length == 0 &&
-										<>
-											<Subtitle >No widget, please consider one of the following options:</Subtitle>
+										<Grid container alignItems="center" justifyContent="center" direction="column">
+											<Subtitle>No widget, please consider one of the following options:</Subtitle>
 											<Subtitle><Link to="/widgets/add">Add a widget</Link></Subtitle>
 											<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
-										</>}
+										</Grid>}
 									{state.widgets.length > 0 &&
 										state.widgets.map((widget: WidgetInterface) => (
 											<Draggable key={widget.id.toString()} draggableId={widget.id.toString()} index={widget.index}>
