@@ -11,11 +11,12 @@ import { Subtitle } from '../Components/Title';
 import type { WidgetGroupInterface } from '../Components/Widget';
 
 const AddWidgets = () => {
-	const [widgetsGroups, setWidgetsGroups] = useState<WidgetInterface[]>([])
+	const [widgetsGroups, setWidgetsGroups] = useState<WidgetGroupInterface[]>([])
 
 	useEffect(() => {
-		API.getAvailableWidgets().then((widgetsLists: WidgetInterface[]) => { setWidgetsGroups(widgetsLists) })
+		API.getAvailableWidgets().then((widgetsLists: WidgetGroupInterface[]) => { setWidgetsGroups(widgetsLists) })
 	}, [])
+	console.log(widgetsGroups)
 	return (
 		<SecondaryPage>
 			<Grid container alignItems="center" justifyContent="center" direction="column">
@@ -23,7 +24,7 @@ const AddWidgets = () => {
 				{ widgetsGroups.length == 0 ?
 					<><Subtitle >No widget, please consider going to this page:</Subtitle>
 						<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
-					</> : widgetsGroups.map((widgerGroup: any) => WidgetFormsGroup(widgerGroup))}
+					</> : widgetsGroups.map((widgerGroup: WidgetGroupInterface) => WidgetFormsGroup(widgerGroup))}
 			</Grid>
 		</SecondaryPage>
 	)

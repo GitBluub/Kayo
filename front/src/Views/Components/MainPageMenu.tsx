@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid/Grid';
-import Logout from './LogoutButton';
+import LogoutButton from './LogoutButton';
 const ITEM_HEIGHT = 48;
 
 const MainPageMenu = () => {
@@ -37,7 +37,7 @@ const MainPageMenu = () => {
           </MenuItem>
         </Link>
         <MenuItem>
-          <Logout/>
+          <LogoutButton/>
         </MenuItem>
       </Menu>
     </Grid>

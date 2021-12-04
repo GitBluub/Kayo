@@ -14,7 +14,7 @@ export default class KayoAPI {
 	private static port = import.meta.env.SNOWPACK_PUBLIC_BACK_END_PORT
 	public static jwtToken = null
 
-	private static _call(route: string, method: KayoAPICallMethod, parameters: any) {
+	private static _call(route: string, method: KayoAPICallMethod, parameters: Object) {
 
 		return axios({
 			method: method,
