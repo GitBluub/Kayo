@@ -16,16 +16,17 @@ export class AuthService {
 		if (user && bcrypt.compareSync(pass, user.password)) {
 			return {
 				username: user.username,
-				userId: user.id
+				id: user.id
 			};
 		}
 		return null;
 	}
 
 	async login(user: PayloadInterface) {
-		const payload = { username: user.username, sub: user.userId };
+		const payload = { username: user.username, id: user.id };
+		const access_token = this.jwtService.sign(payload);
 		return {
-		  access_token: this.jwtService.sign(payload),
+		  access_token
 		};
 	}
 }

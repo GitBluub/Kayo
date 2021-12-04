@@ -34,6 +34,8 @@ interface AuthentificationFormProps {
 }
 
 const AuthentificationForm = (props: AuthentificationFormProps) => {
+  const host = import.meta.env.SNOWPACK_PUBLIC_BACK_END_HOST
+  const port = import.meta.env.SNOWPACK_PUBLIC_BACK_END_PORT
   const formManager = useFormManager<AuthentificationFormState>({
     validators: {
       username: (field: string) => fieldValidator(minimumUsernameLengthLength, field),
@@ -68,6 +70,9 @@ const AuthentificationForm = (props: AuthentificationFormProps) => {
           {props.signup ? "Already have an account? Log in?" : "Don't have an account? Sign up!"}
         </Link>
       </Grid>
+      <a href={`http://${host}:${port}/auth/google`}>
+        <img src="https://i.stack.imgur.com/QPLoG.png"/>
+      </a>
     </Grid>
   )
 }
