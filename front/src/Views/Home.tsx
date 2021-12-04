@@ -25,6 +25,12 @@ export default class Home extends React.Component {
 			isAdmin: false,
 		} as HomeState
 		this.tick()
+		KayoAPI.getUsers().then(_ => this.setState(oldState => {
+			return {
+				...oldState,
+				isAdmin: true,
+			} as HomeState
+		}))
 	}
 
 	reorder(list: any[], startIndex: number, endIndex: number) {
@@ -46,13 +52,10 @@ export default class Home extends React.Component {
 		})
 	}
 	componentDidMount() {
-		let isAdmin = true;
 		const newIntervalID = setInterval(() => this.tick(), 1000 * 60);
-		KayoAPI.getUsers().catch(_ => isAdmin = false)
 		this.setState(oldState => {
 			return {
 				...oldState,
-				isAdmin,
 				intervalID: newIntervalID,
 			} as HomeState;
 		});

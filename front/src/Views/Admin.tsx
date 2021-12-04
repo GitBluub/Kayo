@@ -28,7 +28,7 @@ const Admin = () => {
 			<Title>Administration Section</Title>
 			<ParameterCardGroup title="">
 				{ users.map((user: User, index, _) => (
-				<ParameterCard name={user.username}>
+				<ParameterCard name={user.username} key={user.id}>
 					<ParameterCardButton onClick={() => KayoAPI.deleteUser(user.id)}>
 						<DeleteOutlineIcon sx={{ color: "red", fontSize: 35 }} />
 					</ParameterCardButton>
