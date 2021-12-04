@@ -54,5 +54,7 @@ Kayo is a web dashboard app which lets you access your favorite information in a
 
 ## Documentation
 
+- How to deploy
+
 - Back-end
   - Routes documentation
