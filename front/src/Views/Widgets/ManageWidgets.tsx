@@ -8,12 +8,26 @@ import { WidgetSettingsGroup } from '../Components/WidgetSettings';
 import type { WidgetGroupInterface } from '../Components/Widget';
 import { Subtitle } from '../Components/Title';
 import { Link } from 'react-router-dom';
+import type { WidgetInterface } from '../../Models/Widget';
 
 const ManageWidgets = () => {
 	const [widgetsGroups, setWidgetsGroups] = useState<WidgetGroupInterface[]>([])
 
 	useEffect(() => {
-		API.getMyWidgets().then((widgetsLists: WidgetGroupInterface[]) => { setWidgetsGroups(widgetsLists) })
+		API.getMyWidgets().then((widgetsList: WidgetInterface[]) => { 
+			let groups = [] as WidgetGroupInterface[]
+			widgetsList.forEach((widget: WidgetInterface) => {
+				let groupIndex = groups.findIndex((group) => group.serviceName == widget.serviceName)
+
+				if (groupIndex == -1) {
+					groupIndex = groups.push({serviceName: widget.serviceName, widgets: []}) - 1
+				}
+				groups[groupIndex].widgets.push(widget)
+			})
+			console.log(groups)
+			console.log(widgetsList)
+			setWidgetsGroups(groups)
+		})
 	}, [])
 	return (
 		<SecondaryPage>
