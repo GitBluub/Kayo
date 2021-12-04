@@ -33,7 +33,7 @@ const Admin = () => {
 						KayoAPI.deleteUser(user.id);
 						setUsers(users => users.filter(i => user.id != i.id))
 					}}>
-						<DeleteOutlineIcon sx={{ color: "red", fontSize: 35 }} />
+						{ index != 0 ? <DeleteOutlineIcon sx={{ color: "red", fontSize: 35 }} />  : <></>}
 					</ParameterCardButton>
 				</ParameterCard>
 				))}
