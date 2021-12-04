@@ -25,6 +25,7 @@ const Widget = (props: WidgetProps) => {
 interface WidgetGroupInterface {
 	serviceName: string,
 	widgets: WidgetInterface[];
+	onValidate?: () => void
 }
 
 const WidgetGroup = ({ serviceName, widgets }: WidgetGroupInterface) => {
