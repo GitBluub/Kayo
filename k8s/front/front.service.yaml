@@ -3,9 +3,9 @@ kind: Service
 metadata:
   name: front-service
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: front
   ports:
-    - port: 80
-      targetPort: 3435
+    - port: 3435
+      targetPort: 80

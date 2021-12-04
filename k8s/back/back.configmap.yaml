@@ -3,3 +3,5 @@ kind: ConfigMap
 metadata:
   name: configmap-back
 data:
+  FRONT_END_HOST: "35.241.223.134"
+  FRONT_END_PORT: "3435"

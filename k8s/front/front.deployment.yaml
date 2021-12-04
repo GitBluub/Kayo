@@ -18,3 +18,8 @@ spec:
         image: europe-west1-docker.pkg.dev/kayo-333013/images/kayo-front
         ports:
         - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: configmap-front
+        - secretRef:
+            name: secret-front
