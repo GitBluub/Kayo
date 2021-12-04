@@ -35,6 +35,40 @@ Returns main server information and a list of services supported by Kayo, as wel
       }
     ]
   }  
-}```
+}
+```
 
-## Authentification
+## Authentification (at '/auth')
+
+### ```/auth/register```
+
+Registers a user in the data base.
+On error, return 400 code
+
+Expects the following request body:
+
+```json
+{
+  "username": "JohnDoe",
+  "password": "passw0rd",
+}
+```
+
+### ```/auth/login```
+
+Returns an access token for back-end API calls:
+
+```json
+{
+  "access_token"
+}
+```
+
+Expects the following request body:
+
+```json
+{
+  "username": "JohnDoe",
+  "password": "passw0rd",
+}
+```
