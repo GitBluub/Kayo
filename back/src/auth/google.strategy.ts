@@ -27,14 +27,12 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     const { id, name, emails } = profile;
 
     let user = await this.userService.findOneByProvider('google', id);
-    console.log(user)
     if (!user) {
       user = await this.userService.createProviderUser({
         provider: 'google',
         providerId: id,
         username: name.givenName,
       });
-      console.log(user)
     }
     return user;
   }
