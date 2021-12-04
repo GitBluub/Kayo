@@ -4,13 +4,19 @@ import AvailableServices from '../../../../Models/Service';
 import Grid from '@mui/material/Grid/Grid';
 import type { GithubWidgetData } from '../../../../Controllers/WidgetFactories/GithubWidgetFactory';
 
-const GithubRepoStatWidget = ({ owner, repoName, starCount, forkCount, watchCount, language }: GithubWidgetData) => (
-	<Widget service={AvailableServices['github']}>
+const getLanguageLogoUrl = (language: string) => {
+	language = language.toLowerCase();
+	language = language.replaceAll('+', 'plus').replaceAll('#', 'sharp');
+	return `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${language}/${language}-original.svg`
+}
+
+const GithubRepoStatWidget = ({ owner, repoName, starCount, forkCount, watchCount, language }: GithubWidgetData) => {
+	const logoUrl = getLanguageLogoUrl(language as string);
+	return (<Widget service={AvailableServices['github']}>
 		<Grid item>
 			<Grid container alignItems="center" justifyContent="space-between">
 				<a href={`https://github.com/${owner}/${repoName}`} style={{ color: "white" }} target="_blank">
 					<h2 style={{ marginRight: 10 }}>{owner}/{repoName}</h2>
-
 				</a>
 			</Grid>
 		</Grid>
@@ -31,12 +37,12 @@ const GithubRepoStatWidget = ({ owner, repoName, starCount, forkCount, watchCoun
 					{watchCount}
 				</Grid>
 				<Grid item style={{ padding: 3, paddingLeft: 30 }}>
-					<img src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${language?.toLowerCase()}/${language?.toLowerCase()}-original.svg`} style={{ height: '50px', margin: 10 }} />
+					<img src={logoUrl} style={{ height: '50px', margin: 10 }} />
 				</Grid>
 			</Grid>
 		</Grid>
 
-	</Widget>
-)
+	</Widget>)
+}
 
 export default GithubRepoStatWidget
