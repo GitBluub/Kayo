@@ -13,6 +13,8 @@ import API from '../../Controllers/KayoAPI';
 import type { WidgetInterface, WidgetParam } from '../../Models/Widget';
 import type { WidgetGroupInterface } from './Widget';
 import { Navigate } from 'react-router';
+import Tooltip from '@mui/material/Tooltip/Tooltip';
+import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
 
 interface WidgetFormProps {
 	widget: WidgetInterface;
@@ -25,6 +27,11 @@ const WidgetForm = ({ widget, service, onValidate }: WidgetFormProps) => {
 	const [changed, setFilledChanged] = useState(false)
 	return (
 		<ParameterCard name={widget.name}>
+			<Tooltip title={widget.description} style={{ marginTop: 4}}>
+			  <IconButton>
+			    <HelpOutlineRoundedIcon />
+			  </IconButton>
+			</Tooltip>
 			{
 				widget.params.map((_, index, __) =>
 					<TextField key={index} id="filled-basic" label={params[index].name} variant="filled" defaultValue={params[index].value}
