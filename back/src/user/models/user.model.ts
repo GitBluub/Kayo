@@ -21,4 +21,7 @@ export class User extends Model {
 
   @Column
   providerId: string
+
+  @Column
+  isAdmin: boolean
 }
