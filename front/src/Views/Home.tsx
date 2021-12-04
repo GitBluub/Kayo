@@ -81,7 +81,7 @@ export default class Home extends React.Component {
 					<Grid container alignItems="center" justifyContent="center" direction="column" style={{ paddingTop: 30 }}>
 						<Droppable droppableId="widgets">
 							{(provided, snapshot) => (
-								<div {...provided.droppableProps} ref={provided.innerRef}>
+								<div ref={provided.innerRef}>
 									{state.widgets.length == 0 &&
 										<>
 											<Subtitle >No widget, please consider one of the following options:</Subtitle>
@@ -92,10 +92,7 @@ export default class Home extends React.Component {
 										state.widgets.map((widget: WidgetInterface) => (
 											<Draggable key={widget.id.toString()} draggableId={widget.id.toString()} index={widget.index}>
 												{(provided, snapshot) => (
-													<div ref={provided.innerRef}
-														{...provided.draggableProps}
-														{...provided.dragHandleProps}
-													>
+													<div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
 														<WidgetFactory key={widget.id} widgetid={widget.id} widgetName={widget.name} serviceName={widget.serviceName} widgetParams={widget.params} />
 													</div>
 												)}
