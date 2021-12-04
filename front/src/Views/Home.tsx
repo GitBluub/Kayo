@@ -76,8 +76,8 @@ export default class Home extends React.Component {
 				const sourceIndex = result.source.index
 				const destIndex = result.destination.index
 				this.setState((oldState: HomeState) => {
-					oldState.widgets = this.reorder(oldState.widgets, sourceIndex, destIndex)
-					oldState.widgets.forEach((widget, index, array) => widget.index = index)
+					oldState.widgets = this.reorder(oldState.widgets, sourceIndex, destIndex).filter(i => typeof i != 'undefined')
+					oldState.widgets = oldState.widgets.map((w, index) => {w.index = index; return w})
 					KayoAPI.reorderWidgetsData(oldState.widgets.map(widget => widget.id))
 					return oldState
 				})
