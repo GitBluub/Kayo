@@ -7,6 +7,7 @@ const setupSwagger = (app) => {
     .setTitle('Kayo API')
     .setDescription('The Kayo API used by the Kayo Front-End')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
@@ -14,6 +15,7 @@ const setupSwagger = (app) => {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   setupSwagger(app);
   await app.listen(3000);
 }

@@ -24,10 +24,10 @@ export class UserService {
     });
   }
 
-  async findOne(name: string): Promise<User> | null {
+  async findOne(username: string): Promise<User> | null {
     return this.userModel.findOne({
       where: {
-        name,
+        username,
       },
     });
   }

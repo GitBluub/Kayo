@@ -2,21 +2,24 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import { User } from './user/models/user.model';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { SubscriptionModule } from './subscription/subscription.module';
+import { WidgetModule } from './widget/widget.module';
+import { SpotifyModule } from './spotify/spotify.module';
+import { StocksModule } from './stocks/stocks.module';
+import { WeatherModule } from './weather/weather.module';
 import authConfig from './config/authConfig';
+import serviceConfig from './config/serviceConfig';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
-      load: [authConfig]
+      load: [authConfig, serviceConfig]
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
-
       host: process.env.POSTGRES_HOST,
       port: 5432,
       username: process.env.POSTGRES_USER,
@@ -28,9 +31,13 @@ import authConfig from './config/authConfig';
     }),
     UserModule,
     AuthModule,
+    SubscriptionModule,
+    WidgetModule,
+    SpotifyModule,
+    StocksModule,
+    WeatherModule,
   ],
   controllers: [AppController],
   providers: [AppService],
-  exports: [UserModule],
 })
 export class AppModule {}
