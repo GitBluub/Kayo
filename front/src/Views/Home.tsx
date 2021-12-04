@@ -61,25 +61,21 @@ export default class Home extends React.Component {
 	render() {
 		const state = this.state as HomeState
 		return (
-			<DragDropContext onBeforeCapture={() => (null)}
-				onBeforeDragStart={() => (null)}
-				onDragStart={() => (null)}
-				onDragUpdate={() => (null)}
-				onDragEnd={(result) => {
+			<DragDropContext onDragEnd={(result) => {
 					if (!result.destination) {
 					  return;
 					}
-				
-					const items = this.reorder(
-					  state.widgets,
-					  result.source.index,
-					  result.destination.index
-					);
-				
-					this.setState({
-					  items
-					});}}
-				>
+					const sourceIndex = result.source.index
+					const destIndex = result.destination.index
+					this.setState((oldState: HomeState) => {
+						const sourceWidget = oldState.widgets.findIndex(widget => widget.index == sourceIndex)
+						const destWidget = oldState.widgets.findIndex(widget => widget.index == destIndex)
+						oldState.widgets[sourceWidget].index = destIndex;
+						oldState.widgets[destWidget].index = sourceIndex;
+						oldState.widgets.sort((w1, w2) => w1.index - w2.index)
+					})
+
+				}}>
 				<Grid container alignItems="center" justifyContent="center" direction="column">
 					<MainPageMenu />
 					<Title>KAYO</Title>

@@ -24,8 +24,6 @@ const ManageWidgets = () => {
 				}
 				groups[groupIndex].widgets.push(widget)
 			})
-			console.log(groups)
-			console.log(widgetsList)
 			setWidgetsGroups(groups)
 		})
 	}, [])
