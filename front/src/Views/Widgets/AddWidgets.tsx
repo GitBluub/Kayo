@@ -11,6 +11,10 @@ import { Subtitle } from '../Components/Title';
 import type { WidgetGroupInterface } from '../Components/Widget';
 import Alert from '@mui/material/Alert/Alert';
 
+/**
+ * Widget catalog page
+ * @returns 
+ */
 const AddWidgets = () => {
 	const [widgetsGroups, setWidgetsGroups] = useState<WidgetGroupInterface[]>([])
 	const [ added, setAddStatus] = useState<boolean>(false)

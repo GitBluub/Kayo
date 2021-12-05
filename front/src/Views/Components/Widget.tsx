@@ -11,6 +11,11 @@ interface WidgetProps extends KayoComponentProps {
 	service: Service
 }
 
+/**
+ * Wrapper for Widget content
+ * @param props 
+ * @returns 
+ */
 const Widget = (props: WidgetProps) => {
 	let service = props.service;
 	return (
@@ -22,12 +27,23 @@ const Widget = (props: WidgetProps) => {
 	);
 }
 
+/**
+ * Interface for group of widgets
+ */
 interface WidgetGroupInterface {
+	// Name of the service the widgets are from
 	serviceName: string,
+	// widgets (duh..)
 	widgets: WidgetInterface[];
+	// Callback for action button on widget list
 	onValidate?: () => void
 }
 
+/**
+ * Wrapper for widgets of the same group
+ * @param param0 
+ * @returns 
+ */
 const WidgetGroup = ({ serviceName, widgets }: WidgetGroupInterface) => {
 	if (widgets.length == 0)
 		return <></>

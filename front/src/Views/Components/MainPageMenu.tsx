@@ -8,10 +8,18 @@ import Grid from '@mui/material/Grid/Grid';
 import LogoutButton from './LogoutButton';
 const ITEM_HEIGHT = 48;
 
+/**
+ * Properties for main page menu
+ */
 interface MainPageMenuProps {
     isAdmin: boolean,
 }
 
+/**
+ * Main page menu/navigator
+ * @param param0 
+ * @returns 
+ */
 const MainPageMenu = ({ isAdmin }: MainPageMenuProps) => {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
