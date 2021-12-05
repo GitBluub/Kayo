@@ -11,7 +11,7 @@ export class AppService {
     const services = this.configService.get('services').services;
     return {
       client: {
-        host: host
+        host: host.substring(7)
       },
       server: {
         current_time: Math.floor(new Date().getTime() / 1000),

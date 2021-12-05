@@ -16,7 +16,6 @@ export class AppController {
   @Get("health")
   @ApiOkResponse({ description: "The server is alive"})
   getHealth(@Res() res) {
-    console.log("wow");
     res.status(HttpStatus.OK).send();
   }
 
