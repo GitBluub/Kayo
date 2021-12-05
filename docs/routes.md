@@ -38,7 +38,7 @@ Returns main server information and a list of services supported by Kayo, as wel
 }
 ```
 
-## Authentification (at ```/auth```)
+## Authentication (at ```/auth```)
 
 ### POST ```/auth/register```
 
@@ -137,3 +137,85 @@ Returns a list of services the user is a subscriber of:
 ### DELETE ```/:name```
 
 Unsubscribe the user to the service named ```name```
+
+## Widget Management (at ```/widget```, ```/widgets``` or ```/:serviceName```)
+
+### POST ```/:serviceName/:widgetName```
+
+Create the widget ```widgetName``` from ```serviceName``` for the user
+The request body must hold parameters for the widget configuration:
+
+```json
+{
+  "params": [
+    {
+      "name": "param1Name",
+      "value": "param1Value",
+    },
+    {
+      "name": "param2Name",
+      "value": "param2Value",
+    }
+  ]
+}
+```
+
+### Get ```/widget/available```
+
+Returns an array of widgets the user can add (according to services they subscribed to)
+
+```json
+[
+  {
+    "serviceName": "firstService",
+    "widgets": [
+      {
+        "name": "widgetName",
+        "description": "I do this!",
+        "params": [
+          {
+            "name": "param1Name",
+            "value": "param1Value",
+          },
+        ]
+      }
+    ]
+  }
+]
+```
+
+### GET ```/widget/:id```
+
+Returns information of the widget with id ```id```.
+Will vary depending on the service and the widget.
+For example, the Spotify widget for an Artist's top track:
+
+```json
+{
+  "artistName": "Roland Crystal",
+  "trackName": "Verduré",
+  "albumName": "2020",
+  "illustrationUrl": "spotify.albumillustration.com/..."
+}
+```
+
+### DELETE ```/widget/:id```
+
+Remove the user's widget with id ```id```
+
+### GET ```/widgets```
+
+Returns all widgets the user added.
+Follow the format of GET ```/widget/:id```
+
+### POST ```/widgets/reorder```
+
+Reorder the user widgets.
+The request body must have the following format:
+
+```json
+[
+  widgetIdThatMustBeInTheFirstPosition,
+  widgetIdThatMustBeInTheSecondPosition
+]
+```
