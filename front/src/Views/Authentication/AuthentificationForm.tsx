@@ -6,26 +6,52 @@ import Grid from '@mui/material/Grid/Grid';
 import { Link } from "react-router-dom";
 import { useFormManager } from "react-simple-form-manager";
 
+/**
+ * Props for authentication form
+ */
 interface AuthentificationFormState {
   username: string;
   password: string;
 }
-
+/**
+ * Rule for password length
+ */
 const minimumPasswordLength = 8;
+/**
+ * Rule for username length
+ */
 const minimumUsernameLengthLength = 4;
-
+/**
+ * Field validator
+ * @param minimumLength 
+ * @param field 
+ * @returns 
+ */
 const fieldValidator = (minimumLength: number, field: string) => {
   return field.length < minimumLength;
 }
+/**
+ * Error message
+ * @param length 
+ * @returns 
+ */
 const errorMessage = (length: number) => `Must be at least ${length} characters long`;
 
-
+/**
+ * Check is field has error
+ * @param fieldValue 
+ * @param minimumLength 
+ * @returns 
+ */
 const fieldHasError = (fieldValue: string, minimumLength: number) => {
   if (!fieldValue)
     return false;
   return fieldValidator(minimumLength, fieldValue);
 }
 
+/**
+ * Authentication for props
+ */
 interface AuthentificationFormProps {
   debug: boolean,
   signup: boolean,
@@ -33,6 +59,11 @@ interface AuthentificationFormProps {
   onSubmit: (formContent: AuthentificationFormState) => void
 }
 
+/**
+ * Authentication form component
+ * @param props 
+ * @returns 
+ */
 const AuthentificationForm = (props: AuthentificationFormProps) => {
   const host = import.meta.env.SNOWPACK_PUBLIC_BACK_END_HOST
   const port = import.meta.env.SNOWPACK_PUBLIC_BACK_END_PORT
