@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kayo-front
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+      - name: front
+        imagePullPolicy: Always
+        image: europe-west1-docker.pkg.dev/kayo-333013/images/kayo-front
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: configmap-front
+        - secretRef:
+            name: secret-front

@@ -7,12 +7,14 @@ import { Response } from 'express';
 import { UserService } from 'src/user/user.service';
 import { GoogleOauthGuard } from './google-oauth.guard';
 import { ApiBearerAuth, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
 
 @Controller('auth')
 export class AuthController {
 	constructor(
 		private authService: AuthService,
 		private userService: UserService,
+		private configService: ConfigService
 	) {}
 
 	@Post('register')
@@ -51,6 +53,6 @@ export class AuthController {
 	async googleAuthRedirect(@Request() req, @Res() res: Response) {
 		const { access_token } = await this.authService.login(req.user);
 		res.cookie('kayo', access_token);
-		return res.redirect('http://localhost:3435');
+		return res.redirect(`http://${this.configService.get<string>("FRONT_HOST")}:3435`);
 	  }
 }

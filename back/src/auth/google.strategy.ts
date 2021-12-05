@@ -5,6 +5,7 @@ import { config } from 'dotenv';
 import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
 import PayloadInterface from './interface/payload.interface';
+import { ConfigService } from '@nestjs/config';
 
 config();
 
@@ -13,11 +14,12 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
 
   constructor(
     private userService: UserService,
+    private configService: ConfigService
   ) {
     super({
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_SECRET,
-      callbackURL: 'http://localhost:8080/auth/google/redirect',
+      callbackURL: `http://${configService.get<string>("BACK_HOST")}:8080/auth/google/redirect`,
       scope: ['email', 'profile'],
     });
   }

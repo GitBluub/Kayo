@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-service
+spec:
+  type: LoadBalancer
+  loadBalancerIP: "35.241.223.134"
+  selector:
+    app: back
+  ports:
+    - port: 8080
+      targetPort: 3000

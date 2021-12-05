@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmap-front
+data:
+  SNOWPACK_PUBLIC_BACK_END_HOST: "35.241.168.145"
+  SNOWPACK_PUBLIC_BACK_END_PORT: "8080"
