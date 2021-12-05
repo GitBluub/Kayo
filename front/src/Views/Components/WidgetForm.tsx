@@ -15,7 +15,7 @@ import type { WidgetGroupInterface } from './Widget';
 import { Navigate } from 'react-router';
 import Tooltip from '@mui/material/Tooltip/Tooltip';
 import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
-
+import WidgetFormField from './WidgetFormField';
 /**
  * Properties of a widget form
  */
@@ -45,13 +45,12 @@ const WidgetForm = ({ widget, service, onValidate }: WidgetFormProps) => {
 			</Tooltip>
 			{
 				widget.params.map((_, index, __) =>
-					<TextField key={index} id="filled-basic" label={params[index].name} variant="filled" defaultValue={params[index].value}
+					<WidgetFormField key={index} label={params[index].name} defaultValue={params[index].value} type={params[index].type as string}
 						onChange={(newValue) => setParamsState((paramsState: WidgetParam[]) => {
 							setFilledChanged(true);
 							paramsState[index].value = newValue.target.value;
 							return paramsState
-						}
-						)} style={{marginLeft: 8}}
+						})}
 					/>
 				)
 			}

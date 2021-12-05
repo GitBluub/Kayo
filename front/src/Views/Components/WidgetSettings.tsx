@@ -14,6 +14,7 @@ import type { WidgetInterface, WidgetParam } from '../../Models/Widget';
 import type { WidgetGroupInterface } from './Widget';
 import { Navigate } from 'react-router';
 import KayoAPI from '../../Controllers/KayoAPI';
+import WidgetFormField from './WidgetFormField';
 
 /**
  * Properties for a widget settings
@@ -39,13 +40,12 @@ const WidgetSettings = ({ widget, setWidgetGroupState, onValidate }: WidgetSetti
 	return (
 		<ParameterCard name={widget.name}>
 			{ widget.params.map((_, index, __) =>
-					<TextField key={index} id="filled-basic" label={params[index].name} variant="filled" defaultValue={params[index].value}
+					<WidgetFormField key={index} label={params[index].name} defaultValue={params[index].value} type={params[index].type as string}
 						onChange={(newValue) => setParamsState((paramsState: WidgetParam[]) => {
 							setFilledChanged(true);
 							paramsState[index].value = newValue.target.value;
 							return paramsState
-						}
-						)}  style={{marginLeft: 8}}
+						})}
 					/>
 				)
 			}

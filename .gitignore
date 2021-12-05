@@ -103,4 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
+
+# K8S SECRETS
+back.secret.yaml
+front.secret.yaml
+postgres.secret.yaml
 docs/front

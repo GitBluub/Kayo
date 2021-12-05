@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kayo-back
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      labels:
+        app: back
+    spec:
+      containers:
+      - name: back
+        imagePullPolicy: Always
+        image: europe-west1-docker.pkg.dev/kayo-333013/images/kayo-back
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: configmap-back
+        - configMapRef:
+            name: configmap-postgres
+        - secretRef:
+            name: secret-postgres
+        - secretRef:
+            name: secret-back
