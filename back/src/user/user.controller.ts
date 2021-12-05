@@ -1,11 +1,12 @@
 import { BadRequestException, Controller, Delete, Get, MethodNotAllowedException, Param, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
-import { ApiBadRequestResponse, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiBearerAuth, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { Request, Response } from 'express';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UserService } from './user.service';
 
 @Controller()
 @UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 @ApiUnauthorizedResponse({
   description: 'Invalid token.',
 })

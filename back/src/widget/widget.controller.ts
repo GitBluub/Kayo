@@ -2,11 +2,12 @@ import { Body, Controller, Get, Delete, Param, Post, Put, Request, UseGuards, Va
 import { WidgetService } from './widget.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CreateWidgetDto } from './dto/createWidget.dto';
-import { ApiBadRequestResponse, ApiCreatedResponse, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiBadRequestResponse, ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { ReorderWidgetsDto } from './dto/reorderWidgets.dto';
 
 @Controller()
 @UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
 @ApiUnauthorizedResponse({description: 'Unauthorized'})
 @ApiBadRequestResponse({description: 'Error with database'})
 export class WidgetController {

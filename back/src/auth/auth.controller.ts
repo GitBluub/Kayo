@@ -6,7 +6,7 @@ import { RegisterDto } from './dto/register.dto';
 import { Response } from 'express';
 import { UserService } from 'src/user/user.service';
 import { GoogleOauthGuard } from './google-oauth.guard';
-import { ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiUnauthorizedResponse } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -32,6 +32,7 @@ export class AuthController {
 	}
 
 	@UseGuards(JwtAuthGuard)
+	@ApiBearerAuth()
 	@ApiOkResponse({ description: 'Successfully logged in' })
 	@ApiUnauthorizedResponse({ description: 'Invalid token' })
 	@Get('me')
