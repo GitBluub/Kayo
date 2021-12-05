@@ -16,15 +16,48 @@
 			]
 		},
 		{
+			"name": "github",
+			"widgets": [
+				{
+					"name": "actions",
+					"description": "Display the state of a GitHub repo's actions",
+					"params": [
+						{
+							"name": "owner",
+							"type": "string"
+						},
+						{
+							"name": "repoName",
+							"type": "string"
+						}
+					]
+				},
+				{
+					"name": "stats",
+					"description": "Display the stats of a GitHub repo",
+					"params": [
+						{
+							"name": "owner",
+							"type": "string"
+						},
+						{
+							"name": "repoName",
+							"type": "string"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "spotify",
 			"widgets": [
 				{
 					"name": "favorite",
-					"description": "Display the favorite element of the subscriber",
+					"description": "Display the favorite element of the subscriber (either 'artists' or 'tracks')",
 					"params": [
 						{
 							"name": "what",
-							"type": "string"
+							"type": "options artists tracks"
 						}
 					]
 				},

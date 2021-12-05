@@ -1,13 +1,20 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, HttpException, Injectable } from '@nestjs/common';
 import { Parameter } from 'src/widget/models/parameter.model';
 import axios, { Axios, AxiosInstance } from "axios"
 import { query } from 'express';
 import * as queryString from 'query-string'
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class SpotifyService {
+	clientId: string
+	clientSecret: string
 	axiosInstance: AxiosInstance
-	constructor() {
+	constructor(
+		private configService: ConfigService
+	) {
+		this.clientId = this.configService.get("SPOTIFY_CLIENT_ID")
+		this.clientSecret = this.configService.get("SPOTIFY_CLIENT_SECRET")
 		this.axiosInstance = axios.create({
 			baseURL: "https://api.spotify.com/v1",
 		})
@@ -29,6 +36,7 @@ export class SpotifyService {
 		return {
 			artistName: track.artists[0].name,
 			trackName: track.name,
+			albumName: track.album.name,
 			illustrationUrl: track.album.images[0].url	
 		}
 	}
@@ -54,17 +62,38 @@ export class SpotifyService {
 		}
 	}
 
-	async getData(widgetName: string, params: Parameter[], token: string) {
+	async getData(widgetName: string, params: Parameter[], token: string, refreshToken: string) {
+		const accessToken = await this.updateTokens(refreshToken)
+		if (accessToken == null) throw new ForbiddenException()
 		this.axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 		switch(widgetName) {
 			case "favorite":
-				return this.getFavoriteData(params);
+				return {...(await this.getFavoriteData(params)), accessToken};
 				break;
 			case "artist-top-track":
-				return this.getTopTrackData(params);
+				return {...(await this.getTopTrackData(params)), accessToken};
 				break;
 			default:
-				throw HttpException
+				throw BadRequestException
+		}
+	}
+
+	async updateTokens(refreshToken: string) {
+		const params = new URLSearchParams()
+		params.append("grant_type", 'refresh_token')
+		params.append("refresh_token", refreshToken)
+		const basicAuth = Buffer.from(`${this.clientId}:${this.clientSecret}`, 'binary').toString('base64');
+		try {
+			const res = await axios.post(
+				"https://accounts.spotify.com/api/token",
+				params, { headers: {
+					'Authorization': `Basic ${basicAuth}`,
+					'content-type': 'application/x-www-form-urlencoded'
+				}
+			});
+			return res.data.access_token
+		} catch (error) {
+			return null
 		}
 	}
 }

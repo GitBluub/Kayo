@@ -12,16 +12,22 @@ import {
 	BrowserRouter,
 	Routes, Route, useRoutes
   } from "react-router-dom";
+import Admin from './Views/Admin';
 
-
+/**
+ * Creates a router; based on user connection status
+ * @param isLoggedIn 
+ * @returns Router
+ */
 const routes = (isLoggedIn: boolean) => {
-	const ifLogged = ((ifLog: any, ifNotLog:any = <Login />) => isLoggedIn ? ifLog :ifNotLog);
+	const ifLogged = ((ifLog: JSX.Element, ifNotLog:JSX.Element = <Login />) => isLoggedIn ? ifLog :ifNotLog);
 	return  (
 		<Routes>
     	    <Route path="/" element={<App/>}>
 				<Route index element={ifLogged(<Home />)}/>
 				<Route path="login" element={ifLogged(<Navigate replace to="/"/>)}/>
 				<Route path="signup" element={ifLogged(<Navigate replace to="/"/>, <SignUp />)}/>
+				<Route path="admin" element={ifLogged(<Admin/>)}/>
     	      	<Route path="services">
     	      	  	<Route index element={ifLogged(<Services/>)}/>
     	      	  	<Route path="subscribe/:serviceID" element={ifLogged(<ServiceSubscribe/>)}/>

@@ -8,21 +8,32 @@ import { WidgetFormsGroup } from '../Components/WidgetForm';
 import type { WidgetInterface } from 'src/Models/Widget';
 import { Link, Navigate } from "react-router-dom";
 import { Subtitle } from '../Components/Title';
+import type { WidgetGroupInterface } from '../Components/Widget';
+import Alert from '@mui/material/Alert/Alert';
 
+/**
+ * Widget catalog page
+ * @returns 
+ */
 const AddWidgets = () => {
-	const [widgetsGroups, setWidgetsGroups] = useState<WidgetInterface[]>([])
+	const [widgetsGroups, setWidgetsGroups] = useState<WidgetGroupInterface[]>([])
+	const [ added, setAddStatus] = useState<boolean>(false)
 
 	useEffect(() => {
-		API.getAvailableWidgets().then((widgetsLists: WidgetInterface[]) => { setWidgetsGroups(widgetsLists) })
+		API.getAvailableWidgets().then((widgetsLists: WidgetGroupInterface[]) => { setWidgetsGroups(widgetsLists) })
 	}, [])
 	return (
 		<SecondaryPage>
 			<Grid container alignItems="center" justifyContent="center" direction="column">
 				<Title>Add new Widgets</Title>
-				{widgetsGroups.length == 0 ?
+				{ added ? <Alert severity="success">Widget added! - <Link replace to="/">check it out</Link></Alert> : <></>}
+				{ widgetsGroups.length == 0 ?
 					<><Subtitle >No widget, please consider going to this page:</Subtitle>
 						<Subtitle><Link to="/services">Subscribe to a service</Link></Subtitle>
-					</> : widgetsGroups.map((widgerGroup: any) => WidgetFormsGroup(widgerGroup))}
+					</> : widgetsGroups.map((widgerGroup: WidgetGroupInterface) => {
+						
+						return <WidgetFormsGroup key={widgerGroup.serviceName} serviceName={widgerGroup.serviceName} widgets={widgerGroup.widgets} onValidate={() => setAddStatus(true)}/>
+					})}
 			</Grid>
 		</SecondaryPage>
 	)

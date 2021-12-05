@@ -16,6 +16,19 @@ export class UserService {
     return this.userModel.findAll();
   }
 
+  async deleteUser(id: number): Promise<number> {
+    return await this.userModel.destroy({
+      where: {
+        id,
+      }
+    });
+  }
+
+  async isAdmin(id: number): Promise<boolean> {
+    const user = await this.findOneById(id);
+    return user.isAdmin;
+  }
+
   async findOneById(id: number): Promise<User> | null {
 		return this.userModel.findOne({
       where: {
@@ -32,11 +45,32 @@ export class UserService {
     });
   }
 
+  async findOneByProvider(provider: string, providerId: string): Promise<User> | null {
+    return this.userModel.findOne({
+      where: {
+        provider,
+        providerId
+      },
+    });
+  }
+
 	async createUser(registerDto: RegisterDto): Promise<User> {
+    const userCount = await this.userModel.count();
 		return await this.userModel.create({
 			...registerDto,
-			password: await bcrypt.hash(registerDto.password, 8)
+			password: await bcrypt.hash(registerDto.password, 8),
+      isAdmin: userCount === 0,
 		});
 	}
+
+  async createProviderUser({provider, providerId, username} : { username: string, provider: string, providerId: string}): Promise<User> {
+    const userCount = await this.userModel.count();
+    return await this.userModel.create({
+      provider,
+      providerId,
+      username,
+      isAdmin: userCount === 0,
+    });
+  }
 }
 

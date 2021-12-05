@@ -3,22 +3,21 @@ import { unsetToken } from '../../Store/jwtToken/jwtTokenSlice';
 import { useDispatch } from 'react-redux'
 import Button from '@mui/material/Button/Button';
 
-const LogoutButton = ({unsetToken} : any) => {
+/**
+ * Logout button, remove cookies, and dispatch status
+ * @returns 
+ */
+const LogoutButton = () => {
+	const dispatch = useDispatch();
+
 	return (
-		<Button variant="text" color="error" size="large" onClick={unsetToken}>
+		<Button variant="text" color="error" size="large" onClick={() => {
+			dispatch(unsetToken())
+		}}>
 			Logout
 		</Button>
 	)
 }
 
-const Logout = () => {
-	const dispatch = useDispatch();
-	return (
-	<LogoutButton unsetToken={() => {
-		dispatch(unsetToken())
-	}} />
-	)
-}
 
-
-export default Logout;
+export default LogoutButton;

@@ -10,6 +10,11 @@ interface StockMarketWidgetData {
 	open: number,
 }
 
+/**
+ * Stock market widget factory
+ * @param param0 
+ * @returns 
+ */
 const StockMarketWidgetFactory = ({ widgetName, widgetData, widgetParams }: ServiceWidgetFactoryProps) => {
 	const data = widgetData as StockMarketWidgetData
 	if (widgetParams.length != 1 || widgetName !== 'stock_market')

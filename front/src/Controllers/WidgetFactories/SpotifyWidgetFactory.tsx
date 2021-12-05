@@ -9,10 +9,15 @@ import type { ServiceWidgetFactoryProps } from '../WidgetFactory';
 interface SpotifyWidgetData {
 	illustrationUrl: string,
 	artistName: string,
-	trackName: string | undefined
+	trackName: string | undefined,
+	albumName: string | undefined,
 }
 
-
+/**
+ * Spotify widget factory
+ * @param param0 
+ * @returns 
+ */
 const SpotifyWidgetFactory = ({ widgetName, widgetData, widgetParams }: ServiceWidgetFactoryProps) => {
 	const data = widgetData as SpotifyWidgetData
 	switch (widgetName) {
@@ -23,7 +28,7 @@ const SpotifyWidgetFactory = ({ widgetName, widgetData, widgetParams }: ServiceW
 				return <FavoriteTrackWidget artistName={data.artistName} trackName={data.trackName as string} illustrationUrl={data.illustrationUrl}/>
 			}
 		case 'artist-top-track':
-			return <ArtistTopTrack artistName={data.artistName} track={data.trackName as string} illustration={data.illustrationUrl}/>
+			return <ArtistTopTrack artistName={data.artistName} trackName={data.trackName as string} illustrationUrl={data.illustrationUrl} albumName={data.albumName}/>
 		default:
 			return (<ErrorWidget serviceName="Spotify" widgetName={widgetName} widgetParams={widgetParams}/>)
 	}

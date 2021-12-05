@@ -3,8 +3,14 @@ import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Grid/Grid';
 import Button from '@mui/material/Button/Button';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import type KayoComponentProps from './KayoComponent';
 
-const SecondaryPage = (props: any) => (
+/**
+ * Wrapper for any page that is not the main page. Includes back button to main page
+ * @param props 
+ * @returns 
+ */
+const SecondaryPage = (props: KayoComponentProps) => (
 	<>
 	<Grid container alignItems="left" justifyContent="left" style={{ paddingLeft: 30, paddingTop: 30 }}>
 		<Link to="/"> 

@@ -1,13 +1,23 @@
 import * as React from 'react';
+import type KayoComponentProps from './KayoComponent';
 
-
-const Title = (props: any) => {
+/**
+ * Title for any Kayo Page
+ * @param props 
+ * @returns 
+ */
+const Title = (props: KayoComponentProps) => {
 	return <h1 style={{fontWeight: 700, color: "#979797", flex: 3}}>
 		{props.children}
 	</h1>
 }
 
-const Subtitle = (props: any) => {
+/**
+ * Subtitle for any Kayo Page
+ * @param props 
+ * @returns 
+ */
+const Subtitle = (props: KayoComponentProps) => {
 	return <h3 style={{fontWeight: 700, color: "#979797", flex: 3}}>
 		{props.children}
 	</h3>

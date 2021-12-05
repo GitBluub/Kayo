@@ -3,13 +3,20 @@ import Widget from '../../Widget';
 import AvailableServices from '../../../../Models/Service';
 import Grid from '@mui/material/Grid/Grid';
 
-
+/**
+ * Props for weather widget
+ */
 interface WeatherWidgetInterface {
 	city: string,
 	condition: string,
 	illustrationUrl: string,
 }
 
+/**
+ * Condition Weather widget
+ * @param param0 
+ * @returns 
+ */
 const WeatherWidget = ({ city, condition, illustrationUrl}: WeatherWidgetInterface) => (
 	<Widget service={AvailableServices['weather']}>
 		<Grid item>

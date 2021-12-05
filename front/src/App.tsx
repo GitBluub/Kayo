@@ -5,6 +5,10 @@ import Grid from '@mui/material/Grid/Grid';
 import Card from "@mui/material/Card/Card";
 
 
+/**
+ * Scaffold for every Kayo Page
+ * @returns 
+ */
 const App = () => {
 	return <ThemeProvider theme={{}}>
 		<Grid container alignItems="center" justifyContent="center" sx={{marginTop: 8}}>

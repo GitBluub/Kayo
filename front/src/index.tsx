@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter, useRoutes } from "react-router-dom";
 import routes from './routes';
-import store from './Store/store';
+import { store, RootState } from './Store/store';
 import { useSelector, Provider } from 'react-redux';
 import axios from 'axios';
 
+/**
+ * Router function
+ * @returns A React-router (v6) with routes, tailored to the user connection status
+ */
 function Router() {
-  const jwtToken = useSelector((state: any) => state.jwtToken.value);
+  const jwtToken = useSelector((state: RootState) => state.jwtToken.value);
 
   if (jwtToken !== undefined)
     axios.defaults.headers.common['Authorization'] = `Bearer ${jwtToken}`

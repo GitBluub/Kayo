@@ -4,6 +4,11 @@ import AvailableServices from '../../../Models/Service';
 import Grid from '@mui/material/Grid/Grid';
 import type { WidgetFactoryProps } from '../../../Controllers/WidgetFactory';
 
+/**
+ * Fallback widget on factory error
+ * @param props 
+ * @returns 
+ */
 const ErrorWidget = (props: WidgetFactoryProps) => (
 	<Widget service={AvailableServices['error']}>
 		<Grid item>
