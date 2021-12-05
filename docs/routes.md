@@ -38,7 +38,7 @@ Returns main server information and a list of services supported by Kayo, as wel
 }
 ```
 
-## Authentification (at '/auth')
+## Authentification (at ```/auth```)
 
 ### POST ```/auth/register```
 
@@ -73,7 +73,7 @@ Expects the following request body:
 }
 ```
 
-## User management (at '/')
+## User management (at ```/```)
 
 ### GET ```/users```
 
@@ -97,3 +97,43 @@ Otherwise, an Unauthorized error code is returned
 ### DELETE ```/user/:id```
 
 If the authenticated user is an administrator, deletes the user in the database with ```id``` as primary key
+
+## Subscription management (at ```/service```)
+
+### GET ```/available```
+
+Returns a list of services the user can subscribe to (aka is not a subscriber of):
+
+```json
+[
+  "serviceName1",
+  "serviceName2",
+]
+```
+
+### POST ```/:name```
+
+Subscribe the user to the service named ```name```
+The request body must have the following structure:
+
+```json
+{
+  "serviceToken": "myServiceToken",
+  "refreshToken": "myRefreshToken"
+}
+```
+
+### GET ```/subscribed```
+
+Returns a list of services the user is a subscriber of:
+
+```json
+[
+  "subscribedServiceName1",
+  "subscribedServiceName2",
+]
+```
+
+### DELETE ```/:name```
+
+Unsubscribe the user to the service named ```name```
