@@ -24,6 +24,8 @@ jobs:
       
       - name: Build images
         run: |-
+          echo "{{ secrets.FRONT_ENV }}" > front/.env
+          echo "{{ secrets.BACK_ENV }}" > back/.env
           docker build -t $IMAGE_NAME_FRONT:latest -f ./front/Dockerfile front
           docker build -t $IMAGE_NAME_BACK:latest -f ./back/Dockerfile back
       
