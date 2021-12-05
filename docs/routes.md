@@ -2,11 +2,11 @@
 
 ## Server Status
 
-### ```/health```
+### GET ```/health```
 
 Responds 200 when the server is alive
 
-### ```/about.json```
+### GET ```/about.json```
 
 Returns main server information and a list of services supported by Kayo, as well as each of their widgets
 
@@ -40,7 +40,7 @@ Returns main server information and a list of services supported by Kayo, as wel
 
 ## Authentification (at '/auth')
 
-### ```/auth/register```
+### POST ```/auth/register```
 
 Registers a user in the data base.
 On error, return 400 code
@@ -54,7 +54,7 @@ Expects the following request body:
 }
 ```
 
-### ```/auth/login```
+### POST ```/auth/login```
 
 Returns an access token for back-end API calls:
 
@@ -72,3 +72,28 @@ Expects the following request body:
   "password": "passw0rd",
 }
 ```
+
+## User management (at '/')
+
+### GET ```/users```
+
+If the authenticated user is an administrator, returns the list of Kayo users, with their id:
+
+```json
+[
+  {
+    "username": "firstUsername",
+    "id": 1,
+  },
+  {
+    "username": "secondUsername",
+    "id": 2,
+  }
+]
+```
+
+Otherwise, an Unauthorized error code is returned
+
+### DELETE ```/user/:id```
+
+If the authenticated user is an administrator, deletes the user in the database with ```id``` as primary key
