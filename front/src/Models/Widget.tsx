@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid/Grid';
 interface WidgetParam {
 	name: string;
 	value: string;
+	type?: string;
 }
 
 /**
