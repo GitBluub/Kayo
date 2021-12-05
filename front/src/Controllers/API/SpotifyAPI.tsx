@@ -3,7 +3,7 @@ import axios from "axios";
 import queryString from 'query-string'
 
 /**
- * Spotify API rapper
+ * Spotify API wrapper
  */
 export default class SpotifyAPI {
 	private static frontHost = import.meta.env.SNOWPACK_PUBLIC_FRONT_END_HOST
