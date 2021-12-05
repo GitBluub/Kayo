@@ -2,6 +2,9 @@ import { ThemeProvider } from "@emotion/react";
 import axios from "axios";
 import queryString from 'query-string'
 
+/**
+ * Spotify API wrapper
+ */
 export default class SpotifyAPI {
 	private static frontHost = import.meta.env.SNOWPACK_PUBLIC_FRONT_END_HOST
 	private static frontPort = import.meta.env.SNOWPACK_PUBLIC_FRONT_END_PORT
@@ -9,6 +12,11 @@ export default class SpotifyAPI {
 	private static clientSecret = import.meta.env.SNOWPACK_PUBLIC_SPOTIFY_CLIENT_SECRET
 	private static spotifyAPIUrl = 'https://accounts.spotify.com'
 
+	/**
+	 * Fetch access token
+	 * @param code 
+	 * @returns 
+	 */
 	public static getAccessToken(code: string) {
 		const params = new URLSearchParams()
 		params.append("grant_type", 'authorization_code')

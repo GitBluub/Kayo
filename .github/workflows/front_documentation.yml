@@ -1,0 +1,33 @@
+name: Update Documentation
+on:
+  push:
+    branches:
+      - master
+      - dev
+      - front_documentation
+
+jobs:
+  Deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Update Documentation
+        run: |
+          cd front
+          sudo npm install
+          npx typedoc --readme ../README.md --entryPointStrategy expand src --out ../docs/front
+          cd ../docs/front
+          git config --global user.email "${GITHUB_ACTOR}@github.com";
+          git config --global user.name "${GITHUB_ACTOR}";
+          git init
+          git add -A;
+          git commit -m "Deploying the documentation";
+          git remote add origin https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@${GITHUB_REPO};
+          git checkout -b Documentation
+          git push --force origin Documentation;
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPO: "github.com/GitBluub/Kayo"

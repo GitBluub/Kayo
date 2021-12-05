@@ -1,3 +1,6 @@
+/**
+ * Basic user interface
+ */
 interface User {
 	username: string,
 	id: number

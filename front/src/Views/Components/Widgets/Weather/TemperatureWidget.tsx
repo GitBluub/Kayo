@@ -8,6 +8,11 @@ interface TemperatureWidgetInterface {
 	temperature: number
 }
 
+/**
+ * Weather - Temperature widget
+ * @param props 
+ * @returns 
+ */
 const TemperatureWidget = (props: TemperatureWidgetInterface) => (
 	<Widget service={AvailableServices['weather']}>
 		<Grid item>

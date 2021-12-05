@@ -15,12 +15,23 @@ import type { WidgetGroupInterface } from './Widget';
 import { Navigate } from 'react-router';
 import KayoAPI from '../../Controllers/KayoAPI';
 
+/**
+ * Properties for a widget settings
+ */
 interface WidgetSettingsProps {
+	// the widget
 	widget: WidgetInterface;
+	// Callback when a widget is removed
 	setWidgetGroupState: () => void;
+	// Callback when the save button is pressed
 	onValidate: () => void
 }
 
+/**
+ * Setting page for widgets, gathered in service groups
+ * @param param0 
+ * @returns 
+ */
 const WidgetSettings = ({ widget, setWidgetGroupState, onValidate }: WidgetSettingsProps) => {
 	const [params, setParamsState] = useState(widget.params);
 	const [changed, setFilledChanged] = useState(false)
@@ -52,11 +63,21 @@ const WidgetSettings = ({ widget, setWidgetGroupState, onValidate }: WidgetSetti
 	)
 }
 
+/**
+ * Groups of widgets for their settings
+ */
 type WidgetSettingsGroupProps = WidgetGroupInterface & {
+	// callback on removal
 	setState: any
+	// List of widgets groups
 	groups:  WidgetGroupInterface[] 
 } 
 
+/**
+ * Groups of widget for settings page
+ * @param param0 
+ * @returns 
+ */
 const WidgetSettingsGroup = ({ serviceName, widgets, onValidate, setState, groups }: WidgetSettingsGroupProps) => {
 	if (widgets.length == 0)
 		return <></>

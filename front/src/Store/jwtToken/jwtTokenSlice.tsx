@@ -4,6 +4,9 @@ import Cookies from 'universal-cookie'
 
 const cookies = new Cookies();
 
+/**
+ * Jwt token slice
+ */
 export const jwtTokenSlice = createSlice({
   name: 'jwtToken',
   initialState: {

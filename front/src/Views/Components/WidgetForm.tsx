@@ -16,12 +16,23 @@ import { Navigate } from 'react-router';
 import Tooltip from '@mui/material/Tooltip/Tooltip';
 import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
 
+/**
+ * Properties of a widget form
+ */
 interface WidgetFormProps {
+	// The widget
 	widget: WidgetInterface;
+	// The widget service
 	service: string,
+	// Callback on validate button press
 	onValidate: () => void
 }
 
+/**
+ * Form to set a widget's params
+ * @param param0 
+ * @returns 
+ */
 const WidgetForm = ({ widget, service, onValidate }: WidgetFormProps) => {
 	const [params, setParamsState] = useState(widget.params);
 	const [changed, setFilledChanged] = useState(false)

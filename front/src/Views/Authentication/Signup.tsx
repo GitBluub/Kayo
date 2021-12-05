@@ -6,6 +6,10 @@ import Title from '../Components/Title';
 import { Navigate } from 'react-router';
 import KayoAPI from '../../Controllers/KayoAPI';
 
+/**
+ * Sign up page
+ * @returns 
+ */
 const SignUp = () => {
     const [registered, setRegisteredState] = useState(null as boolean | null);
     const onSubmit = (response: AuthentificationFormState) => {

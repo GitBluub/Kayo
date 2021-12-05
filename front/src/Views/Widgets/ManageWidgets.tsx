@@ -11,6 +11,10 @@ import { Link } from 'react-router-dom';
 import Alert from '@mui/material/Alert/Alert';
 import type { WidgetInterface } from '../../Models/Widget';
 
+/**
+ * Widget Manager page
+ * @returns 
+ */
 const ManageWidgets = () => {
 	const [widgetsGroups, setWidgetsGroups] = useState<WidgetGroupInterface[]>([])
 	const [ updated, setUpdated ] = useState<boolean>(false)

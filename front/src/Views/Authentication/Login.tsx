@@ -8,6 +8,10 @@ import KayoAPI from '../../Controllers/KayoAPI';
 import { setToken } from '../../Store/jwtToken/jwtTokenSlice';
 import { useDispatch } from 'react-redux'
 
+/**
+ * Login page
+ * @returns 
+ */
 const Login = () => {
     const dispatch = useDispatch();
     const [loggedIn, setLoggedState] = useState(null as boolean | null);

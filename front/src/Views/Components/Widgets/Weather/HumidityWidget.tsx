@@ -7,7 +7,11 @@ interface HumidityWidgetInterface {
 	city: string,
 	humidity: number
 }
-
+/**
+ * Weather - Humidity widget
+ * @param props 
+ * @returns 
+ */
 const HumidityWidget = (props: HumidityWidgetInterface) => (
 	<Widget service={AvailableServices['weather']}>
 		<Grid item>

@@ -8,13 +8,21 @@ import type { WidgetInterface } from "../Models/Widget";
 import WidgetFactory from "../Controllers/WidgetFactory";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+/**
+ * React State for Home page 
+ */
 interface HomeState {
+	// Id of interval for content refresher
 	intervalID: number,
+	// widgets to display
 	widgets: WidgetInterface[],
+	// is the user an admin (used for menu)
 	isAdmin: boolean
 }
 
-
+/**
+ * Home Page
+ */
 export default class Home extends React.Component {
 
 	constructor(props: any) {
@@ -33,6 +41,13 @@ export default class Home extends React.Component {
 		}))
 	}
 
+	/**
+	 * Reorders widgets after a drag-n-drop, as well as their id
+	 * @param list 
+	 * @param startIndex 
+	 * @param endIndex 
+	 * @returns 
+	 */
 	reorder(list: any[], startIndex: number, endIndex: number) {
 		const result = Array.from(list);
 		const [removed] = result.splice(startIndex, 1);
@@ -40,6 +55,9 @@ export default class Home extends React.Component {
 
 		return result;
 	};
+	/**
+	 * Callback for content refresh
+	 */
 	tick() {
 		KayoAPI.getMyWidgets().then(res => {
 			this.setState(oldState => {
@@ -51,6 +69,9 @@ export default class Home extends React.Component {
 			)
 		})
 	}
+	/**
+	 * Component mounter
+	 */
 	componentDidMount() {
 		const newIntervalID = setInterval(() => this.tick(), 1000 * 60);
 		this.setState(oldState => {
@@ -60,12 +81,18 @@ export default class Home extends React.Component {
 			} as HomeState;
 		});
 	}
-
+	/**
+	 * Component un-mounter
+	 */
 	componentWillUnmount() {
 		const state = this.state as HomeState
 		clearInterval(state.intervalID);
 	}
 
+	/**
+	 * 
+	 * @returns Rendering method
+	 */
 	render() {
 		const state = this.state as HomeState
 		return (
