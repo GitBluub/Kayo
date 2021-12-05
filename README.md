@@ -4,6 +4,11 @@
 
 Kayo is a web dashboard app which lets you access your favorite information in a blink of an eye! Enjoy these content while having a simple, non-disruptive browsing experience.
 
+![Front](https://img.shields.io/badge/Front%20end-React-turquoise)
+![Back](https://img.shields.io/badge/Back%20end-Nest-orange)
+![Database](https://img.shields.io/badge/Database-PostgreSQL-blue)
+![Deadline](https://img.shields.io/badge/Coded%20in-4%20weeks-lightgrey)
+
 ## Features
 
 - Login
