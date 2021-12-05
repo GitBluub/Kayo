@@ -14,7 +14,11 @@ import {
   } from "react-router-dom";
 import Admin from './Views/Admin';
 
-
+/**
+ * Creates a router; based on user connection status
+ * @param isLoggedIn 
+ * @returns Router
+ */
 const routes = (isLoggedIn: boolean) => {
 	const ifLogged = ((ifLog: JSX.Element, ifNotLog:JSX.Element = <Login />) => isLoggedIn ? ifLog :ifNotLog);
 	return  (

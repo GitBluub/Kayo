@@ -7,6 +7,10 @@ import { store, RootState } from './Store/store';
 import { useSelector, Provider } from 'react-redux';
 import axios from 'axios';
 
+/**
+ * Router function
+ * @returns A React-router (v6) with routes, tailored to the user connection status
+ */
 function Router() {
   const jwtToken = useSelector((state: RootState) => state.jwtToken.value);
 

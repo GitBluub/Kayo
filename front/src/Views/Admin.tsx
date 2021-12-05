@@ -10,6 +10,10 @@ import SecondaryPage from './Components/SecondaryPage';
 import Title from './Components/Title';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
+/**
+ * Adminnistration section page
+ * @returns 
+ */
 const Admin = () => {
 	const [users, setUsers] = useState<User[]>([]);
 	const [ isAdmin, setAllowed ] = useState(true);
