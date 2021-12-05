@@ -36,7 +36,6 @@ interface WidgetFormProps {
 const WidgetForm = ({ widget, service, onValidate }: WidgetFormProps) => {
 	const [params, setParamsState] = useState(widget.params);
 	const [changed, setFilledChanged] = useState(false)
-	console.log(widget.params)
 	return (
 		<ParameterCard name={widget.name}>
 			<Tooltip title={widget.description} style={{ marginTop: 4}}>
