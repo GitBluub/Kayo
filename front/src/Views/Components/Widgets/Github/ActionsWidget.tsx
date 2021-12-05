@@ -5,6 +5,11 @@ import Grid from '@mui/material/Grid/Grid';
 import type { GithubWidgetData } from '../../../../Controllers/WidgetFactories/GithubWidgetFactory';
 
 
+/**
+ * Widget for github actions
+ * @param param0 
+ * @returns 
+ */
 const GithubActionsWidget = ({ owner, repoName, badges }: GithubWidgetData) => (
 	<Widget service={AvailableServices['github']}>
 		<Grid item>

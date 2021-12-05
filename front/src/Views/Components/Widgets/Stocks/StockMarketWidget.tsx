@@ -4,12 +4,20 @@ import AvailableServices from '../../../../Models/Service';
 import Button from '@mui/material/Button/Button';
 import Grid from '@mui/material/Grid/Grid';
 
+/**
+ * Props for stock market widget
+ */
 interface StockMarketWidgetInterface {
 	shortName: string,
 	total: number,
 	variation: number
 }
 
+/**
+ * Widget for stock market
+ * @param props 
+ * @returns 
+ */
 const StockMarketWidget = (props: StockMarketWidgetInterface) => {
 
 	return <Widget service={AvailableServices['stocks']}>

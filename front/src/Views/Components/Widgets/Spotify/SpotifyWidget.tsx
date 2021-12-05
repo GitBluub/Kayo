@@ -8,14 +8,20 @@ enum BestType {
 	ARTIST = "artist",
 	SONG = "song"
 }
-
+/**
+ * Props for any spotify widget
+ */
 interface SpotifyWidgetInterface {
 	leftTitle: string
 	title: string,
 	illustration: string,
 	subtitle: string | undefined,
 }
-
+/**
+ * Wrapper for spotify widgets
+ * @param props 
+ * @returns 
+ */
 const SpotifyWidget = (props: SpotifyWidgetInterface) => {
 	return <Widget service={AvailableServices['spotify']}>
 		<Grid item>

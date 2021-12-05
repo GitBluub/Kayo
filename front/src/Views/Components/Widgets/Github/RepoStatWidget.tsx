@@ -4,12 +4,22 @@ import AvailableServices from '../../../../Models/Service';
 import Grid from '@mui/material/Grid/Grid';
 import type { GithubWidgetData } from '../../../../Controllers/WidgetFactories/GithubWidgetFactory';
 
+/**
+ * Get logo image irl based on logo name
+ * @param language 
+ * @returns 
+ */
 const getLanguageLogoUrl = (language: string) => {
 	language = language.toLowerCase();
 	language = language.replaceAll('+', 'plus').replaceAll('#', 'sharp');
 	return `https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${language}/${language}-original.svg`
 }
 
+/**
+ * Widget for github repo stats
+ * @param param0 
+ * @returns 
+ */
 const GithubRepoStatWidget = ({ owner, repoName, starCount, forkCount, watchCount, language }: GithubWidgetData) => {
 	const logoUrl = getLanguageLogoUrl(language as string);
 	return (<Widget service={AvailableServices['github']}>
