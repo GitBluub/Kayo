@@ -69,4 +69,4 @@ Kayo is a web dashboard app which lets you access your favorite information in a
 
 - [Front-end documentation](https://gitbluub.github.io/Kayo/)
 
-- [Back-end routes documentation](./docs/routes.md)
+- [Back-end routes documentation](https://back.bluub.me/api)
