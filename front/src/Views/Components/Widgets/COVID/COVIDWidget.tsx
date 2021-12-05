@@ -4,7 +4,9 @@ import AvailableServices from '../../../../Models/Service';
 import Button from '@mui/material/Button/Button';
 import Grid from '@mui/material/Grid/Grid';
 
-
+/**
+ * Properties for any COVID service widget
+ */
 interface COVIDWidgetInterface {
 	title: string,
 	subtitle: string,
@@ -12,6 +14,11 @@ interface COVIDWidgetInterface {
 	positive: boolean
 }
 
+/**
+ * Wrapper for any widget related to covid widget
+ * @param props 
+ * @returns 
+ */
 const COVIDWidget = (props: COVIDWidgetInterface) => {
 	return <Widget service={AvailableServices['covid']}>
 		<Grid item>

@@ -53,7 +53,7 @@
 			"widgets": [
 				{
 					"name": "favorite",
-					"description": "Display the favorite element of the subscriber",
+					"description": "Display the favorite element of the subscriber (either 'artists' or 'tracks')",
 					"params": [
 						{
 							"name": "what",

@@ -3,8 +3,14 @@ const frontHost = import.meta.env.SNOWPACK_PUBLIC_FRONT_END_HOST
 const frontPort = import.meta.env.SNOWPACK_PUBLIC_FRONT_END_PORT
 const subscribeRoute = "services/subscribe"
 
+/**
+ * Service class
+ */
 class Service {
 	name: string;
+	/**
+	 * Where to redirect on subscribe (oauth)
+	 */
 	urlToSubscribe: string;
 	widget: {
 		backgroundColor: string;

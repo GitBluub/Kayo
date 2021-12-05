@@ -13,34 +13,53 @@ import API from '../../Controllers/KayoAPI';
 import type { WidgetInterface, WidgetParam } from '../../Models/Widget';
 import type { WidgetGroupInterface } from './Widget';
 import { Navigate } from 'react-router';
-
+import Tooltip from '@mui/material/Tooltip/Tooltip';
+import HelpOutlineRoundedIcon from '@mui/icons-material/HelpOutlineRounded';
+import WidgetFormField from './WidgetFormField';
+/**
+ * Properties of a widget form
+ */
 interface WidgetFormProps {
+	// The widget
 	widget: WidgetInterface;
-	service: string
+	// The widget service
+	service: string,
+	// Callback on validate button press
+	onValidate: () => void
 }
 
-const WidgetForm = ({ widget, service }: WidgetFormProps) => {
+/**
+ * Form to set a widget's params
+ * @param param0 
+ * @returns 
+ */
+const WidgetForm = ({ widget, service, onValidate }: WidgetFormProps) => {
 	const [params, setParamsState] = useState(widget.params);
 	const [changed, setFilledChanged] = useState(false)
-	const [validated, setValidated] = useState(false)
-	if (validated)
-		return <Navigate replace to="/"/>
 	return (
 		<ParameterCard name={widget.name}>
+			<Tooltip title={widget.description} style={{ marginTop: 4}}>
+			  <IconButton>
+			    <HelpOutlineRoundedIcon />
+			  </IconButton>
+			</Tooltip>
 			{
 				widget.params.map((_, index, __) =>
-					<TextField key={index} id="filled-basic" label={params[index].name} variant="filled" defaultValue={params[index].value}
+					<WidgetFormField key={index} label={params[index].name} defaultValue={params[index].value} type={params[index].type as string}
 						onChange={(newValue) => setParamsState((paramsState: WidgetParam[]) => {
 							setFilledChanged(true);
 							paramsState[index].value = newValue.target.value;
 							return paramsState
-						}
-						)} style={{marginLeft: 8}}
+						})}
 					/>
 				)
 			}
 			{changed ?
-				<Button href="#" color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20, marginTop: 10 }} onClick={() => { API.addWidget(service, widget.name, params).then(_ => setValidated(true)); }}>
+				<Button href="#" color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20, marginTop: 10 }} onClick={() => {
+						API.addWidget(service, widget.name, params).then(_ =>  {
+							onValidate();
+						}) 
+					}}>
 					<DoneIcon />
 					Add Widget
 				</Button>
@@ -53,7 +72,9 @@ const WidgetForm = ({ widget, service }: WidgetFormProps) => {
 const WidgetFormsGroup = (widgetGroup: WidgetGroupInterface) => {
 	return (
 		<ParameterCardGroup key={widgetGroup.serviceName} title={widgetGroup.serviceName.toUpperCase()}>
-			{widgetGroup.widgets.map((widget: WidgetInterface) => <WidgetForm key={widget.name} service={widgetGroup.serviceName} widget={widget} />)}
+			{widgetGroup.widgets.map((widget: WidgetInterface) => (
+				<WidgetForm key={widget.name} service={widgetGroup.serviceName} widget={widget} onValidate={widgetGroup.onValidate as () => void} />
+			))}
 		</ParameterCardGroup>
 	)
 }

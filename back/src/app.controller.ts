@@ -15,8 +15,8 @@ export class AppController {
 
   @Get("health")
   @ApiOkResponse({ description: "The server is alive"})
-  async getHealth(@Res() res) {
-    return ""
+  getHealth(@Res() res) {
+    res.status(HttpStatus.OK).send();
   }
 
   @Get("about.json")

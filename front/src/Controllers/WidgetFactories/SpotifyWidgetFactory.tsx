@@ -13,7 +13,11 @@ interface SpotifyWidgetData {
 	albumName: string | undefined,
 }
 
-
+/**
+ * Spotify widget factory
+ * @param param0 
+ * @returns 
+ */
 const SpotifyWidgetFactory = ({ widgetName, widgetData, widgetParams }: ServiceWidgetFactoryProps) => {
 	const data = widgetData as SpotifyWidgetData
 	switch (widgetName) {

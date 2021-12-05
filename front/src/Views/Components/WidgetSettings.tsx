@@ -14,34 +14,43 @@ import type { WidgetInterface, WidgetParam } from '../../Models/Widget';
 import type { WidgetGroupInterface } from './Widget';
 import { Navigate } from 'react-router';
 import KayoAPI from '../../Controllers/KayoAPI';
+import WidgetFormField from './WidgetFormField';
 
+/**
+ * Properties for a widget settings
+ */
 interface WidgetSettingsProps {
+	// the widget
 	widget: WidgetInterface;
+	// Callback when a widget is removed
 	setWidgetGroupState: () => void;
+	// Callback when the save button is pressed
+	onValidate: () => void
 }
 
-const WidgetSettings = ({ widget, setWidgetGroupState }: WidgetSettingsProps) => {
+/**
+ * Setting page for widgets, gathered in service groups
+ * @param param0 
+ * @returns 
+ */
+const WidgetSettings = ({ widget, setWidgetGroupState, onValidate }: WidgetSettingsProps) => {
 	const [params, setParamsState] = useState(widget.params);
 	const [changed, setFilledChanged] = useState(false)
-	const [updated, setUpdated] = useState(false)
 
-	if (updated)
-		return <Navigate replace to="/"/>
 	return (
 		<ParameterCard name={widget.name}>
 			{ widget.params.map((_, index, __) =>
-					<TextField key={index} id="filled-basic" label={params[index].name} variant="filled" defaultValue={params[index].value}
+					<WidgetFormField key={index} label={params[index].name} defaultValue={params[index].value} type={params[index].type as string}
 						onChange={(newValue) => setParamsState((paramsState: WidgetParam[]) => {
 							setFilledChanged(true);
 							paramsState[index].value = newValue.target.value;
 							return paramsState
-						}
-						)}  style={{marginLeft: 8}}
+						})}
 					/>
 				)
 			}
 			{changed ?
-				<Button color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20 }} onClick={() => { API.updateWidgetParams(widget.id, params).then(res => setUpdated(true)) }}>
+				<Button color="success" variant="contained" style={{ marginRight: 20, marginLeft: 20 }} onClick={() => { API.updateWidgetParams(widget.id, params); onValidate(); setFilledChanged(false) }}>
 					<DoneIcon />
 					Update
 				</Button>
@@ -54,12 +63,22 @@ const WidgetSettings = ({ widget, setWidgetGroupState }: WidgetSettingsProps) =>
 	)
 }
 
+/**
+ * Groups of widgets for their settings
+ */
 type WidgetSettingsGroupProps = WidgetGroupInterface & {
+	// callback on removal
 	setState: any
+	// List of widgets groups
 	groups:  WidgetGroupInterface[] 
 } 
 
-const WidgetSettingsGroup = ({ serviceName, widgets, setState, groups }: WidgetSettingsGroupProps) => {
+/**
+ * Groups of widget for settings page
+ * @param param0 
+ * @returns 
+ */
+const WidgetSettingsGroup = ({ serviceName, widgets, onValidate, setState, groups }: WidgetSettingsGroupProps) => {
 	if (widgets.length == 0)
 		return <></>
 	return (
@@ -69,7 +88,7 @@ const WidgetSettingsGroup = ({ serviceName, widgets, setState, groups }: WidgetS
 					groups.forEach((group, _, __) => { group.widgets = group.widgets.filter((tmp, _, __) => tmp.id != widget.id); })
 					setState(groups)
 				}
-			}/>)}
+			} onValidate={onValidate as () => void} />)}
 		</ParameterCardGroup>
 	)
 }

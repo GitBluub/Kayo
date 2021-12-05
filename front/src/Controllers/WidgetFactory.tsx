@@ -18,6 +18,11 @@ interface ServiceWidgetFactoryProps {
 	widgetData: StockMarketWidgetData | SpotifyWidgetData | WeatherWidgetData | GithubWidgetData | null;
 }
 
+/**
+ * Widget factory
+ * @param param0 
+ * @returns 
+ */
 const WidgetFactory = ({ serviceName, widgetName, widgetid, widgetParams}: WidgetFactoryProps) => {
 
 	const [widgetData, setWidgetData] = useState(null)

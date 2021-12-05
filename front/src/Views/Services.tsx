@@ -8,7 +8,10 @@ import KayoAPI from '../Controllers/KayoAPI';
 import AvailableServices, { Service } from '../Models/Service';
 import SecondaryPage from './Components/SecondaryPage';
 
-
+/**
+ * Page that displays services that user can connect to, and services they have already subscribed to
+ * @returns 
+ */
 const Services = () => {
 	const [ connectedServices, setConnectedServices ] = useState<string[]>([])
 	const [ otherServices, setOtherServices ] = useState<string[]>([])

@@ -6,6 +6,11 @@ interface ParameterCardGroupProps extends KayoComponentProps {
 	title: string
 }
 
+/**
+ * Group of parameter cards
+ * @param props 
+ * @returns 
+ */
 const ParameterCardGroup = (props: ParameterCardGroupProps) => {
 	return <Grid container justifyContent="center" alignItems="center" style={{ width: "100%" }} direction="column">	
 		<Grid container justifyContent="flex-start" alignItems="left" style={{ width: "80%" }} direction="column">	

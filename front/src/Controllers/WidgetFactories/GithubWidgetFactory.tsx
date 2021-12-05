@@ -18,6 +18,11 @@ interface GithubWidgetData {
 
 }
 
+/**
+ * Github widget factory
+ * @param param0 
+ * @returns 
+ */
 const GithubWidgetFactory = ({ widgetName, widgetParams, widgetData }: ServiceWidgetFactoryProps) => {
 	const data = widgetData as GithubWidgetData
 	switch (widgetName) {

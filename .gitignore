@@ -108,3 +108,4 @@ dist
 back.secret.yaml
 front.secret.yaml
 postgres.secret.yaml
+docs/front

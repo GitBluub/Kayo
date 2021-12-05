@@ -12,6 +12,11 @@ interface spotifyRes {
 	refresh_token: string
 }
 
+/**
+ * Callback on spotify service subscription
+ * @param searchParams 
+ * @returns 
+ */
 const SpotifySubscribe = (searchParams: any) => {
 	const [ res, setRes ] = React.useState<spotifyRes | null>(null);
 	React.useEffect(() => {

@@ -93,7 +93,6 @@ export class SpotifyService {
 			});
 			return res.data.access_token
 		} catch (error) {
-			console.log(error);
 			return null
 		}
 	}

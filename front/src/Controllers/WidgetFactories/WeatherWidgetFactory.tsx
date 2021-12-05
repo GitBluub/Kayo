@@ -13,6 +13,11 @@ interface WeatherWidgetData {
 	condition?: string,
 }
 
+/**
+ * Weather widget factory
+ * @param param0 
+ * @returns 
+ */
 const WeatherWidgetFactory = ({ widgetName, widgetParams, widgetData }: ServiceWidgetFactoryProps) => {
 	const data = widgetData as WeatherWidgetData;
 	switch (widgetName) {

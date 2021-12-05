@@ -5,13 +5,25 @@ import ParameterCardButton from './ParameterCard/ParameterCardButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
+/**
+ * Props for Service Card
+ */
 interface ServiceCardInterface {
+	// Name of the service
 	serviceName: string,
+	// Action of the card's button
 	actionType: "add" | "delete" | "none",
+	// Callback on button press
 	action: () => void,
+	// Link to redirect to
 	href: string,
 }
 
+/**
+ * Component for Service card
+ * @param props 
+ * @returns 
+ */
 const ServiceCard = (props: ServiceCardInterface) => {
 
 	var actionButton = <></>;
