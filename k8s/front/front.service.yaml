@@ -4,6 +4,7 @@ metadata:
   name: front-service
 spec:
   type: LoadBalancer
+  loadBalancerIP: "35.240.49.160"
   selector:
     app: front
   ports:

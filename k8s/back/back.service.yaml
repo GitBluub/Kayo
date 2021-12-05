@@ -4,6 +4,7 @@ metadata:
   name: back-service
 spec:
   type: LoadBalancer
+  loadBalancerIP: "35.241.223.134"
   selector:
     app: back
   ports:
