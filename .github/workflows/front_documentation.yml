@@ -17,7 +17,7 @@ jobs:
       - name: Update Documentation
         run: |
           cd front
-          npm install
+          sudo npm install
           npx typedoc --readme ../README.md --entryPointStrategy expand src --out ../docs/front
           cd ../docs/front
           git config --global user.email "${GITHUB_ACTOR}@github.com";
