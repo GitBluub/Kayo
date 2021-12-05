@@ -24,12 +24,8 @@ jobs:
       
       - name: Build images
         run: |-
-          echo "SNOWPACK_PUBLIC_BACK_END_HOST=http://back.bluub.me" >> front/.env
-          echo "SNOWPACK_PUBLIC_BACK_END_PORT=8080" >> front/.env
-          echo "SNOWPACK_PUBLIC_FRONT_END_HOST=http://front.bluub.me" >> front/.env
-          echo "SNOWPACK_PUBLIC_FRONT_END_PORT=3435" >> front/.env
-          echo "SNOWPACK_PUBLIC_SPOTIFY_CLIENT_ID={{ secrets.SPOTIFY_ID }}" >> front/.env
-          echo "SNOWPACK_PUBLIC_SPOTIFY_CLIENT_SECRET={{ secres.SPOTIFY_SECRET }}" >> front/.env
+          echo "{{ secrets.FRONT_ENV }}" > front/.env
+          echo "{{ secrets.BACK_ENV }}" > back/.env
           docker build -t $IMAGE_NAME_FRONT:latest -f ./front/Dockerfile front
           docker build -t $IMAGE_NAME_BACK:latest -f ./back/Dockerfile back
       
